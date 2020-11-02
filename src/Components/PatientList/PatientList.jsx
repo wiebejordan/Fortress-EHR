@@ -6,7 +6,7 @@ const tableData = [
   { name: 'John', age: 15, gender: 'Male' },
   { name: 'Amber', age: 40, gender: 'Female' },
   { name: 'Leslie', age: 25, gender: 'Other' },
-  { name: 'Ted', age: 70, gender: 'Male' },
+  { name: 'Ed', age: 70, gender: 'Male' },
 ]
 
 function exampleReducer(state, action) {
