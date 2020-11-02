@@ -1,79 +1,89 @@
 import React from 'react';
-import _ from 'lodash'
-import { Table } from 'semantic-ui-react';
 
-const tableData = [
-  { name: 'John', age: 15, gender: 'Male' },
-  { name: 'Amber', age: 40, gender: 'Female' },
-  { name: 'Leslie', age: 25, gender: 'Other' },
-  { name: 'Ed', age: 70, gender: 'Male' },
-]
 
-function exampleReducer(state, action) {
-  switch (action.type) {
-    case 'CHANGE_SORT':
-      if (state.column === action.column) {
-        return {
-          ...state,
-          data: state.data.reverse(),
-          direction:
-            state.direction === 'ascending' ? 'descending' : 'ascending',
-        }
-      }
+const PatientTable = (props) => {
+  const patients = [
+    {name: 'Jordan',
+    age: 21,
+    dob: '2/21/1992'},
+    {name: 'Cicely',
+    age: 25,
+    dob: '3/10/1990'},
+    {name: 'Jeff',
+    age: 18,
+    dob: '2/21/1993'},
+  ];
+  const [sortConfig, setSortConfig] = React.useState(null);
 
-      return {
-        column: action.column,
-        data: _.sortBy(state.data, [action.column]),
-        direction: 'ascending',
-      }
-    default:
-      throw new Error()
+  const getClassNamesFor = (name) => {
+    if (!sortConfig) {
+      return;
+    }
+    return sortConfig.key === name ? sortConfig.direction : undefined;
+  };
+  
+  const requestSort = key => {
+    let direction = 'ascending';
+    if (sortConfig.key === key && sortConfig.direction === 'ascending') {
+      direction = 'descending';
+    }
+    setSortConfig({ key, direction });
   }
-}
 
-function PatientList() {
-  const [state, dispatch] = React.useReducer(exampleReducer, {
-    column: null,
-    data: tableData,
-    direction: null,
-  })
-  const { column, data, direction } = state
+  React.useMemo(() => {
 
-  return (
-    <Table sortable celled fixed>
-      <Table.Header>
-        <Table.Row>
-          <Table.HeaderCell
-            sorted={column === 'name' ? direction : null}
-            onClick={() => dispatch({ type: 'CHANGE_SORT', column: 'name' })}
-          >
-            Name
-          </Table.HeaderCell>
-          <Table.HeaderCell
-            sorted={column === 'age' ? direction : null}
-            onClick={() => dispatch({ type: 'CHANGE_SORT', column: 'age' })}
-          >
-            Age
-          </Table.HeaderCell>
-          <Table.HeaderCell
-            sorted={column === 'gender' ? direction : null}
-            onClick={() => dispatch({ type: 'CHANGE_SORT', column: 'gender' })}
-          >
-            Gender
-          </Table.HeaderCell>
-        </Table.Row>
-      </Table.Header>
-      <Table.Body>
-        {data.map(({ age, gender, name }) => (
-          <Table.Row key={name}>
-            <Table.Cell>{name}</Table.Cell>
-            <Table.Cell>{age}</Table.Cell>
-            <Table.Cell>{gender}</Table.Cell>
-          </Table.Row>
+    let sortedPatients = [...patients];
+    if (sortConfig !== null){
+      sortedPatients.sort((a,b) => {
+        if (a[sortConfig.key] < b[sortConfig.key]) {
+          return sortConfig.direction === 'ascending' ? -1 : 1;
+        }
+        if (a[sortConfig.key] > b[sortConfig.key]){
+          return sortConfig.direction === 'ascending' ? 1 : -1;
+        }
+        return 0
+      });
+    }
+    return sortedPatients;
+  }, [patients, sortConfig]);
+
+    return(
+    <table>
+      <caption>Patients</caption>
+      <thead>
+        <tr>
+          <th>
+            <button type="button" onClick={() => requestSort('name')}
+            className={getClassNamesFor('name')}>
+              Name
+            </button>
+          </th>
+          <th>
+            <button type="button" onClick={() => requestSort('age')}
+            className={getClassNamesFor('age')}>
+              Age
+            </button>
+          </th>
+          <th>
+            <button type="button" onClick={() => requestSort('dob')}
+            className={getClassNamesFor('dob')}>
+              DOB
+            </button>
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        {patients.map(patient => (
+          <tr key={patient.id}>
+            <td>{patient.name}</td>
+            <td>{patient.age}</td>
+            <td>{patient.dob}</td>
+          </tr>
         ))}
-      </Table.Body>
-    </Table>
-  )
+      </tbody>
+    </table>
+  );
+
 }
 
-export default PatientList;
+export default PatientTable;
