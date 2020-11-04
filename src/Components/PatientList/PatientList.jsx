@@ -1,10 +1,20 @@
-import React from 'react';
+import React, {useState, useEffect, useMemo} from 'react';
 
 
 const useSortableData = (items, config = null) => {
-  const [sortConfig, setSortConfig] = React.useState(config);
+  const [sortConfig, setSortConfig] = useState(config),    
+        [searchVal, setSearchVal] = useState('');
+  
+  useEffect(() => {
+    console.log(searchVal)
+  })
 
-  const sortedItems = React.useMemo(() => {
+
+  const handleSearch = (e) => {
+    setSearchVal(e)
+  }
+
+  const sortedItems = useMemo(() => {
     let sortableItems = [...items];
     if (sortConfig !== null) {
       sortableItems.sort((a, b) => {
@@ -32,11 +42,11 @@ const useSortableData = (items, config = null) => {
     setSortConfig({ key, direction });
   };
 
-  return { items: sortedItems, requestSort, sortConfig };
+  return { items: sortedItems, requestSort, sortConfig, handleSearch, searchVal };
 };
 
 const ProductTable = (props) => {
-  const { items, requestSort, sortConfig } = useSortableData(props.products);
+  const { items, requestSort, sortConfig, handleSearch, searchVal } = useSortableData(props.patients);
   const getClassNamesFor = (name) => {
     if (!sortConfig) {
       return;
@@ -47,7 +57,11 @@ const ProductTable = (props) => {
     <div>
     <div>
     <p>Search</p>
-    <input></input>
+    <input 
+    name='searchVal'
+    value= {searchVal}
+    placeholder= 'search by name, DOB, patient #'
+    onChange={(e) => handleSearch(e.target.value)}/>
     </div>
     <table>
       <caption>Patient List</caption>
@@ -110,7 +124,7 @@ export default function PatientTable() {
   return (
     <div className="App">
       <ProductTable
-        products={[
+        patients={[
           { id: 1, name: 'Wiebe, Jordan', age: 28, dob: '02/21/1992' },
           { id: 2, name: 'Wiebe, Cicely', age: 30, dob: '03/16/1990' },
           { id: 3, name: 'Jeff, Tall', age: 27, dob: '12/12/1993' },
