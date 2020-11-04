@@ -1,4 +1,5 @@
 import React, {useState, useEffect, useMemo} from 'react';
+import {Link} from 'react-router-dom'
 
 
 const useSortableData = (items, config = null) => {
@@ -12,10 +13,11 @@ const useSortableData = (items, config = null) => {
           { id: '5', name: 'Trump, Donald', age: '78', dob: '12/12/1950' },
           { id: '6', name: 'Smith, Mike ', age: '45', dob: '05/25/1974' },
           { id: '7', name: 'Doe, John', age: '99', dob: '11/11/1921'},
+          
         ])
   
   useEffect(() => {
-    console.log(searchVal)
+    
   })
 
 
@@ -119,9 +121,12 @@ const ProductTable = (patientList) => {
           let objString = JSON.stringify(item)
           return objString.toLowerCase().includes(searchVal.toLowerCase())
         }).map((item) => (
+
           <tr key={item.id}>
             <td>{item.id}</td>
-            <td>{item.name}</td>
+            <Link to={`/patient/${item.id}`}>
+             <td>{item.name}</td>
+            </Link>
             <td>{item.age}</td>
             <td>{item.dob}</td>
           </tr>
