@@ -3,7 +3,16 @@ import React, {useState, useEffect, useMemo} from 'react';
 
 const useSortableData = (items, config = null) => {
   const [sortConfig, setSortConfig] = useState(config),    
-        [searchVal, setSearchVal] = useState('');
+        [searchVal, setSearchVal] = useState(''),
+        [patientList, setPatientList] = useState([
+          { id: '1', name: 'Wiebe, Jordan', age: '28', dob: '02/21/1992' },
+          { id: '2', name: 'Wiebe, Cicely', age: '30', dob: '03/16/1990' },
+          { id: '3', name: 'Jeff, Tall', age: '27', dob: '12/12/1993' },
+          { id: '4', name: 'Tillman, Daniel', age: '28', dob: '12/12/1992' },
+          { id: '5', name: 'Trump, Donald', age: '78', dob: '12/12/1950' },
+          { id: '6', name: 'Smith, Mike ', age: '45', dob: '05/25/1974' },
+          { id: '7', name: 'Doe, John', age: '99', dob: '11/11/1921'},
+        ])
   
   useEffect(() => {
     console.log(searchVal)
@@ -15,7 +24,7 @@ const useSortableData = (items, config = null) => {
   }
 
   const sortedItems = useMemo(() => {
-    let sortableItems = [...items];
+    let sortableItems = [...patientList];
     if (sortConfig !== null) {
       sortableItems.sort((a, b) => {
         if (a[sortConfig.key] < b[sortConfig.key]) {
@@ -42,11 +51,11 @@ const useSortableData = (items, config = null) => {
     setSortConfig({ key, direction });
   };
 
-  return { items: sortedItems, requestSort, sortConfig, handleSearch, searchVal };
+  return { items: sortedItems, requestSort, sortConfig, handleSearch, searchVal, patientList };
 };
 
-const ProductTable = (props) => {
-  const { items, requestSort, sortConfig, handleSearch, searchVal } = useSortableData(props.patients);
+const ProductTable = (patientList) => {
+  const { items, requestSort, sortConfig, handleSearch, searchVal } = useSortableData(patientList);
   const getClassNamesFor = (name) => {
     if (!sortConfig) {
       return;
@@ -106,7 +115,10 @@ const ProductTable = (props) => {
         </tr>
       </thead>
       <tbody>
-        {items.map((item) => (
+        {items.filter(item => {
+          let objString = JSON.stringify(item)
+          return objString.toLowerCase().includes(searchVal.toLowerCase())
+        }).map((item) => (
           <tr key={item.id}>
             <td>{item.id}</td>
             <td>{item.name}</td>
@@ -124,15 +136,7 @@ export default function PatientTable() {
   return (
     <div className="App">
       <ProductTable
-        patients={[
-          { id: 1, name: 'Wiebe, Jordan', age: 28, dob: '02/21/1992' },
-          { id: 2, name: 'Wiebe, Cicely', age: 30, dob: '03/16/1990' },
-          { id: 3, name: 'Jeff, Tall', age: 27, dob: '12/12/1993' },
-          { id: 4, name: 'Tillman, Daniel', age: 28, dob: '12/12/1992' },
-          { id: 5, name: 'Trump, Donald', age: 78, dob: '12/12/1950' },
-          { id: 6, name: 'Smith, Mike ', age: 45, dob: '05/25/1974' },
-          { id: 7, name: 'Doe, John', age: 99, dob: '11/11/1921'},
-        ]}
+        
       />
     </div>
   );
