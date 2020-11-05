@@ -1,6 +1,8 @@
 import React, {useState, useEffect, useMemo} from 'react';
 import {Link} from 'react-router-dom'
+import {connect} from 'react-redux';
 
+const mapStateToProps = (reduxState) => reduxState;
 
 const useSortableData = (items, config = null) => {
   const [sortConfig, setSortConfig] = useState(config),    
@@ -15,6 +17,7 @@ const useSortableData = (items, config = null) => {
           { id: '7', name: 'Doe, John', age: '99', dob: '11/11/1921'},
           
         ])
+
   
   useEffect(() => {
     
@@ -137,7 +140,7 @@ const ProductTable = (patientList) => {
   );
 };
 
-export default function PatientTable() {
+ function PatientTable() {
   return (
     <div className="App">
       <ProductTable
@@ -145,4 +148,6 @@ export default function PatientTable() {
       />
     </div>
   );
-}
+};
+
+export default connect(mapStateToProps)(PatientTable);
