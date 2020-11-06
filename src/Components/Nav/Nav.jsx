@@ -1,8 +1,9 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {Menu} from 'semantic-ui-react';
 
 const Nav = () => {
-
+  const [english, setEnglish] = useState(true);
+  
   return(
     <Menu text>
         <Menu.Item header>J.E.F.F. EMS</Menu.Item>
