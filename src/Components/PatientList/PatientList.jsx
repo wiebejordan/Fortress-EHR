@@ -21,7 +21,7 @@ const useSortableData = (items, config = null) => {
     ]);
 
   useEffect(() => {
-    console.log(english);
+    
   });
 
   const handleEnglish = () => {

@@ -9,7 +9,7 @@ const mapStateToProps = (reduxState) => reduxState;
          [patient, setPatient] = useState({id: null, name: '', age: '', dob: '', height: '', weight: '', allergies: '', patientHistory: '', activeProblems: '', medications: ''});
 
   useEffect(() => {
-    const {id, name, age, dob, height, weight, allergies, patientHistory, activeProblems, medications} = props.patients[props.match.params.patientid -1]
+    const {id, name, age, dob, height, weight, allergies, patientHistory, activeProblems, medications} = props.patientReducer.patients[props.match.params.patientid -1]
     console.log(props)
     if(props.match.params.patientid){
       setPatient({id, name, age, dob, height, weight, allergies, patientHistory, activeProblems, medications })
