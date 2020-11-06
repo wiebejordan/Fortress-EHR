@@ -1,6 +1,8 @@
 import React, {useState, useEffect, useMemo} from 'react';
-import {Link} from 'react-router-dom'
+import {Link} from 'react-router-dom';
 import {connect} from 'react-redux';
+import { Icon, Label, Menu, Table } from 'semantic-ui-react';
+import '../PatientList/PatientList.css';
 
 const mapStateToProps = (reduxState) => reduxState;
 
@@ -124,10 +126,10 @@ const ProductTable = (patientList) => {
           let objString = JSON.stringify(item)
           return objString.toLowerCase().includes(searchVal.toLowerCase())
         }).map((item) => (
-
+          
           <tr key={item.id}>
             <td>{item.id}</td>
-            <Link to={`/patient/${item.id}`}>
+              <Link to={`/patient/${item.id}`}>
              <td>{item.name}</td>
             </Link>
             <td>{item.age}</td>
