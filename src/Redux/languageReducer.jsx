@@ -2,14 +2,14 @@
 
 
 const initialState = {
-  english: true
+  english: true  
 }
 
-const GET_LANG = 'GET_LANG'
+const CHANGE_LANGUAGE = 'CHANGE_LANGUAGE'
 
 export function getLang(englishObj){
   return {
-    type: GET_LANG,
+    type: CHANGE_LANGUAGE,
     payload: englishObj
   }
 }
@@ -17,8 +17,8 @@ export function getLang(englishObj){
 export default function languageReducer(state = initialState, action){
     const {type, payload} = action;
     switch(type){
-      case GET_LANG:
-        return {...state, english: payload};
+      case CHANGE_LANGUAGE:
+        return {...state, english: payload.english};
       default:
           return state;
     }

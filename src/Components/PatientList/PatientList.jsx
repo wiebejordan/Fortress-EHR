@@ -1,10 +1,10 @@
 import React, { useState, useEffect, useMemo } from "react";
 import { Link } from "react-router-dom";
-import { connect } from "react-redux";
+import { useSelector } from "react-redux";
 import { Icon, Label, Menu, Table } from "semantic-ui-react";
 import "../PatientList/PatientList.css";
 
-const mapStateToProps = (reduxState) => reduxState;
+
 
 const useSortableData = (items, config = null) => {
   const [sortConfig, setSortConfig] = useState(config),
@@ -72,7 +72,7 @@ const useSortableData = (items, config = null) => {
   };
 };
 
-const ProductTable = (patientList) => {
+const ProductTable = (patientList, props) => {
   const {
     items,
     requestSort,
@@ -82,6 +82,9 @@ const ProductTable = (patientList) => {
     english,
     handleEnglish,
   } = useSortableData(patientList);
+
+  const state = useSelector(state => state.languageReducer)
+  console.log(state);
   const getClassNamesFor = (name) => {
     if (!sortConfig) {
       return;
@@ -90,9 +93,9 @@ const ProductTable = (patientList) => {
   };
   return (
     <div>
-      <button onClick={handleEnglish}>Language</button>
+      
       <div>
-        {english === true ? (
+        {state.english === true ? (
           <div>
             <p>Search</p>
             <input
@@ -115,7 +118,7 @@ const ProductTable = (patientList) => {
         )}
       </div>
 
-      {english === true ? (
+      {state.english === true ? (
       <>
       <h1>Patient List</h1>
       <table>
@@ -253,4 +256,4 @@ function PatientTable() {
   );
 }
 
-export default connect(mapStateToProps)(PatientTable);
+export default (PatientTable);

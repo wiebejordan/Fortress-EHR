@@ -1,10 +1,10 @@
 import React, {useState, useEffect} from 'react';
 import {Menu, Dropdown} from 'semantic-ui-react';
-import {connect} from 'react-redux';
+import {connect, useSelector, useDispatch} from 'react-redux';
 import {getLang} from '../../Redux/languageReducer';
 
 
-const mapStateToProps = (reduxState) => reduxState; 
+ 
 
 
 const langOptions = [
@@ -23,15 +23,23 @@ const langOptions = [
 
 const Nav = (props) => {
   const [isEnglish, setIsEnglish] = useState(true);
+  const state = useSelector(state => state.languageReducer);
+  const dispatch = useDispatch();
+  // console.log('state', state)
 
- const handleLang = () => {
+ const handleLang = (props) => {
     setIsEnglish(!isEnglish)
-    getLang(!isEnglish)
+    dispatch({
+      type: 'CHANGE_LANGUAGE',
+      payload: {
+        english: !isEnglish
+      }
+    })
   }
 
   useEffect(() => {
-    console.log(isEnglish);
-    console.log(props.languageReducer)
+    // console.log(isEnglish);
+    // console.log(state)
   });
 
   return(
@@ -51,8 +59,9 @@ const Nav = (props) => {
       selection
       options={langOptions}
       onChange={handleLang}/>
+      
       </div>
   )
 }
 
-export default connect(mapStateToProps, {getLang})(Nav);
+export default Nav;
