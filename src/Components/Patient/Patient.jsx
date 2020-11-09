@@ -16,6 +16,9 @@ const mapStateToProps = (reduxState) => reduxState;
     }
   }, [])
   return(<div>
+    {props.languageReducer.english === true 
+    ?(
+    <>
     <p><b>Id:</b> {patient.id}</p>
     <p><b>Name:</b> {patient.name}</p> 
     <p><b>Age:</b> {patient.age}</p>
@@ -26,6 +29,21 @@ const mapStateToProps = (reduxState) => reduxState;
     <p><b>Patient History:</b> {patient.patientHistory}</p>
     <p><b>Active Problems:</b> {patient.activeProblems}</p>
     <p><b>Medications:</b> {patient.medications}</p>
+    </>
+    )
+    : 
+    <>
+    <p><b>Id:</b> {patient.id}</p>
+    <p><b>Nombre:</b> {patient.name}</p> 
+    <p><b>Años:</b> {patient.age}</p>
+    <p><b>Fecha de Nacimiento:</b> {patient.dob}</p>
+    <p><b>Altura:</b> {patient.height}</p>
+    <p><b>Peso:</b> {patient.weight}</p>
+    <p><b>Alergias:</b> {patient.allergies}</p>
+    <p><b>Historial del Paciente:</b> {patient.patientHistory}</p>
+    <p><b>Problemas Activos:</b> {patient.activeProblems}</p>
+    <p><b>Medicamentos:</b> {patient.medications}</p>
+    </>}
   </div>
   )
 }

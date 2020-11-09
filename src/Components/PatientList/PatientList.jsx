@@ -84,7 +84,7 @@ const ProductTable = (patientList, props) => {
   } = useSortableData(patientList);
 
   const state = useSelector(state => state.languageReducer)
-  console.log(state);
+  
   const getClassNamesFor = (name) => {
     if (!sortConfig) {
       return;
