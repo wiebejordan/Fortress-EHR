@@ -52,13 +52,14 @@ const Nav = (props) => {
           
         />
         
-      </Menu>
       <Dropdown
       placeholder='English'
       defaultValue='true'
       selection
+      compact
       options={langOptions}
       onChange={handleLang}/>
+      </Menu>
       
       </div>
   )
