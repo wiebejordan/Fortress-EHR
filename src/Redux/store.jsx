@@ -1,7 +1,13 @@
 import {createStore, combineReducers, applyMiddleware} from 'redux';
-import promiseMiddleware from 'redux-promise-middleware';
 import patientReducer from './patientReducer';
 import languageReducer from './languageReducer';
+import {persistStore, persistReducer} from 'redux-persist';
+import storage from 'redux-persist/lib/storage'
+
+const persistConfig = {
+  key: 'root',
+  storage,
+}
 
 const rootReducer = combineReducers({
   patientReducer,
@@ -9,5 +15,9 @@ const rootReducer = combineReducers({
   
 });
 
-export default createStore(rootReducer, applyMiddleware(promiseMiddleware));
+const persistedReducer = persistReducer(persistConfig, rootReducer);
+
+export const store = createStore(persistedReducer);
+export const persistor = persistStore(store);
+
 
