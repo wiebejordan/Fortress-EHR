@@ -11,12 +11,12 @@ const langOptions = [
   {
     key: 'English',
     text: 'English',
-    value: 'true'
+    value: true
   },
   {
     key: 'Spanish',
     text: 'Spanish',
-    value: 'false'
+    value: false
   }
 
 ]
@@ -27,20 +27,35 @@ const Nav = (props) => {
   const dispatch = useDispatch();
   // console.log('state', state)
 
- const handleLang = (props) => {
+ const handleLang = () => {
     setIsEnglish(!isEnglish)
+
+    if(state.english === true){
     dispatch({
       type: 'CHANGE_LANGUAGE',
       payload: {
-        english: !isEnglish
+        english: false
       }
     })
+    }
+    else if(state.english === false){
+      dispatch({
+        type: 'CHANGE_LANGUAGE',
+        payload: {
+          english: true
+        }
+      })
+      }
   }
 
   useEffect(() => {
-    // console.log(isEnglish);
-    // console.log(state)
+    
+    console.log(state.english)
   });
+
+
+
+  
 
   return(
     <div>
@@ -53,8 +68,8 @@ const Nav = (props) => {
         />
         
       <Dropdown
-      placeholder='English'
-      defaultValue='true'
+      // placeholder='English'
+      defaultValue={state.english}
       selection
       compact
       options={langOptions}
