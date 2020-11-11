@@ -142,7 +142,7 @@ const ProductTable = (patientList, props) => {
                 Name
               </button>
             </th>
-            <th>
+            {/* <th>
               <button
                 type="button"
                 onClick={() => requestSort("age")}
@@ -150,7 +150,7 @@ const ProductTable = (patientList, props) => {
               >
                 Age
               </button>
-            </th>
+            </th> */}
             <th>
               <button
                 type="button"
@@ -174,7 +174,7 @@ const ProductTable = (patientList, props) => {
                 <Link to={`/patient/${item.id}`}>
                   <td>{item.name}</td>
                 </Link>
-                <td>{item.age}</td>
+                {/* <td>{item.age}</td> */}
                 <td>{item.dob}</td>
               </tr>
             ))}
@@ -205,7 +205,7 @@ const ProductTable = (patientList, props) => {
                 Nombre
               </button>
             </th>
-            <th>
+            {/* <th>
               <button
                 type="button"
                 onClick={() => requestSort("age")}
@@ -213,7 +213,7 @@ const ProductTable = (patientList, props) => {
               >
                 Años
               </button>
-            </th>
+            </th> */}
             <th>
               <button
                 type="button"
@@ -237,7 +237,7 @@ const ProductTable = (patientList, props) => {
                 <Link to={`/patient/${item.id}`}>
                   <td>{item.name}</td>
                 </Link>
-                <td>{item.age}</td>
+                {/* <td>{item.age}</td> */}
                 <td>{item.dob}</td>
               </tr>
             ))}
