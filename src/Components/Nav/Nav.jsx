@@ -1,7 +1,8 @@
 import React, {useState, useEffect} from 'react';
-import {Menu, Dropdown} from 'semantic-ui-react';
+import {Menu, Dropdown, Input, Button} from 'semantic-ui-react';
 import {connect, useSelector, useDispatch} from 'react-redux';
 import {getLang} from '../../Redux/languageReducer';
+import axios from 'axios';
 
 
  
@@ -22,8 +23,12 @@ const langOptions = [
 ]
 
 const Nav = (props) => {
-  const [isEnglish, setIsEnglish] = useState(true);
+  const [isEnglish, setIsEnglish] = useState(true),
+        [username, setUsername] = useState(''),
+        [password, setPassword] = useState(''),
+        [loggedIn, setLoggedIn] = useState('');
   const state = useSelector(state => state.languageReducer);
+  const user = useSelector(state => state.authReducer)
   const dispatch = useDispatch();
   // console.log('state', state)
 
@@ -53,7 +58,14 @@ const Nav = (props) => {
     console.log(state.english)
   });
 
+ const handleLogin = () => {
 
+    axios.post('/auth/login', {username, password})
+    .then(res => {
+      user.getUser(res.data);
+      setLoggedIn(res.data.username);
+    })
+  }
 
   
 
@@ -61,11 +73,22 @@ const Nav = (props) => {
     <div>
     <Menu text>
         <Menu.Item header>J.E.F.F. EMS</Menu.Item>
-        <Menu.Item header>Wiebe, Cicely</Menu.Item>
-        <Menu.Item
-          name='Logout'
-          
-        />
+        {loggedIn === ''
+        ? 
+        <Menu.Item>
+          <Input placeholder='username'/>
+          <Input placeholder='password'/>
+          <Button onClick={handleLogin}>Login</Button>
+        </Menu.Item>
+
+        :
+      <>
+      <Menu.Item header>{loggedIn}</Menu.Item>
+      <Menu.Item>
+        <Button>Logout</Button>
+      </Menu.Item>
+      </>
+      }
         
       <Dropdown
       // placeholder='English'
