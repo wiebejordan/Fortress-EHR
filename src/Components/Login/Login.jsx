@@ -5,7 +5,7 @@ import {useSelector, useDispatch} from 'react-redux';
 
 
 
-const Login = () => {
+const Login = (props) => {
   const [isEnglish, setIsEnglish] = useState(true),
         [username, setUsername] = useState(''),
         [password, setPassword] = useState(''),
@@ -13,7 +13,7 @@ const Login = () => {
         const user = useSelector(state => state.authReducer)
         const state = useSelector(state => state.languageReducer);
         const dispatch = useDispatch();
-
+  console.log(props)
   const handlePassInput = (e) => {
     setPassword(e)
   }
@@ -31,6 +31,7 @@ const Login = () => {
         type: 'GET_USER',
         payload: res.data
       })
+      props.history.push('/main')
     })
     .catch(() => alert('username and password do not match'))
   }

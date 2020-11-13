@@ -6,7 +6,8 @@ import Login from './Components/Login/Login';
 
 export default (
   <Switch>
-    <Route exact path='/' component={Main}/>
+    <Route exact path='/' component={Login}/>
+    <Route path ='/main' component={Main}/>
     <Route path='/patient/:patientid' component={Patient}/>
   </Switch>
 );

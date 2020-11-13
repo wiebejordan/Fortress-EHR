@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import {Menu, Dropdown, Input, Button} from 'semantic-ui-react';
-import {connect, useSelector, useDispatch} from 'react-redux';
+import {useSelector, useDispatch} from 'react-redux';
 
 import axios from 'axios';
 
@@ -31,7 +31,7 @@ const Nav = (props) => {
   const reducer = useSelector(state => state);
   const user = useSelector(state => state.authReducer)
   const dispatch = useDispatch();
-
+  console.log(props)
 
  const handleLang = () => {
     setIsEnglish(!isEnglish)
@@ -62,9 +62,9 @@ const Nav = (props) => {
     // keepUser()
   }, [])
 
-  useEffect(() => {
+  useEffect((props) => {
     
-    console.log(reducer)
+    console.log(props)
     console.log('user', user)
   });
 
@@ -103,7 +103,8 @@ const Nav = (props) => {
         canedit: ''
       }}
      })
-   })
+    })
+    props.history.push('/')
  }
   
 

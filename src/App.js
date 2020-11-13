@@ -13,7 +13,6 @@ function App() {
     <div>
       <Nav/>
       {routes}
-      {user.username == 'Jordo' ? null : <Login/>}
     </div>
   );
 }
