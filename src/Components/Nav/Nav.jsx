@@ -113,12 +113,12 @@ const Nav = (props) => {
         <Menu.Item header>J.E.F.F. EMS</Menu.Item>
         {!user.user.username 
         ? 
-        <Menu.Item>
-          <Input placeholder='username' onChange={(e) => handleUserInput(e.target.value)}/>
-          <Input type='password' placeholder='password' onChange={(e) => handlePassInput(e.target.value)}/>
-          <Button onClick={handleLogin}>Login</Button>
-        </Menu.Item>
-
+        // <Menu.Item>
+        //   <Input placeholder='username' onChange={(e) => handleUserInput(e.target.value)}/>
+        //   <Input type='password' placeholder='password' onChange={(e) => handlePassInput(e.target.value)}/>
+        //   <Button onClick={handleLogin}>Login</Button>
+        // </Menu.Item>
+          null
         :
       <>
       <Menu.Item header>{user.user.username}</Menu.Item>
