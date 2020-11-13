@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from 'react';
 import {Menu, Dropdown, Input, Button} from 'semantic-ui-react';
 import {connect, useSelector, useDispatch} from 'react-redux';
-import {getLang} from '../../Redux/languageReducer';
+
 import axios from 'axios';
 
 
@@ -28,9 +28,10 @@ const Nav = (props) => {
         [password, setPassword] = useState(''),
         [loggedIn, setLoggedIn] = useState('');
   const state = useSelector(state => state.languageReducer);
+  // const reducer = useSelector(state => state);
   const user = useSelector(state => state.authReducer)
   const dispatch = useDispatch();
-  // console.log('state', state)
+
 
  const handleLang = () => {
     setIsEnglish(!isEnglish)
@@ -55,16 +56,29 @@ const Nav = (props) => {
 
   useEffect(() => {
     
-    console.log(state.english)
+    console.log(username, password, loggedIn)
+    console.log('user', user)
   });
+
+  const handlePassInput = (e) => {
+    setPassword(e)
+  }
+
+  const handleUserInput = (e) => {
+    setUsername(e)
+  }
 
  const handleLogin = () => {
 
     axios.post('/auth/login', {username, password})
     .then(res => {
-      user.getUser(res.data);
       setLoggedIn(res.data.username);
+      dispatch({
+        type: 'GET_USER',
+        payload: res.data
+      })
     })
+    .catch(() => alert('username and password do not match'))
   }
 
   
@@ -76,8 +90,8 @@ const Nav = (props) => {
         {loggedIn === ''
         ? 
         <Menu.Item>
-          <Input placeholder='username'/>
-          <Input placeholder='password'/>
+          <Input placeholder='username' onChange={(e) => handleUserInput(e.target.value)}/>
+          <Input placeholder='password' onChange={(e) => handlePassInput(e.target.value)}/>
           <Button onClick={handleLogin}>Login</Button>
         </Menu.Item>
 

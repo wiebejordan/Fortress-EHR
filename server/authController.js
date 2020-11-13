@@ -10,6 +10,11 @@ module.exports = {
       return res.status(400).send('Username does not exist');
     }
 
+    // const authenticated = bcrypt.compareSync(password, foundUser[0].password);
+    //   if(!authenticated){
+    //     return res.status(401).send('Password incorrect')
+    //   }
+
     delete foundUser[0].password;
     req.session.userid = foundUser[0];
     res.status(202).send(req.session.userid);
