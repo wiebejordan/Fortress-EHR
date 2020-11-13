@@ -89,16 +89,6 @@ const Nav = (props) => {
     .catch(() => alert('username and password do not match'))
   }
 
- const keepUser = () => {
-   axios.get('/auth/user')
-   .then(res => {
-    dispatch({
-      type: 'GET_USER',
-      payload: res.data[0]
-    })
-    // .catch(err => console.log(err))
-   })
- }
 
  const logout = () => {
    axios.post('/auth/logout')
@@ -125,7 +115,7 @@ const Nav = (props) => {
         ? 
         <Menu.Item>
           <Input placeholder='username' onChange={(e) => handleUserInput(e.target.value)}/>
-          <Input placeholder='password' onChange={(e) => handlePassInput(e.target.value)}/>
+          <Input type='password' placeholder='password' onChange={(e) => handlePassInput(e.target.value)}/>
           <Button onClick={handleLogin}>Login</Button>
         </Menu.Item>
 
