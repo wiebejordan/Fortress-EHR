@@ -18,7 +18,10 @@ export function getUser(userObj){
 export function clearUser(){
   return{
       type: CLEAR_USER,
-      payload: {}
+      payload: {user: {
+        username: '',
+        canedit: ''
+      }}
   }
 }
 

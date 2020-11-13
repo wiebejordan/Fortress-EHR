@@ -31,7 +31,7 @@ module.exports = {
     const db = req.app.get('db');
         
 
-    db.get_user(req.session.userid.user_id)
+    db.get_user(req.session.userid)
 
     .then(user => res.status(200).send(user))
     .catch(err => res.status(500).send(err));

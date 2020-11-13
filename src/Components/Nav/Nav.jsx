@@ -28,7 +28,7 @@ const Nav = (props) => {
         [password, setPassword] = useState(''),
         [loggedIn, setLoggedIn] = useState('');
   const state = useSelector(state => state.languageReducer);
-  // const reducer = useSelector(state => state);
+  const reducer = useSelector(state => state);
   const user = useSelector(state => state.authReducer)
   const dispatch = useDispatch();
 
@@ -55,8 +55,16 @@ const Nav = (props) => {
   }
 
   useEffect(() => {
+    // if(user.user.username){
+
+    //   setLoggedIn(user.user.username)
+    // }
+    // keepUser()
+  }, [])
+
+  useEffect(() => {
     
-    console.log(username, password, loggedIn)
+    console.log(reducer)
     console.log('user', user)
   });
 
@@ -81,13 +89,39 @@ const Nav = (props) => {
     .catch(() => alert('username and password do not match'))
   }
 
+ const keepUser = () => {
+   axios.get('/auth/user')
+   .then(res => {
+    dispatch({
+      type: 'GET_USER',
+      payload: res.data[0]
+    })
+    // .catch(err => console.log(err))
+   })
+ }
+
+ const logout = () => {
+   axios.post('/auth/logout')
+   .then(() => {
+     setLoggedIn('')
+     setUsername('')
+     setPassword('')
+     dispatch({
+       type: 'CLEAR_USER',
+       payload: {user: {
+        username: '',
+        canedit: ''
+      }}
+     })
+   })
+ }
   
 
   return(
     <div>
     <Menu text>
         <Menu.Item header>J.E.F.F. EMS</Menu.Item>
-        {loggedIn === ''
+        {!user.user.username 
         ? 
         <Menu.Item>
           <Input placeholder='username' onChange={(e) => handleUserInput(e.target.value)}/>
@@ -97,9 +131,9 @@ const Nav = (props) => {
 
         :
       <>
-      <Menu.Item header>{loggedIn}</Menu.Item>
+      <Menu.Item header>{user.user.username}</Menu.Item>
       <Menu.Item>
-        <Button>Logout</Button>
+        <Button onClick={logout}>Logout</Button>
       </Menu.Item>
       </>
       }
