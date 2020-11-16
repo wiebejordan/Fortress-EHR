@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from 'react';
 import {Menu, Dropdown, Input, Button} from 'semantic-ui-react';
 import {useSelector, useDispatch} from 'react-redux';
-
+import {useHistory} from 'react-router-dom';
 import axios from 'axios';
 
 
@@ -26,12 +26,14 @@ const Nav = (props) => {
   const [isEnglish, setIsEnglish] = useState(true),
         [username, setUsername] = useState(''),
         [password, setPassword] = useState(''),
-        [loggedIn, setLoggedIn] = useState('');
-  const state = useSelector(state => state.languageReducer);
-  const reducer = useSelector(state => state);
-  const user = useSelector(state => state.authReducer)
+        [loggedIn, setLoggedIn] = useState(''),
+         state = useSelector(state => state.languageReducer),
+         reducer = useSelector(state => state),
+        user = useSelector(state => state.authReducer),
+        history = useHistory();
+
   const dispatch = useDispatch();
-  console.log(props)
+  console.log('props', props)
 
  const handleLang = () => {
     setIsEnglish(!isEnglish)
@@ -54,17 +56,10 @@ const Nav = (props) => {
       }
   }
 
+
   useEffect(() => {
-    // if(user.user.username){
-
-    //   setLoggedIn(user.user.username)
-    // }
-    // keepUser()
-  }, [])
-
-  useEffect((props) => {
     
-    console.log(props)
+    
     console.log('user', user)
   });
 
@@ -104,7 +99,7 @@ const Nav = (props) => {
       }}
      })
     })
-    props.history.push('/')
+    history.push('/')
  }
   
 

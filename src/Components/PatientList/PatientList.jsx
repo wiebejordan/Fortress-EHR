@@ -1,12 +1,12 @@
 import React, { useState, useEffect, useMemo } from "react";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { Icon, Label, Menu, Table } from "semantic-ui-react";
 import "../PatientList/PatientList.css";
 
 
 
-const useSortableData = (items, config = null) => {
+const useSortableData = (items, config = null, props) => {
   const [sortConfig, setSortConfig] = useState(config),
     [searchVal, setSearchVal] = useState(""),
     [english, setEnglish] = useState(true),
@@ -19,9 +19,11 @@ const useSortableData = (items, config = null) => {
       { id: "6", name: "Smith, Mike ", age: "45", dob: "05/25/1974" },
       { id: "7", name: "Doe, John", age: "99", dob: "11/11/1921" },
     ]);
+    
+
 
   useEffect(() => {
-    
+
   });
 
   const handleEnglish = () => {
@@ -83,7 +85,16 @@ const ProductTable = (patientList, props) => {
     handleEnglish,
   } = useSortableData(patientList);
 
-  const state = useSelector(state => state.languageReducer)
+  const state = useSelector(state => state.languageReducer),
+        user = useSelector(state => state.authReducer),
+        history = useHistory();
+  console.log(props)
+
+  useEffect(() => {
+    // if(!user.user.username){
+    //   history.push('/')
+    // }
+  })
   
   const getClassNamesFor = (name) => {
     if (!sortConfig) {
