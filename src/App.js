@@ -17,17 +17,35 @@ function App(props) {
          history = useHistory(),
          user = useSelector(state => state.authReducer),
          lang = useSelector(state => state.languageReducer),
+         idle = useSelector(state => state.idleReducer),
          dispatch = useDispatch();
   
-  
+        useEffect(() => {
+          setModal(idle.idle)
+        }, [])
+
+
          useEffect(() => {
           setUsername(user.user.username)
-    
+          
         }, [user.user.username]);
 
         useEffect(() => {
+          if(modal === true){
+            dispatch({
+              type: 'IDLE_TRUE',
+              payload: {idle: true}
+            })
+          } else
+            dispatch({
+              type: 'IDLE_FALSE',
+              payload: {idle: false}
+            })
+        }, [modal, idle.idle])
+
+        useEffect(() => {
           console.log(user.user)
-          console.log(password)
+          console.log('idle', idle.idle)
         })
 
   const handleOnIdle = event => {
@@ -74,6 +92,8 @@ function App(props) {
     .catch(() => alert('username and password do not match'))
   }
 
+  
+
   return (
     <div>
       <Nav/>
@@ -85,9 +105,10 @@ function App(props) {
       <Modal
       onClose={() => setModal(false)}
       onOpen={() => setModal(true)}
-      open={modal}
+      open={idle.idle}
       closeOnDimmerClick={false}
       closeOnEscape={false}
+      dimmer='blurring'
       
     >
 
@@ -105,8 +126,6 @@ function App(props) {
         
         <Button
           content="Log in"
-          labelPosition='right'
-          icon='checkmark'
           onClick={() => handleIdleLogin()}
           positive
         />
@@ -119,7 +138,7 @@ function App(props) {
       open={modal}
       closeOnDimmerClick={false}
       closeOnEscape={false}
-      dimmer='{true, blurring}'
+      dimmer='blurring'
     >
 
       <Modal.Content image>
@@ -130,10 +149,9 @@ function App(props) {
           por favor ingrese su contraseña para volver a iniciar sesión
           </p>
           <input type='password' onChange={(e) => handlePassInput(e.target.value)} />
+         
           <Button
           content="Log in"
-          labelPosition='right'
-          icon='checkmark'
           onClick={() => handleIdleLogin()}
           positive
         />

@@ -2,6 +2,7 @@ import {createStore, combineReducers, applyMiddleware} from 'redux';
 import patientReducer from './patientReducer';
 import languageReducer from './languageReducer';
 import authReducer from './authReducer';
+import idleReducer from './idleReducer';
 import {persistStore, persistReducer} from 'redux-persist';
 import storage from 'redux-persist/lib/storage'
 
@@ -14,7 +15,8 @@ const persistConfig = {
 const rootReducer = combineReducers({
   patientReducer,
   languageReducer,
-  authReducer
+  authReducer,
+  idleReducer
   
 });
 
