@@ -15,6 +15,10 @@ module.exports = {
     //     return res.status(401).send('Password incorrect')
     //   }
 
+    if(password !== foundUser[0].password){
+      return res.status(401).send('Password incorrect')
+    }
+
     delete foundUser[0].password;
     req.session.userid = foundUser[0];
     res.status(202).send(req.session.userid);
