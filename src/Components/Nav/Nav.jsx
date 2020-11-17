@@ -1,7 +1,8 @@
 import React, {useState, useEffect} from 'react';
-import {Menu, Dropdown, Input, Button} from 'semantic-ui-react';
+import {Menu, Dropdown, Input, Button, Header} from 'semantic-ui-react';
 import {useSelector, useDispatch} from 'react-redux';
-import {useHistory} from 'react-router-dom';
+import {useHistory, useLocation} from 'react-router-dom';
+import {Link} from 'react-router-dom';
 import axios from 'axios';
 
 
@@ -31,6 +32,7 @@ const Nav = (props) => {
          state = useSelector(state => state.languageReducer),
          reducer = useSelector(state => state),
         user = useSelector(state => state.authReducer),
+        location = useLocation(),
         history = useHistory();
 
   const dispatch = useDispatch();
@@ -109,7 +111,19 @@ const Nav = (props) => {
   return(
     <div>
     <Menu text>
-        <Menu.Item header>J.E.F.F. EMS</Menu.Item>
+        {location.pathname !== '/'
+        ? 
+        <Menu.Item>
+          <Link to='/main'>
+          <Header>J.E.F.F. EMR</Header>
+          </Link>
+        </Menu.Item>
+        : <Menu.Item>
+        
+        <Header>J.E.F.F. EMR</Header>
+        
+      </Menu.Item>}
+
         {!user.user.username 
         ? 
         // <Menu.Item>

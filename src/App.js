@@ -5,7 +5,7 @@ import 'semantic-ui-css/semantic.min.css';
 import Nav from './Components/Nav/Nav';
 import { useSelector, useDispatch } from 'react-redux';
 import {useIdleTimer} from 'react-idle-timer';
-import {useHistory} from 'react-router-dom'
+import {useHistory, useLocation} from 'react-router-dom'
 import {Modal, Button, Image, Header} from 'semantic-ui-react'
 import axios from 'axios'
 
@@ -67,7 +67,7 @@ function App(props) {
   }
  
   const { getRemainingTime, getLastActiveTime } = useIdleTimer({
-    timeout: 10000,
+    timeout: 1000 * 60 * 15,
     onIdle: handleOnIdle,
     onActive: handleOnActive,
     onAction: handleOnAction,
