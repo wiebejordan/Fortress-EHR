@@ -22,10 +22,6 @@ const useSortableData = (items, config = null, props) => {
     
 
 
-  useEffect(() => {
-
-  });
-
   const handleEnglish = () => {
     setEnglish(!english);
   };
@@ -88,13 +84,8 @@ const ProductTable = (patientList, props) => {
   const state = useSelector(state => state.languageReducer),
         user = useSelector(state => state.authReducer),
         history = useHistory();
-  console.log(props)
+  
 
-  useEffect(() => {
-    // if(!user.user.username){
-    //   history.push('/')
-    // }
-  })
   
   const getClassNamesFor = (name) => {
     if (!sortConfig) {

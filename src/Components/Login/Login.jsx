@@ -13,7 +13,7 @@ const Login = (props) => {
         const user = useSelector(state => state.authReducer)
         const state = useSelector(state => state.languageReducer);
         const dispatch = useDispatch();
-  console.log(props)
+  
   const handlePassInput = (e) => {
     setPassword(e)
   }
@@ -47,7 +47,7 @@ const Login = (props) => {
     :
     <div>
       <input onChange={(e) => handleUserInput(e.target.value)} placeholder='nombre'/>
-      <input onChange={(e) => handlePassInput(e.target.value)} placeholder='password' type='password'/>
+      <input onChange={(e) => handlePassInput(e.target.value)} placeholder='contraseña' type='password'/>
       <button onClick={handleLogin}>Login</button>
     </div>
     }

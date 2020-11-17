@@ -3,6 +3,7 @@ import {Menu, Dropdown, Input, Button} from 'semantic-ui-react';
 import {useSelector, useDispatch} from 'react-redux';
 import {useHistory} from 'react-router-dom';
 import axios from 'axios';
+import useMonitor from '../useMonitor'
 
 
  
@@ -33,7 +34,7 @@ const Nav = (props) => {
         history = useHistory();
 
   const dispatch = useDispatch();
-  console.log('props', props)
+  
 
  const handleLang = () => {
     setIsEnglish(!isEnglish)
@@ -60,7 +61,7 @@ const Nav = (props) => {
   useEffect(() => {
     
     
-    console.log('user', user)
+    
   });
 
   const handlePassInput = (e) => {
@@ -101,6 +102,8 @@ const Nav = (props) => {
     })
     history.push('/')
  }
+
+  useMonitor(15000, 10000, );
   
 
   return(
