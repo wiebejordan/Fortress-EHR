@@ -67,7 +67,7 @@ function App(props) {
   }
  
   const { getRemainingTime, getLastActiveTime } = useIdleTimer({
-    timeout: 1000 * 60 * 15,
+    timeout: 10000,
     onIdle: handleOnIdle,
     onActive: handleOnActive,
     onAction: handleOnAction,
@@ -109,27 +109,26 @@ function App(props) {
       closeOnDimmerClick={false}
       closeOnEscape={false}
       dimmer='blurring'
+      size='mini'
+      
       
     >
 
-      <Modal.Content image>
-        <Image size='medium' src='https://react.semantic-ui.com/images/avatar/large/rachel.png' wrapped />
+      <Modal.Content centered>
+        
         <Modal.Description>
           <Header>{user.user.username}</Header>
           <p>
             Please enter your password to log back in.
           </p>
           <input type='password' onChange={(e) => handlePassInput(e.target.value)} />
-        </Modal.Description>
-      </Modal.Content>
-      <Modal.Actions>
-        
         <Button
           content="Log in"
           onClick={() => handleIdleLogin()}
           positive
         />
-      </Modal.Actions>
+        </Modal.Description>
+      </Modal.Content>
     </Modal>
     :
     <Modal
@@ -139,10 +138,11 @@ function App(props) {
       closeOnDimmerClick={false}
       closeOnEscape={false}
       dimmer='blurring'
+      size='mini'
     >
 
-      <Modal.Content image>
-        <Image size='medium' src='https://react.semantic-ui.com/images/avatar/large/rachel.png' wrapped />
+      <Modal.Content>
+        
         <Modal.Description>
           <Header>{user.user.username}</Header>
           <p>
