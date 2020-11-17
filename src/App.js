@@ -23,9 +23,10 @@ function App(props) {
          useEffect(() => {
           setUsername(user.user.username)
     
-        }, []);
+        }, [user.user.username]);
 
         useEffect(() => {
+          console.log(user.user)
           console.log(password)
         })
 
@@ -118,7 +119,7 @@ function App(props) {
       open={modal}
       closeOnDimmerClick={false}
       closeOnEscape={false}
-      
+      dimmer='{true, blurring}'
     >
 
       <Modal.Content image>
@@ -129,18 +130,15 @@ function App(props) {
           por favor ingrese su contraseña para volver a iniciar sesión
           </p>
           <input type='password' onChange={(e) => handlePassInput(e.target.value)} />
-        </Modal.Description>
-      </Modal.Content>
-      <Modal.Actions>
-        
-        <Button
+          <Button
           content="Log in"
           labelPosition='right'
           icon='checkmark'
           onClick={() => handleIdleLogin()}
           positive
         />
-      </Modal.Actions>
+        </Modal.Description>
+      </Modal.Content>
     </Modal>}
     </div>
   );

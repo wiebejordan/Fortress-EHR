@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import axios from 'axios';
 import {useSelector, useDispatch} from 'react-redux';
 
@@ -21,6 +21,12 @@ const Login = (props) => {
   const handleUserInput = (e) => {
     setUsername(e)
   }
+
+  useEffect(() => {
+    if(user.user.username){
+      // props.history.push('/main')
+    }
+  })
 
   const handleLogin = () => {
 
