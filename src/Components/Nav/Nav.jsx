@@ -3,7 +3,7 @@ import {Menu, Dropdown, Input, Button} from 'semantic-ui-react';
 import {useSelector, useDispatch} from 'react-redux';
 import {useHistory} from 'react-router-dom';
 import axios from 'axios';
-import useMonitor from '../useMonitor'
+
 
 
  
@@ -103,7 +103,7 @@ const Nav = (props) => {
     history.push('/')
  }
 
-  useMonitor(15000, 10000, );
+  
   
 
   return(

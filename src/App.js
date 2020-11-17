@@ -9,11 +9,14 @@ import {useHistory} from 'react-router-dom'
 
 function App(props) {
   const history = useHistory();
-
+  console.log(history)
   const handleOnIdle = event => {
+    if(history.location.pathname !== '/'){
+      history.push('/')
+
+    }
     console.log('user is idle', event)
     console.log('last active', getLastActiveTime())
-    history.push('/')
   }
  
   const handleOnActive = event => {
@@ -26,7 +29,7 @@ function App(props) {
   }
  
   const { getRemainingTime, getLastActiveTime } = useIdleTimer({
-    timeout: 1000 * 60,
+    timeout: 1000 * 60 * 5,
     onIdle: handleOnIdle,
     onActive: handleOnActive,
     onAction: handleOnAction,
