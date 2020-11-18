@@ -43,10 +43,10 @@ function App(props) {
             })
         }, [modal, idle.idle])
 
-        useEffect(() => {
-          console.log(user.user)
-          console.log('idle', idle.idle)
-        })
+        // useEffect(() => {
+        //   console.log(user.user)
+        //   console.log('idle', idle.idle)
+        // })
 
   const handleOnIdle = event => {
     if(history.location.pathname !== '/'){
