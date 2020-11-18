@@ -151,7 +151,7 @@ function App(props) {
           <input type='password' onChange={(e) => handlePassInput(e.target.value)} />
          
           <Button
-          content="Log in"
+          content="Iniciar sesión"
           onClick={() => handleIdleLogin()}
           positive
         />

@@ -135,9 +135,14 @@ const Nav = (props) => {
         :
       <>
       <Menu.Item header>{user.user.username}</Menu.Item>
+      {state.english === true ?
       <Menu.Item>
         <Button onClick={logout}>Logout</Button>
       </Menu.Item>
+      : 
+      <Menu.Item>
+        <Button onClick={logout}>Cerrar sesión</Button>
+      </Menu.Item>}
       </>
       }
         
