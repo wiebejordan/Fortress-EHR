@@ -80,12 +80,13 @@ const ProductTable = (patientList, props) => {
     english,
     handleEnglish,
   } = useSortableData(patientList);
+  
 
   const state = useSelector(state => state.languageReducer),
         user = useSelector(state => state.authReducer),
         history = useHistory();
   
-
+  
   
   const getClassNamesFor = (name) => {
     if (!sortConfig) {
@@ -93,6 +94,8 @@ const ProductTable = (patientList, props) => {
     }
     return sortConfig.key === name ? sortConfig.direction : undefined;
   };
+
+  
   return (
     <div>
       
@@ -251,6 +254,15 @@ const ProductTable = (patientList, props) => {
 };
 
 function PatientTable() {
+  const state = useSelector(state => state.languageReducer),
+        user = useSelector(state => state.authReducer),
+        history = useHistory();
+
+  useEffect(() => {
+    if(!user.user.username){
+      history.push('/')}
+  })
+  
   return (
     <div className="App">
       <ProductTable />

@@ -1,12 +1,15 @@
 import React, {useState, useEffect} from 'react';
-import {connect} from 'react-redux';
+import {connect, useSelector} from 'react-redux';
+import {useHistory} from 'react-router-dom';
 
 
 const mapStateToProps = (reduxState) => reduxState;
 
  const Patient = (props) => {
    const [patientID, setPatientID] = useState(null),
-         [patient, setPatient] = useState({id: null, name: '', age: '', dob: '', gender: '', height: '', weight: '', allergies: '', patientHistory: '', activeProblems: '', medications: ''});
+         [patient, setPatient] = useState({id: null, name: '', age: '', dob: '', gender: '', height: '', weight: '', allergies: '', patientHistory: '', activeProblems: '', medications: ''}),
+         user = useSelector(state => state.authReducer),
+         history = useHistory();
 
   useEffect(() => {
     const {id, name, age, dob, gender, height, weight, allergies, patientHistory, activeProblems, medications} = props.patientReducer.patients[props.match.params.patientid -1]
@@ -15,6 +18,11 @@ const mapStateToProps = (reduxState) => reduxState;
       setPatient({id, name, age, dob, gender, height, weight, allergies, patientHistory, activeProblems, medications })
     }
   }, [])
+
+  useEffect(() => {
+    if(!user.user.username){
+      history.push('/')}
+  })
   return(<div>
     {props.languageReducer.english === true 
     ?(

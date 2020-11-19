@@ -24,11 +24,16 @@ function App(props) {
           setModal(idle.idle)
         }, [])
 
+        useEffect(() => {
+          if(user.user.username === ''){
+            history.push('/')}
+        })
+
 
          useEffect(() => {
           setUsername(user.user.username)
-          
         }, [user.user.username]);
+
 
         useEffect(() => {
           if(modal === true){
@@ -67,7 +72,7 @@ function App(props) {
   }
  
   const { getRemainingTime, getLastActiveTime } = useIdleTimer({
-    timeout: 10000,
+    timeout: 1000 * 60 * 15,
     onIdle: handleOnIdle,
     onActive: handleOnActive,
     onAction: handleOnAction,
