@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import axios from 'axios';
 import {useSelector, useDispatch} from 'react-redux';
-
+import './Login.scss'
 
 
 
@@ -24,7 +24,7 @@ const Login = (props) => {
 
   useEffect(() => {
     if(user.user.username){
-      // props.history.push('/main')
+      props.history.push('/main')
     }
   })
 
@@ -42,16 +42,16 @@ const Login = (props) => {
     .catch(() => alert('username and password do not match'))
   }
   return(
-    <div>
+    <div className='login-container'>
     {state.english === true
     ?
-    <div>
+    <div className='login-box'>
       <input onChange={(e) => handleUserInput(e.target.value)} placeholder='username'/>
       <input onChange={(e) => handlePassInput(e.target.value)} placeholder='password' type='password'/>
       <button onClick={handleLogin}>Login</button>
     </div>
     :
-    <div>
+    <div className='login-box'>
       <input onChange={(e) => handleUserInput(e.target.value)} placeholder='nombre'/>
       <input onChange={(e) => handlePassInput(e.target.value)} placeholder='contraseña' type='password'/>
       <button onClick={handleLogin}>Iniciar sesión</button>

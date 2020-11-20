@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import './App.css';
+import './App.scss';
 import routes from './routes';
 import 'semantic-ui-css/semantic.min.css';
 import Nav from './Components/Nav/Nav';
@@ -48,10 +48,7 @@ function App(props) {
             })
         }, [modal, idle.idle])
 
-        // useEffect(() => {
-        //   console.log(user.user)
-        //   console.log('idle', idle.idle)
-        // })
+        
 
   const handleOnIdle = event => {
     if(history.location.pathname !== '/'){
@@ -72,7 +69,7 @@ function App(props) {
   }
  
   const { getRemainingTime, getLastActiveTime } = useIdleTimer({
-    timeout: 1000 * 60 * 15,
+    timeout: 1000 * 60 * 5,
     onIdle: handleOnIdle,
     onActive: handleOnActive,
     onAction: handleOnAction,

@@ -1,5 +1,8 @@
+$mainColor: #BADA55;
+
 .App {
   text-align: center;
+  background-color: $mainColor;
 }
 
 .App-logo {
@@ -14,7 +17,7 @@
 }
 
 .App-header {
-  background-color: #282c34;
+  background-color: $mainColor;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
