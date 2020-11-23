@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import axios from 'axios';
 import {useSelector, useDispatch} from 'react-redux';
-import './Login.scss'
+import '../../styles/style.scss'
 
 
 
@@ -46,12 +46,14 @@ const Login = (props) => {
     {state.english === true
     ?
     <div className='login-box'>
+      <h4>Welcome to J.E.F.F. Electronic Medical Records!</h4>
       <input onChange={(e) => handleUserInput(e.target.value)} placeholder='username'/>
       <input onChange={(e) => handlePassInput(e.target.value)} placeholder='password' type='password'/>
       <button onClick={handleLogin}>Login</button>
     </div>
     :
     <div className='login-box'>
+      <h4>Bienvenido a J.E.F.F. Registros Médicos Electrónicos!</h4>
       <input onChange={(e) => handleUserInput(e.target.value)} placeholder='nombre'/>
       <input onChange={(e) => handlePassInput(e.target.value)} placeholder='contraseña' type='password'/>
       <button onClick={handleLogin}>Iniciar sesión</button>

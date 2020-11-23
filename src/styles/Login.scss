@@ -1,9 +1,9 @@
 $mainColor: #BADA55;
-$boxColor: cyan;
+$boxColor: rgb(202, 202, 202);
 
 .login-container {
   background-color: $mainColor;
-  height: 100vh;
+  height: 500px;
   width: 100vw;
   display: flex;
   justify-content: center;
@@ -11,8 +11,18 @@ $boxColor: cyan;
   .login-box{
     background-color: $boxColor;
     box-sizing: border-box;
-    height: 100px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 200px;
     width: 300px;
+    input{
+      margin-bottom: 10px;
+    }
+    h4{
+      text-align: center;
+    }
   }
 }
 
