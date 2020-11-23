@@ -39,7 +39,14 @@ const Login = (props) => {
       })
       props.history.push('/main')
     })
-    .catch(() => alert('username and password do not match'))
+    .catch(() => {
+      if(state.english === true){
+        alert('username and password do not match')
+      }
+      else {
+        alert('Nombre de usuario y contraseña no coinciden')
+      }
+    } )
   }
   return(
     <div className='login-container'>

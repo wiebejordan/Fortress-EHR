@@ -1,8 +1,30 @@
 body {
   font-family: 'open sans', sans-serif;
   font-size: 16px;
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
-  
+}
+
+.searchbar {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.searchbar h4 {
+  margin: 0;
+  margin-right: 10px;
+}
+
+.searchbar input {
+  width: 200px;
 }
 
 table {
@@ -15,7 +37,7 @@ thead th {
   border-bottom: 2px solid black;
 }
 
-thead button {
+thead th button {
   border: 0;
   border-radius: none;
   font-family: inherit;
@@ -36,7 +58,6 @@ thead button.descending::after {
   display: inline-block;
   margin-left: 1em;
 } */
-
 tbody td {
   padding: 0.5em;
   /* border-bottom: 1px solid #ccc; */
@@ -45,3 +66,4 @@ tbody td {
 tbody tr:hover {
   background-color: #eee;
 }
+/*# sourceMappingURL=PatientList.css.map */

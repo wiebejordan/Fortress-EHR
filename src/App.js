@@ -69,7 +69,7 @@ function App(props) {
   }
  
   const { getRemainingTime, getLastActiveTime } = useIdleTimer({
-    timeout: 1000 * 60 * 5,
+    timeout: 5000,
     onIdle: handleOnIdle,
     onActive: handleOnActive,
     onAction: handleOnAction,
@@ -91,7 +91,14 @@ function App(props) {
       setModal(false)
       setPassword('')
     })
-    .catch(() => alert('username and password do not match'))
+    .catch(() => {
+      if(lang.english === true){
+        alert('username and password do not match')
+      }
+      else {
+        alert('Nombre de usuario y contraseña no coinciden')
+      }
+    })
   }
 
   

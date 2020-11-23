@@ -2,7 +2,7 @@ import React, { useState, useEffect, useMemo } from "react";
 import { Link, useHistory } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { Icon, Label, Menu, Table } from "semantic-ui-react";
-import "../PatientList/PatientList.css";
+import '../../styles/style.scss'
 
 
 
@@ -101,8 +101,8 @@ const ProductTable = (patientList, props) => {
       
       <div>
         {state.english === true ? (
-          <div>
-            <p>Search</p>
+          <div className='searchbar'>
+            <h4>Search:</h4>
             <input
               name="searchVal"
               value={searchVal}
@@ -111,12 +111,12 @@ const ProductTable = (patientList, props) => {
             />
           </div>
         ) : (
-          <div>
-            <p>Buscar</p>
+          <div className='searchbar'>
+            <h4>Buscar:</h4>
             <input
               name="searchVal"
               value={searchVal}
-              placeholder="buscar por nombre, edad"
+              placeholder="buscar por nombre, edad..."
               onChange={(e) => handleSearch(e.target.value)}
             />
           </div>
@@ -262,7 +262,7 @@ function PatientTable() {
     if(!user.user.username){
       history.push('/')}
   })
-  
+
   return (
     <div className="App">
       <ProductTable />
