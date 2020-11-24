@@ -1,6 +1,6 @@
 .App {
   text-align: center;
-  background-color: #BADA55;
+  /* background-color: #BADA55; */
 }
 
 .App-logo {
@@ -16,7 +16,7 @@
 }
 
 .App-header {
-  background-color: #BADA55;
+  /* background-color: #BADA55; */
   min-height: 100vh;
   display: -webkit-box;
   display: -ms-flexbox;

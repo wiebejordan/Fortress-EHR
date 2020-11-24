@@ -97,7 +97,7 @@ const ProductTable = (patientList, props) => {
 
   
   return (
-    <div>
+    <div className='patientlist-container'>
       
       <div>
         {state.english === true ? (
@@ -176,8 +176,8 @@ const ProductTable = (patientList, props) => {
             .map((item) => (
               <tr key={item.id}>
                 <td>{item.id}</td>
-                <Link to={`/patient/${item.id}`}>
-                  <td>{item.name}</td>
+                <Link style={{textDecoration: 'none'}} to={`/patient/${item.id}`}>
+                  <a className='patient-name'>{item.name}</a>
                 </Link>
                 {/* <td>{item.age}</td> */}
                 <td>{item.dob}</td>

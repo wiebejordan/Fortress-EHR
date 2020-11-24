@@ -1,8 +1,11 @@
-body {
+.patientlist-container{
   font-family: 'open sans', sans-serif;
   font-size: 16px;
   display: flex;
-  
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: grey;
 }
 
 .searchbar{
@@ -22,6 +25,7 @@ body {
 table {
   width: 80vw;
   border-collapse: collapse;
+  
 }
 
 thead th {
@@ -35,6 +39,10 @@ thead th {
     font-size: inherit;
     padding: 0.5em;
     margin-bottom: 1px;
+  }
+  a{
+    color: white;
+    text-align: center;
   }
 }
 
@@ -52,9 +60,23 @@ thead button.descending::after {
   margin-left: 1em;
 } */
 
-tbody td {
-  padding: 0.5em;
-  /* border-bottom: 1px solid #ccc; */
+tbody{
+  td{
+    text-align: center;
+    padding: 0.5em;
+    // border-bottom: 1px solid #ccc; 
+    box-sizing: border-box;
+    text-decoration: none;
+  }
+  a{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0.5em;
+    // text-decoration: none;
+    color: black;
+  }
+  
 }
 
 tbody tr:hover {

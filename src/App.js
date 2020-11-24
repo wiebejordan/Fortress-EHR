@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import './App.scss';
+import './styles/style.scss';
 import routes from './routes';
 import 'semantic-ui-css/semantic.min.css';
 import Nav from './Components/Nav/Nav';
@@ -69,7 +69,7 @@ function App(props) {
   }
  
   const { getRemainingTime, getLastActiveTime } = useIdleTimer({
-    timeout: 5000,
+    timeout: 1000 * 60 * 5,
     onIdle: handleOnIdle,
     onActive: handleOnActive,
     onAction: handleOnAction,
