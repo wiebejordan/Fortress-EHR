@@ -3,6 +3,7 @@ import './styles/style.scss';
 import routes from './routes';
 import 'semantic-ui-css/semantic.min.css';
 import Nav from './Components/Nav/Nav';
+import Footer from './Components/Footer/Footer';
 import { useSelector, useDispatch } from 'react-redux';
 import {useIdleTimer} from 'react-idle-timer';
 import {useHistory, useLocation} from 'react-router-dom'
@@ -167,6 +168,7 @@ function App(props) {
         </Modal.Description>
       </Modal.Content>
     </Modal>}
+    <Footer/>
     </div>
   );
 }

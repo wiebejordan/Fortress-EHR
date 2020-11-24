@@ -177,7 +177,7 @@ const ProductTable = (patientList, props) => {
               <tr key={item.id}>
                 <td>{item.id}</td>
                 <Link style={{textDecoration: 'none'}} to={`/patient/${item.id}`}>
-                  <a className='patient-name'>{item.name}</a>
+                  <td className='patient-name'>{item.name}</td>
                 </Link>
                 {/* <td>{item.age}</td> */}
                 <td>{item.dob}</td>
