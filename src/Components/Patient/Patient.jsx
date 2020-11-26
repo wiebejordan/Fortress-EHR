@@ -44,6 +44,7 @@ const mapStateToProps = (reduxState) => reduxState;
       history.push('/')}
   })
   return(<div>
+    
     {props.languageReducer.english === true 
     ?(
     <>
