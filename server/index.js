@@ -5,6 +5,7 @@ const express = require('express'),
       session = require('express-session'),
       massive = require('massive'),
       {SERVER_PORT, SESSION_SECRET, DB_URI} = process.env,
+      patientCtrl = require('./patientController'),
       authCtrl = require('./authController');
 
 
@@ -32,5 +33,9 @@ app.post('/auth/logout', authCtrl.logout);
 
 //session endpoints
 app.get('/auth/user', authCtrl.keepUser);
+
+//patient endpoints
+app.get('/api/patients', patientCtrl.getPatients);
+app.get('/api/patient/:patientid', patientCtrl.getPatient);
 
 app.listen(SERVER_PORT, () => console.log(`server is running on ${SERVER_PORT}`));

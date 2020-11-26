@@ -2,6 +2,7 @@ import React, { useState, useEffect, useMemo } from "react";
 import { Link, useHistory } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { Icon, Label, Menu, Table } from "semantic-ui-react";
+import axios from 'axios';
 import '../../styles/style.scss'
 
 
@@ -10,17 +11,43 @@ const useSortableData = (items, config = null, props) => {
   const [sortConfig, setSortConfig] = useState(config),
     [searchVal, setSearchVal] = useState(""),
     [english, setEnglish] = useState(true),
-    [patientList, setPatientList] = useState([
-      { id: "1", name: "Wiebe, Jordan", age: "28", dob: "02/21/1992" },
-      { id: "2", name: "Wiebe, Cicely", age: "30", dob: "03/16/1990" },
-      { id: "3", name: "Jeff, Tall", age: "27", dob: "12/12/1993" },
-      { id: "4", name: "Tillman, Daniel", age: "28", dob: "12/12/1992" },
-      { id: "5", name: "Trump, Donald", age: "78", dob: "12/12/1950" },
-      { id: "6", name: "Smith, Mike ", age: "45", dob: "05/25/1974" },
-      { id: "7", name: "Doe, John", age: "99", dob: "11/11/1921" },
-    ]);
-    
+    [patientList, setPatientList] = useState([]),
+    [loading, setLoading] = useState(true);
+    console.log(patientList)
+    console.log(loading)
 
+  useEffect(() => {
+    
+    getPatients()
+  
+  }, [])
+
+  useEffect(() => {
+    if(patientList.length > 0){
+      setTimeout(() => {
+
+        setLoading(false)
+      }, 1000)
+    }
+  }, [patientList])
+
+  
+
+
+  const getPatients = () => {
+    let isCurrent = true
+    axios.get('/api/patients')
+
+    .then(res => {
+      if(isCurrent){
+        setPatientList(res.data) 
+      }
+    })
+    return () => {
+      isCurrent = false
+    }
+    
+  }
 
   const handleEnglish = () => {
     setEnglish(!english);
@@ -67,6 +94,7 @@ const useSortableData = (items, config = null, props) => {
     patientList,
     english,
     handleEnglish,
+    loading
   };
 };
 
@@ -174,13 +202,13 @@ const ProductTable = (patientList, props) => {
               return objString.toLowerCase().includes(searchVal.toLowerCase());
             })
             .map((item) => (
-              <tr key={item.id}>
-                <td>{item.id}</td>
-                <Link style={{textDecoration: 'none'}} to={`/patient/${item.id}`}>
-                  <td className='patient-name'>{item.name}</td>
+              <tr key={item.patientid}>
+                <td>{item.patientid}</td>
+                <Link style={{textDecoration: 'none'}} to={`/patient/${item.patientid}`}>
+             <td className='patient-name'>{item.lastnm}, {item.firstnm}</td>
                 </Link>
                 {/* <td>{item.age}</td> */}
-                <td>{item.dob}</td>
+                <td>{item.birthdts}</td>
               </tr>
             ))}
         </tbody>
@@ -237,13 +265,13 @@ const ProductTable = (patientList, props) => {
               return objString.toLowerCase().includes(searchVal.toLowerCase());
             })
             .map((item) => (
-              <tr key={item.id}>
-                <td>{item.id}</td>
-                <Link to={`/patient/${item.id}`}>
-                  <td>{item.name}</td>
+              <tr key={item.patientid}>
+                <td>{item.patientid}</td>
+                <Link to={`/patient/${item.patientid}`}>
+            <td>{item.lastnm}, {item.firstnm}</td>
                 </Link>
                 {/* <td>{item.age}</td> */}
-                <td>{item.dob}</td>
+                <td>{item.birthdts}</td>
               </tr>
             ))}
         </tbody>
@@ -253,10 +281,20 @@ const ProductTable = (patientList, props) => {
   );
 };
 
-function PatientTable() {
+function PatientTable(patientList) {
   const state = useSelector(state => state.languageReducer),
         user = useSelector(state => state.authReducer),
         history = useHistory();
+        const {
+          items,
+          requestSort,
+          sortConfig,
+          handleSearch,
+          searchVal,
+          english,
+          handleEnglish,
+          loading,
+        } = useSortableData(patientList);
 
   useEffect(() => {
     if(!user.user.username){
@@ -265,7 +303,11 @@ function PatientTable() {
 
   return (
     <div className="App">
+      {/* {loading === true 
+      ? <div>hey</div>
+      : */}
       <ProductTable />
+      {/* } */}
     </div>
   );
 }

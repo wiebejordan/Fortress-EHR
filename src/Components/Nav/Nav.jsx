@@ -60,11 +60,6 @@ const Nav = (props) => {
   }
 
 
-  useEffect(() => {
-    
-    
-    
-  });
 
   const handlePassInput = (e) => {
     setPassword(e)
