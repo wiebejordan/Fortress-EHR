@@ -13,23 +13,15 @@ const useSortableData = (items, config = null, props) => {
     [english, setEnglish] = useState(true),
     [patientList, setPatientList] = useState([]),
     [loading, setLoading] = useState(true);
-    console.log(patientList)
-    console.log(loading)
+    // console.log(patientList)
+    // console.log(loading)
 
   useEffect(() => {
-    
+    console.log('patient list has been called')
     getPatients()
   
-  }, [])
-
-  useEffect(() => {
-    if(patientList.length > 0){
-      setTimeout(() => {
-
-        setLoading(false)
-      }, 1000)
-    }
   }, [patientList])
+
 
   
 
@@ -41,6 +33,7 @@ const useSortableData = (items, config = null, props) => {
     .then(res => {
       if(isCurrent){
         setPatientList(res.data) 
+        setLoading(false)
       }
     })
     return () => {
@@ -300,14 +293,16 @@ function PatientTable(patientList) {
     if(!user.user.username){
       history.push('/')}
   })
+  
+  if(loading){
+    return <h1>LOADING</h1>
+  }
 
   return (
-    <div className="App">
-      {/* {loading === true 
-      ? <div>hey</div>
-      : */}
+    <div>
+      
       <ProductTable />
-      {/* } */}
+  
     </div>
   );
 }

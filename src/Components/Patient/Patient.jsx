@@ -17,6 +17,7 @@ const mapStateToProps = (reduxState) => reduxState;
           [race01dsc, setRace01dsc] = useState(''),
           [race02dsc, setRace02dsc] = useState(''),
           [activeflg, setActiveflg] = useState(''),
+          [loading, setLoading] = useState(true),
          user = useSelector(state => state.authReducer),
          history = useHistory();
 
@@ -35,6 +36,7 @@ const mapStateToProps = (reduxState) => reduxState;
         setRace01dsc(res.data[0].race01dsc);
         setRace02dsc(res.data[0].race02dsc);
         setActiveflg(res.data[0].activeflg);
+        setLoading(false);
       })
     }
   }, [])
@@ -43,6 +45,11 @@ const mapStateToProps = (reduxState) => reduxState;
     if(!user.user.username){
       history.push('/')}
   })
+
+  if(loading){
+    return <h1>LOADING</h1>
+  }
+  
   return(<div>
     
     {props.languageReducer.english === true 

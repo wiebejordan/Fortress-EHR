@@ -1,5 +1,5 @@
 module.exports = {
-  getPatients: (req, res) => {
+  getPatients: async (req, res) => {
     const db = req.app.get('db');
 
     db.patient.get_patients()
@@ -8,7 +8,7 @@ module.exports = {
     .catch(err => res.status(500).send(err));
   },
 
-  getPatient: (req, res) => {
+  getPatient: async (req, res) => {
     const db = req.app.get('db'),
           {patientid} = req.params
 
