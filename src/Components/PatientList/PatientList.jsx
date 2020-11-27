@@ -13,7 +13,7 @@ const useSortableData = (items, config = null, props) => {
     [english, setEnglish] = useState(true),
     [patientList, setPatientList] = useState([]),
     [loading, setLoading] = useState(true);
-    console.log(...patientList)
+    // console.log(...patientList)
     // console.log(loading)
 
   useEffect(() => {

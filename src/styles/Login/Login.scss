@@ -17,6 +17,13 @@ $boxColor: rgb(202, 202, 202);
     align-items: center;
     height: 200px;
     width: 300px;
+    form{
+      box-sizing: border-box;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      }
     input{
       margin-bottom: 10px;
     }

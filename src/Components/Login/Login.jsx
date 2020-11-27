@@ -28,7 +28,9 @@ const Login = (props) => {
     }
   })
 
+
   const handleLogin = () => {
+    
 
     axios.post('/auth/login', {username, password})
     .then(res => {
@@ -54,16 +56,20 @@ const Login = (props) => {
     ?
     <div className='login-box'>
       <h4>Welcome to J.E.F.F. Electronic Medical Records!</h4>
+      <form onSubmit={handleLogin}>
       <input onChange={(e) => handleUserInput(e.target.value)} placeholder='username'/>
       <input onChange={(e) => handlePassInput(e.target.value)} placeholder='password' type='password'/>
-      <button onClick={handleLogin}>Login</button>
+      <button>Login</button>
+      </form>
     </div>
     :
     <div className='login-box'>
       <h4>Bienvenido a J.E.F.F. Registros Médicos Electrónicos!</h4>
+      <form onSubmit={handleLogin}>
       <input onChange={(e) => handleUserInput(e.target.value)} placeholder='nombre'/>
       <input onChange={(e) => handlePassInput(e.target.value)} placeholder='contraseña' type='password'/>
-      <button onClick={handleLogin}>Iniciar sesión</button>
+      <button>Iniciar sesión</button>
+      </form>
     </div>
     }
     </div>
