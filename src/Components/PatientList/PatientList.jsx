@@ -126,7 +126,12 @@ const ProductTable = (patientList, props) => {
       
       <div>
         {state.english === true ? (
-          <div className='searchbar'>
+          <div className='patientlist-header'>
+            <div className='newpatient-btn'>
+            <button>New Patient</button>
+            </div>
+            
+            <div className='searchbar'>
             <h4>Search:</h4>
             <input
               name="searchVal"
@@ -134,9 +139,15 @@ const ProductTable = (patientList, props) => {
               placeholder="search by name, DOB, patient #"
               onChange={(e) => handleSearch(e.target.value)}
             />
+            </div>
           </div>
         ) : (
-          <div className='searchbar'>
+          <div className='patientlist-header'>
+            <div className='newpatient-btn'>
+              <button>Nueva Paciente</button>
+              </div>
+            
+              <div className='searchbar'>
             <h4>Buscar:</h4>
             <input
               name="searchVal"
@@ -144,6 +155,7 @@ const ProductTable = (patientList, props) => {
               placeholder="buscar por nombre, edad..."
               onChange={(e) => handleSearch(e.target.value)}
             />
+          </div>
           </div>
         )}
       </div>

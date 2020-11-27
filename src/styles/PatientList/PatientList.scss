@@ -9,10 +9,19 @@
   background-color: #bada55;
 }
 
-.searchbar{
+.patientlist-header{
+  width: 100vw;
   display: flex;
   justify-content: center;
   align-items: center;
+  .newpatient-btn{
+    margin-right: 50px;
+  }
+  .searchbar{
+    // width: 400px;
+    display: flex;
+    // justify-content: space-around;
+  }
   h4{
     margin: 0;
     margin-right: 10px;

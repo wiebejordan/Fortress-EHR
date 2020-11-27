@@ -15,7 +15,8 @@
   background-color: #bada55;
 }
 
-.searchbar {
+.patientlist-header {
+  width: 100vw;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -27,12 +28,22 @@
           align-items: center;
 }
 
-.searchbar h4 {
+.patientlist-header .newpatient-btn {
+  margin-right: 50px;
+}
+
+.patientlist-header .searchbar {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.patientlist-header h4 {
   margin: 0;
   margin-right: 10px;
 }
 
-.searchbar input {
+.patientlist-header input {
   width: 200px;
 }
 

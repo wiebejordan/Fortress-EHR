@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react';
-import {Menu, Dropdown, Input, Button, Header} from 'semantic-ui-react';
+import {Menu, Dropdown, Image, Button, Header} from 'semantic-ui-react';
 import {useSelector, useDispatch} from 'react-redux';
 import {useHistory, useLocation} from 'react-router-dom';
 import {Link} from 'react-router-dom';
@@ -105,17 +105,17 @@ const Nav = (props) => {
 
   return(
     <div>
-    <Menu text>
+    <Menu text style={{margin: '0'}}>
         {location.pathname !== '/'
         ? 
         <Menu.Item>
           <Link to='/main'>
-          <Header>J.E.F.F. EMR</Header>
+          <Image circular size='tiny' src='https://i.imgur.com/bgAzgoV.jpg'/>
           </Link>
         </Menu.Item>
         : <Menu.Item>
         
-        <Header>J.E.F.F. EMR</Header>
+        <Image circular size='tiny' src='https://i.imgur.com/bgAzgoV.jpg'/>
         
       </Menu.Item>}
 
@@ -138,16 +138,20 @@ const Nav = (props) => {
       <Menu.Item>
         <Button onClick={logout}>Cerrar sesión</Button>
       </Menu.Item>}
+      
       </>
       }
-        
+      
+      <Menu.Item>
       <Dropdown
+      
       // placeholder='English'
       defaultValue={state.english}
       selection
       compact
       options={langOptions}
       onChange={handleLang}/>
+      </Menu.Item>
       </Menu>
       
       </div>
