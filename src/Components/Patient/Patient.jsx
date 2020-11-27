@@ -2,6 +2,7 @@ import axios from 'axios';
 import React, {useState, useEffect} from 'react';
 import {connect, useSelector} from 'react-redux';
 import {useHistory} from 'react-router-dom';
+import {Loader} from 'semantic-ui-react';
 
 
 const mapStateToProps = (reduxState) => reduxState;
@@ -47,7 +48,11 @@ const mapStateToProps = (reduxState) => reduxState;
   })
 
   if(loading){
-    return <h1>LOADING</h1>
+    return <div className='loader-container'>
+           
+    <Loader size='massive' active />
+  
+ </div> 
   }
   
   return(<div>
