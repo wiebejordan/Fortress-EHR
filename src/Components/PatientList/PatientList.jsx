@@ -13,7 +13,7 @@ const useSortableData = (items, config = null, props) => {
     [english, setEnglish] = useState(true),
     [patientList, setPatientList] = useState([]),
     [loading, setLoading] = useState(true);
-    // console.log(patientList)
+    console.log(...patientList)
     // console.log(loading)
 
   useEffect(() => {
@@ -36,7 +36,7 @@ const useSortableData = (items, config = null, props) => {
         setTimeout(() => {
 
           setLoading(false)
-        }, 5000)
+        }, 3000)
       }
     })
     return () => {
@@ -157,8 +157,8 @@ const ProductTable = (patientList, props) => {
             <th>
               <button
                 type="button"
-                onClick={() => requestSort("id")}
-                className={getClassNamesFor("id")}
+                onClick={() => requestSort("patientid")}
+                className={getClassNamesFor("patientid")}
               >
                 Patient ID
               </button>
@@ -166,8 +166,8 @@ const ProductTable = (patientList, props) => {
             <th>
               <button
                 type="button"
-                onClick={() => requestSort("name")}
-                className={getClassNamesFor("name")}
+                onClick={() => requestSort("lastnm")}
+                className={getClassNamesFor("lastnm")}
               >
                 Name
               </button>
@@ -184,8 +184,8 @@ const ProductTable = (patientList, props) => {
             <th>
               <button
                 type="button"
-                onClick={() => requestSort("dob")}
-                className={getClassNamesFor("dob")}
+                onClick={() => requestSort("birthdts")}
+                className={getClassNamesFor("birthdts")}
               >
                 D.O.B.
               </button>
@@ -231,8 +231,8 @@ const ProductTable = (patientList, props) => {
             <th>
               <button
                 type="button"
-                onClick={() => requestSort("id")}
-                className={getClassNamesFor("id")}
+                onClick={() => requestSort("patientid")}
+                className={getClassNamesFor("patientid")}
               >
                 Paciente ID
               </button>
@@ -240,8 +240,8 @@ const ProductTable = (patientList, props) => {
             <th>
               <button
                 type="button"
-                onClick={() => requestSort("name")}
-                className={getClassNamesFor("name")}
+                onClick={() => requestSort("lastnm")}
+                className={getClassNamesFor("lastnm")}
               >
                 Nombre
               </button>
@@ -258,8 +258,8 @@ const ProductTable = (patientList, props) => {
             <th>
               <button
                 type="button"
-                onClick={() => requestSort("dob")}
-                className={getClassNamesFor("dob")}
+                onClick={() => requestSort("birthdts")}
+                className={getClassNamesFor("birthdts")}
               >
                 D.O.B.
               </button>
