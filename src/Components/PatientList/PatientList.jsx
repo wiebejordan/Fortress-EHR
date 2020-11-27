@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useMemo } from "react";
 import { Link, useHistory } from "react-router-dom";
 import { useSelector } from "react-redux";
-import { Icon, Label, Menu, Table } from "semantic-ui-react";
+import {  Dimmer, Loader, Image, Segment } from "semantic-ui-react";
 import axios from 'axios';
 import '../../styles/style.scss'
 
@@ -20,7 +20,7 @@ const useSortableData = (items, config = null, props) => {
     console.log('patient list has been called')
     getPatients()
   
-  }, [patientList])
+  }, [])
 
 
   
@@ -33,7 +33,10 @@ const useSortableData = (items, config = null, props) => {
     .then(res => {
       if(isCurrent){
         setPatientList(res.data) 
-        setLoading(false)
+        setTimeout(() => {
+
+          setLoading(false)
+        }, 5000)
       }
     })
     return () => {
@@ -100,6 +103,7 @@ const ProductTable = (patientList, props) => {
     searchVal,
     english,
     handleEnglish,
+    loading
   } = useSortableData(patientList);
   
 
@@ -189,6 +193,15 @@ const ProductTable = (patientList, props) => {
           </tr>
         </thead>
         <tbody>
+          {loading
+           ? 
+           <div className='loader-container'>
+           
+             <Loader size='massive' active />
+           
+          </div> 
+          : 
+          <>
           {items
             .filter((item) => {
               let objString = JSON.stringify(item);
@@ -204,6 +217,8 @@ const ProductTable = (patientList, props) => {
                 <td>{item.birthdts}</td>
               </tr>
             ))}
+            </>
+          }
         </tbody>
       </table>
       </>)
@@ -252,6 +267,12 @@ const ProductTable = (patientList, props) => {
           </tr>
         </thead>
         <tbody>
+          {loading ? <div className='loader-container'>
+           
+           <Loader size='massive' active />
+         
+        </div>  :
+          <>
           {items
             .filter((item) => {
               let objString = JSON.stringify(item);
@@ -267,6 +288,8 @@ const ProductTable = (patientList, props) => {
                 <td>{item.birthdts}</td>
               </tr>
             ))}
+            </>
+          }
         </tbody>
       </table>
       </>)}
@@ -294,9 +317,7 @@ function PatientTable(patientList) {
       history.push('/')}
   })
   
-  if(loading){
-    return <h1>LOADING</h1>
-  }
+  
 
   return (
     <div>
