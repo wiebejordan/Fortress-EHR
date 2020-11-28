@@ -18,20 +18,20 @@ const NewPatient = () => {
   };
 
   const handleSubmit = () => {
-    const {activeflg, birthdts, ethnicitydsc, firstnm, genderdsc, hispanicflg, lastnm, race01dsc, race02dsc, race03dsc} = patient
-    axios.post('/api/newpatient', {activeflg, birthdts, ethnicitydsc, firstnm, genderdsc, hispanicflg, lastnm, race01dsc, race02dsc, race03dsc}
+    const {activeflg, birthdts, ethnicitydsc, firstnm, genderdsc, hispanicflg, lastnm, race01dsc, race02dsc, race03dsc} = patient;
+    axios.post('/api/newpatient', {activeflg: activeflg, birthdts: birthdts, ethnicitydsc: ethnicitydsc, firstnm: firstnm, genderdsc: genderdsc, hispanicflg: hispanicflg, lastnm: lastnm, race01dsc: race01dsc, race02dsc: race02dsc, race03dsc: race03dsc})
     .then(() => {
       history.push('/main')
       alert('new patient added!')
     })
-    .catch(err => console.log(err)))
+    .catch(err => console.log(err));
   }
 
   return(
     <div>
       {lang === true 
       ?
-      <form>
+      <div>
         <p>First name:</p>
         <input placeholder='First Name' onChange={(e) => handleInput(e)}  name='firstnm'></input>
         <p>Last name:</p>
@@ -65,11 +65,11 @@ const NewPatient = () => {
         <input placeholder='race' onChange={(e) => handleInput(e)} name='race01dsc'></input>
         <input placeholder='race' onChange={(e) => handleInput(e)} name='race02dsc'></input>
         <input placeholder='race' onChange={(e) => handleInput(e)} name='race03dsc'></input>
-        <button onClick={handleSubmit}>Submit New Patient</button>
+        <button  onClick={handleSubmit}>Submit New Patient</button>
         
-      </form>
+      </div>
       :
-      <form>
+      <div>
         <p>Primer nombre:</p>
         <input placeholder='First Name' onChange={(e) => handleInput(e)}  name='firstnm' ></input>
         <p>Apellido:</p>
@@ -104,7 +104,7 @@ const NewPatient = () => {
         <input placeholder='raza' onChange={(e) => handleInput(e)} name='race03dsc'></input>
         <button onClick={handleSubmit}>Enviar Nuevo Paciente</button>
     
-      </form>
+      </div>
     }
     </div>
   )
