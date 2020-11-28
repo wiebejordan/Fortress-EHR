@@ -2,7 +2,7 @@ import React, {useState, useEffect} from 'react';
 import {useSelector} from 'react-redux';
 import axios from 'axios';
 import {useHistory} from 'react-router-dom';
-
+import '../../styles/style.scss'
 
 const NewPatient = () => {
   const [patient, setPatient] = useState({firstnm: '', lastnm: '', birthdts: '', genderdsc: '', hispanicflg: '',          ethnicitydsc: '', race01dsc: '', race02dsc: '', race03dsc: '', activeflg: 'Y'}),
@@ -35,10 +35,10 @@ const NewPatient = () => {
   }
 
   return(
-    <div>
+    <div className='newpatient-container'>
       {lang === true 
       ?
-      <div>
+      <div classname='newpatient-form-container'>
         <p>First name:</p>
         <input placeholder='First Name' onChange={(e) => handleInput(e)}  name='firstnm'></input>
         <p>Last name:</p>
