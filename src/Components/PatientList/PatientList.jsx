@@ -128,7 +128,9 @@ const ProductTable = (patientList, props) => {
         {state.english === true ? (
           <div className='patientlist-header'>
             <div className='newpatient-btn'>
-            <button>New Patient</button>
+            <Link to='/newpatient'>
+              <button>New Patient</button>
+              </Link>
             </div>
             
             <div className='searchbar'>
@@ -144,7 +146,9 @@ const ProductTable = (patientList, props) => {
         ) : (
           <div className='patientlist-header'>
             <div className='newpatient-btn'>
+              <Link to='/newpatient'>
               <button>Nueva Paciente</button>
+              </Link>
               </div>
             
               <div className='searchbar'>
