@@ -37,5 +37,6 @@ app.get('/auth/user', authCtrl.keepUser);
 //patient endpoints
 app.get('/api/patients', patientCtrl.getPatients);
 app.get('/api/patient/:patientid', patientCtrl.getPatient);
+app.post('/api/newpatient', patientCtrl.newPatient);
 
 app.listen(SERVER_PORT, () => console.log(`server is running on ${SERVER_PORT}`));

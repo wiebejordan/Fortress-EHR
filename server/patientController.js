@@ -16,5 +16,15 @@ module.exports = {
 
     .then(patient => res.status(200).send(patient))
     .catch(err => res.status(500).send(err));
+  },
+
+  newPatient: (req, res) => {
+    const db = req.app.get('db'),
+          {activeflg, birthdts, ethnicitydsc, firstnm, genderdsc, hispanicflg, lastnm, race01dsc, race02dsc, race03dsc} = req.body;
+
+    db.patient.new_patient(activeflg, birthdts, ethnicitydsc, firstnm, genderdsc, hispanicflg, lastnm, race01dsc, race02dsc, race03dsc)
+
+    .then(() => res.sendStatus(200))
+    .catch(err => res.status(500).send(err))
   }
 }
