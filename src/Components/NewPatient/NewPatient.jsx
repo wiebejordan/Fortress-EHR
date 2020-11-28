@@ -19,10 +19,17 @@ const NewPatient = () => {
 
   const handleSubmit = () => {
     const {activeflg, birthdts, ethnicitydsc, firstnm, genderdsc, hispanicflg, lastnm, race01dsc, race02dsc, race03dsc} = patient;
-    axios.post('/api/newpatient', {activeflg: activeflg, birthdts: birthdts, ethnicitydsc: ethnicitydsc, firstnm: firstnm, genderdsc: genderdsc, hispanicflg: hispanicflg, lastnm: lastnm, race01dsc: race01dsc, race02dsc: race02dsc, race03dsc: race03dsc})
+    axios.post('/api/newpatient', {activeflg, birthdts, ethnicitydsc, firstnm, genderdsc, hispanicflg, lastnm,  race01dsc, race02dsc, race03dsc})
+
     .then(() => {
       history.push('/main')
-      alert('new patient added!')
+      if(lang === true){
+        alert('new patient added!')
+
+      }
+      else{
+        alert('Nueva paciente agregada!')
+      }
     })
     .catch(err => console.log(err));
   }
