@@ -27,22 +27,19 @@ const useSortableData = (items, config = null, props) => {
 
 
   const getPatients = () => {
-    let isCurrent = true
+    
     axios.get('/api/patients')
 
     .then(res => {
-      if(isCurrent){
+      
         setPatientList(res.data) 
         setTimeout(() => {
 
           setLoading(false)
         }, 3000)
-      }
+      
     })
-    return () => {
-      isCurrent = false
-    }
-    
+
   }
 
   const handleEnglish = () => {
@@ -124,12 +121,12 @@ const ProductTable = (patientList, props) => {
   return (
     <div className='patientlist-container'>
       
-      <div>
+      <div className='searchbar-container'>
         {state.english === true ? (
           <div className='patientlist-header'>
             <div className='newpatient-btn'>
             <Link to='/newpatient'>
-              <button>New Patient</button>
+              <button disabled={user.user.canedit === false}>New Patient</button>
               </Link>
             </div>
             
@@ -147,7 +144,7 @@ const ProductTable = (patientList, props) => {
           <div className='patientlist-header'>
             <div className='newpatient-btn'>
               <Link to='/newpatient'>
-              <button>Nueva Paciente</button>
+              <button disabled={user.user.canedit === false}>Nueva Paciente</button>
               </Link>
               </div>
             

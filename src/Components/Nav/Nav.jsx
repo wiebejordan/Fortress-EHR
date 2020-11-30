@@ -4,7 +4,7 @@ import {useSelector, useDispatch} from 'react-redux';
 import {useHistory, useLocation} from 'react-router-dom';
 import {Link} from 'react-router-dom';
 import axios from 'axios';
-
+import '../../styles/style.scss';
 
 
  
@@ -17,8 +17,8 @@ const langOptions = [
     value: true
   },
   {
-    key: 'Spanish',
-    text: 'Spanish',
+    key: 'Español',
+    text: 'Español',
     value: false
   }
 
@@ -121,11 +121,6 @@ const Nav = (props) => {
 
         {!user.user.username 
         ? 
-        // <Menu.Item>
-        //   <Input placeholder='username' onChange={(e) => handleUserInput(e.target.value)}/>
-        //   <Input type='password' placeholder='password' onChange={(e) => handlePassInput(e.target.value)}/>
-        //   <Button onClick={handleLogin}>Login</Button>
-        // </Menu.Item>
           null
         :
       <>
@@ -142,16 +137,28 @@ const Nav = (props) => {
       </>
       }
       
+      <div className='language-dropdown'>
+      {state.english === true ?
       <Menu.Item>
+      <Button >Settings</Button>
+    </Menu.Item>
+      :
+      <Menu.Item>
+        <Button >Ajustes</Button>
+      </Menu.Item>
+      }
+
+      <Menu.Item style={{marginRight: '20px'}}>
       <Dropdown
       
-      // placeholder='English'
+      
       defaultValue={state.english}
       selection
       compact
       options={langOptions}
       onChange={handleLang}/>
       </Menu.Item>
+      </div>
       </Menu>
       
       </div>

@@ -1,1 +1,6 @@
-/* No CSS *//*# sourceMappingURL=Footer.css.map */
+.footer-container {
+  height: 50px;
+  width: 100vw;
+  background-color: hotpink;
+}
+/*# sourceMappingURL=Footer.css.map */

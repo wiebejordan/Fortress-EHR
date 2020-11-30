@@ -15,6 +15,13 @@
   background-color: #bada55;
 }
 
+.searchbar-container {
+  height: 50px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
 .patientlist-header {
   width: 100vw;
   display: -webkit-box;
@@ -50,6 +57,7 @@
 table {
   width: 80vw;
   border-collapse: collapse;
+  background-color: #f1f0f0;
 }
 
 thead th {
@@ -59,12 +67,14 @@ thead th {
 
 thead th button {
   border: 0;
-  border-radius: none;
+  border-radius: 5%;
   font-family: inherit;
   font-weight: 700;
   font-size: inherit;
   padding: 0.5em;
   margin-bottom: 1px;
+  background-color: grey;
+  color: white;
 }
 
 thead th a {
