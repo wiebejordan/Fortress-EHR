@@ -1,5 +1,6 @@
 .login-container {
-  background-color: #BADA55;
+  background-image: url(https://i.imgur.com/TwFh5BA.jpg);
+  background-size: cover;
   height: 500px;
   width: 100vw;
   display: -webkit-box;
@@ -15,6 +16,8 @@
 
 .login-container .login-box {
   background-color: #cacaca;
+  -webkit-box-shadow: 1px 5px 5px black;
+          box-shadow: 1px 5px 5px black;
   -webkit-box-sizing: border-box;
           box-sizing: border-box;
   display: -webkit-box;
@@ -54,6 +57,11 @@
 
 .login-container .login-box input {
   margin-bottom: 10px;
+  border: none;
+}
+
+.login-container .login-box button {
+  margin: 5px;
 }
 
 .login-container .login-box h4 {

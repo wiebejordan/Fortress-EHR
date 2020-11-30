@@ -56,6 +56,7 @@
 
 table {
   width: 80vw;
+  overflow: scroll;
   border-collapse: collapse;
   background-color: #f1f0f0;
 }

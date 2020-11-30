@@ -2,7 +2,8 @@ $mainColor: #BADA55;
 $boxColor: rgb(202, 202, 202);
 
 .login-container {
-  background-color: $mainColor;
+  background-image: url(https://i.imgur.com/TwFh5BA.jpg);
+  background-size: cover;
   height: 500px;
   width: 100vw;
   display: flex;
@@ -10,6 +11,7 @@ $boxColor: rgb(202, 202, 202);
   align-items: center;
   .login-box{
     background-color: $boxColor;
+    box-shadow: 1px 5px 5px black;
     box-sizing: border-box;
     display: flex;
     flex-direction: column;
@@ -17,6 +19,8 @@ $boxColor: rgb(202, 202, 202);
     align-items: center;
     height: 200px;
     width: 300px;
+    
+    
     form{
       box-sizing: border-box;
       display: flex;
@@ -26,6 +30,10 @@ $boxColor: rgb(202, 202, 202);
       }
     input{
       margin-bottom: 10px;
+      border: none;
+    }
+    button{
+      margin: 5px;
     }
     h4{
       text-align: center;

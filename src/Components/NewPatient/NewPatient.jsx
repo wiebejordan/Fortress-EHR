@@ -69,9 +69,9 @@ const NewPatient = () => {
         <input type='radio' value='White' onChange={(e) => handleInput(e)} name='ethnicitydsc'></input>
         <label> White</label><br/>
 
-        <input placeholder='race' onChange={(e) => handleInput(e)} name='race01dsc'></input>
+        {/* <input placeholder='race' onChange={(e) => handleInput(e)} name='race01dsc'></input>
         <input placeholder='race' onChange={(e) => handleInput(e)} name='race02dsc'></input>
-        <input placeholder='race' onChange={(e) => handleInput(e)} name='race03dsc'></input>
+        <input placeholder='race' onChange={(e) => handleInput(e)} name='race03dsc'></input> */}
         <button  onClick={handleSubmit}>Submit New Patient</button>
         
       </div>
@@ -106,9 +106,9 @@ const NewPatient = () => {
         <label> Hawaiano Nativo u Otro Isleño del Pacífico</label><br/>
         <input type='radio' value='White' onChange={(e) => handleInput(e)} name='ethnicitydsc' ></input>
         <label> Blanco</label><br/>
-        <input placeholder='raza' onChange={(e) => handleInput(e)} name='race01dsc'></input>
+        {/* <input placeholder='raza' onChange={(e) => handleInput(e)} name='race01dsc'></input>
         <input placeholder='raza' onChange={(e) => handleInput(e)} name='race02dsc'></input>
-        <input placeholder='raza' onChange={(e) => handleInput(e)} name='race03dsc'></input>
+        <input placeholder='raza' onChange={(e) => handleInput(e)} name='race03dsc'></input> */}
         <button onClick={handleSubmit}>Enviar Nuevo Paciente</button>
     
       </div>

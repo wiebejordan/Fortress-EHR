@@ -52,7 +52,7 @@ function App(props) {
         
 
   const handleOnIdle = event => {
-    if(history.location.pathname !== '/'){
+    if(history.location.pathname !== '/' && history.location.pathname !== '/newuser' ){
       setModal(true)
 
     }
