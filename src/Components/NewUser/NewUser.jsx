@@ -11,6 +11,18 @@ const NewUser = () => {
         user = useSelector(state => state.authReducer),
         history = useHistory();
 
+
+  const handleInput = (e, result) => {
+   const {name, value} = result || e.target;
+  setNewUser({...newUser, [name]: value});
+  };
+
+  const handleSubmit = () => {
+    const {firstnm, lastnm, email, password, canedit} = newUser;
+    
+    
+  }
+
   return(
     <div>
       <div>
