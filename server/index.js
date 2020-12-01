@@ -30,6 +30,8 @@ massive({
 //login endpoints
 app.post('/auth/login', authCtrl.login);
 app.post('/auth/logout', authCtrl.logout);
+app.post('/auth/newuser', authCtrl.newUser);
+app.post('/newuseradmin', authCtrl.newUser)
 
 //session endpoints
 app.get('/auth/user', authCtrl.keepUser);
