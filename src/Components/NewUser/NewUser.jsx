@@ -5,8 +5,7 @@ import axios from 'axios';
 
 
 const NewUser = () => {
-  const [newUser, setNewUser] = useState({firstnm: '', lastnm: '', email: '', password: '', canedit: false}),
-        [confPass, setConfPass] = useState(''),
+  const [newUser, setNewUser] = useState({firstnm: '', lastnm: '', email: '', password: '', canedit: false, confPass: ''}),
         [adminPass, setAdminPass] = useState(''),
         lang = useSelector(state => state.languageReducer.english),
         user = useSelector(state => state.authReducer),
@@ -31,13 +30,36 @@ const NewUser = () => {
   
 
   const handleSubmit = () => {
-    const {firstnm, lastnm, email, password, canedit} = newUser;
+    const {firstnm, lastnm, email, password, canedit, confPass} = newUser;
+
+    if(password !== confPass){
+      alert("passwords don't match")
+    } 
 
     if(canedit === true){
       axios.post('/auth/newuseradmin', {firstnm, lastnm, email, password, canedit, adminPass} )
+
+      .then(() => {
+        history.push('/main')
+        if(lang === true){
+          alert('User registration successful!')
+        } else{
+          alert('Registro de usuario exitoso')
+        }
+      })
     }
-    
-    axios.post('/auth/newuser', {firstnm, lastnm, email, password, canedit})
+    else{
+      axios.post('/auth/newuser', {firstnm, lastnm, email, password, canedit})
+
+      .then(() => {
+        history.push('/main')
+        if(lang === true){
+          alert('User registration successful!')
+        } else{
+          alert('Registro de usuario exitoso')
+        }
+      })
+    }
 
     
   }
@@ -75,6 +97,8 @@ const NewUser = () => {
         </>
         :
         null}
+
+        <button onClick={handleSubmit}>Submit</button>
       </div>
     </div>
   )

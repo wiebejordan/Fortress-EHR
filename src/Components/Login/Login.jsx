@@ -8,7 +8,7 @@ import '../../styles/style.scss'
 
 const Login = (props) => {
   const [isEnglish, setIsEnglish] = useState(true),
-        [username, setUsername] = useState(''),
+        [email, setemail] = useState(''),
         [password, setPassword] = useState(''),
         [loggedIn, setLoggedIn] = useState('');
         const user = useSelector(state => state.authReducer)
@@ -20,11 +20,11 @@ const Login = (props) => {
   }
 
   const handleUserInput = (e) => {
-    setUsername(e)
+    setemail(e)
   }
 
   useEffect(() => {
-    if(user.user.username){
+    if(user.user.email){
       props.history.push('/main')
     }
   })
@@ -33,9 +33,9 @@ const Login = (props) => {
   const handleLogin = () => {
     
 
-    axios.post('/auth/login', {username, password})
+    axios.post('/auth/login', {email, password})
     .then(res => {
-      setLoggedIn(res.data.username);
+      setLoggedIn(res.data.email);
       dispatch({
         type: 'GET_USER',
         payload: res.data
@@ -44,7 +44,7 @@ const Login = (props) => {
     })
     .catch(() => {
       if(state.english === true){
-        alert('username and password do not match')
+        alert('email and password do not match')
       }
       else {
         alert('Nombre de usuario y contraseña no coinciden')
@@ -58,7 +58,7 @@ const Login = (props) => {
     <div className='login-box'>
       <h4>Welcome to ATOM Electronic Medical Records!</h4>
       <form onSubmit={handleLogin}>
-      <input onChange={(e) => handleUserInput(e.target.value)} placeholder='username'/>
+      <input onChange={(e) => handleUserInput(e.target.value)} placeholder='email'/>
       <input onChange={(e) => handlePassInput(e.target.value)} placeholder='password' type='password'/>
       <button>Login</button>
       </form>

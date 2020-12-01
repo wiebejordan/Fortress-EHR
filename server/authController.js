@@ -2,18 +2,18 @@ const bcrypt = require('bcryptjs');
 
 module.exports = {
   login: async (req, res) => {
-    const {username, password} = req.body,
+    const {email, password} = req.body,
           db = req.app.get('db');
 
-    const foundUser = await db.user.check_user({username});
+    const foundUser = await db.user.check_user({email});
     if(!foundUser[0]){
       return res.status(400).send('Username does not exist');
     }
 
-    const authenticated = bcrypt.compareSync(password, foundUser[0].password);
-      if(!authenticated){
-        return res.status(401).send('Password incorrect')
-      }
+    // const authenticated = bcrypt.compareSync(password, foundUser[0].password);
+    //   if(!authenticated){
+    //     return res.status(401).send('Password incorrect')
+    //   }
 
     if(password !== foundUser[0].password){
       return res.status(401).send('Password incorrect')
@@ -59,14 +59,22 @@ module.exports = {
     .catch(err => res.status(500).send(err));
   },
 
-  newUserAdmin: (req, res) => {
+  newUserAdmin: async (req, res) => {
     const db = req.app.get('db'),
           {firstnm, lastnm, email, password, canedit, adminPass} = req.body; 
 
+          const foundUser = await db.user.check_user({email});
+          if(foundUser[0]){
+            return res.status(400).send('User with that email already exists.')
+          }
+
+          let salt = bcrypt.genSaltSync(10),
+        hash = bcrypt.hashSync(password, salt);
+
     if(adminPass === '12345'){
-      db.user.new_user(firstnm, lastnm, email, password, canedit)
-      .then(() => res.sendStatus(200))
-      .catch(err => res.status(500).send(err));
+      const newUser = await db.user.new_user({firstnm, lastnm, email, password: hash, canedit});
+      req.session.userid = newUser[0];
+      res.status(201).send(req.session.userid)
 
     }
   }

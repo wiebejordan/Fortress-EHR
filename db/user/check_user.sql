@@ -1,2 +1,2 @@
 select * from emr_users
-where username = ${username};
+where email = ${email};
