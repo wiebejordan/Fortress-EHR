@@ -14,7 +14,7 @@ import axios from 'axios'
 function App(props) {
   const [modal, setModal] = useState(false),
         [password, setPassword] = useState(''),
-        [username, setUsername] = useState(''),
+        [email, setemail] = useState(''),
          history = useHistory(),
          user = useSelector(state => state.authReducer),
          lang = useSelector(state => state.languageReducer),
@@ -26,14 +26,14 @@ function App(props) {
         }, [])
 
         useEffect(() => {
-          if(user.user.username === ''){
+          if(user.user.email === ''){
             history.push('/')}
         })
 
 
          useEffect(() => {
-          setUsername(user.user.username)
-        }, [user.user.username]);
+          setemail(user.user.email)
+        }, [user.user.email]);
 
 
         useEffect(() => {
@@ -70,7 +70,7 @@ function App(props) {
   }
  
   const { getRemainingTime, getLastActiveTime } = useIdleTimer({
-    timeout: 1000 * 60 * 5,
+    timeout: 10000,
     onIdle: handleOnIdle,
     onActive: handleOnActive,
     onAction: handleOnAction,
@@ -82,9 +82,9 @@ function App(props) {
   }
 
   const handleIdleLogin = () => {
-    axios.post('/auth/login', {username, password})
+    axios.post('/auth/login', {email, password})
     .then(res => {
-      setUsername(res.data.username);
+      setemail(res.data.email);
       dispatch({
         type: 'GET_USER',
         payload: res.data
@@ -94,7 +94,7 @@ function App(props) {
     })
     .catch(() => {
       if(lang.english === true){
-        alert('username and password do not match')
+        alert('email and password do not match')
       }
       else {
         alert('Nombre de usuario y contraseña no coinciden')
@@ -128,16 +128,18 @@ function App(props) {
       <Modal.Content centered>
         
         <Modal.Description>
-          <Header>{user.user.username}</Header>
+          <Header>{user.user.firstnm} {user.user.lastnm[0]}</Header>
           <p>
             Please enter your password to log back in.
           </p>
+          <form onSubmit={handleIdleLogin}>
           <input type='password' onChange={(e) => handlePassInput(e.target.value)} />
         <Button
           content="Log in"
-          onClick={() => handleIdleLogin()}
           positive
         />
+
+          </form>
         </Modal.Description>
       </Modal.Content>
     </Modal>
@@ -155,7 +157,7 @@ function App(props) {
       <Modal.Content>
         
         <Modal.Description>
-          <Header>{user.user.username}</Header>
+          <Header>{user.user.email}</Header>
           <p>
           por favor ingrese su contraseña para volver a iniciar sesión
           </p>

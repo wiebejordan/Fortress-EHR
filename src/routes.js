@@ -5,6 +5,7 @@ import Patient from './Components/Patient/Patient';
 import Login from './Components/Login/Login';
 import NewPatient from './Components/NewPatient/NewPatient';
 import NewUser from './Components/NewUser/NewUser';
+import NoMatchPage from './Components/NoMatchPage/NoMatchPage';
 
 
 export default (
@@ -14,5 +15,6 @@ export default (
     <Route path='/patient/:patientid' component={Patient}/>
     <Route path='/newpatient' component={NewPatient}/>
     <Route path='/newuser' component={NewUser}/>
+    <Route component={NoMatchPage}/>
   </Switch>
 );

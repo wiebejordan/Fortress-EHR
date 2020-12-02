@@ -11,7 +11,7 @@ const NewUser = () => {
         user = useSelector(state => state.authReducer),
         dispatch = useDispatch(),
         history = useHistory();
-    console.log(lang)
+    // console.log(lang)
 
   const handleInput = (e, result) => {
    const {name, value} = result || e.target;
