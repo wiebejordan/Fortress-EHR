@@ -157,17 +157,18 @@ function App(props) {
       <Modal.Content>
         
         <Modal.Description>
-          <Header>{user.user.email}</Header>
+          <Header>{user.user.firstnm} {user.user.lastnm[0]}</Header>
           <p>
           por favor ingrese su contraseña para volver a iniciar sesión
           </p>
+          <form onSubmit={handleIdleLogin}>
           <input type='password' onChange={(e) => handlePassInput(e.target.value)} />
-         
-          <Button
-          content="Iniciar sesión"
-          onClick={() => handleIdleLogin()}
+        <Button
+          content="
+          Iniciar sesión"
           positive
         />
+        </form>
         </Modal.Description>
       </Modal.Content>
     </Modal>}
