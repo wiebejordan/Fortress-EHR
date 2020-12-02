@@ -70,7 +70,7 @@ function App(props) {
   }
  
   const { getRemainingTime, getLastActiveTime } = useIdleTimer({
-    timeout: 10000,
+    timeout: 1000 * 60 * 5,
     onIdle: handleOnIdle,
     onActive: handleOnActive,
     onAction: handleOnAction,
@@ -128,7 +128,8 @@ function App(props) {
       <Modal.Content centered>
         
         <Modal.Description>
-          <Header>{user.user.firstnm} {user.user.lastnm[0]}</Header>
+          <Header>{user.user.firstnm}
+          {user.user.lastnm ? user.user.lastnm[0] : null}</Header>
           <p>
             Please enter your password to log back in.
           </p>
@@ -157,7 +158,7 @@ function App(props) {
       <Modal.Content>
         
         <Modal.Description>
-          <Header>{user.user.firstnm} {user.user.lastnm[0]}</Header>
+          <Header>{user.user.firstnm} {user.user.lastnm ? user.user.lastnm[0] : null}</Header>
           <p>
           por favor ingrese su contraseña para volver a iniciar sesión
           </p>
