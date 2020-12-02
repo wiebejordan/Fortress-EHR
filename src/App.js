@@ -20,7 +20,7 @@ function App(props) {
          lang = useSelector(state => state.languageReducer),
          idle = useSelector(state => state.idleReducer),
          dispatch = useDispatch();
-  
+
         useEffect(() => {
           setModal(idle.idle)
         }, [])

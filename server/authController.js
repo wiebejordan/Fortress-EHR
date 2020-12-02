@@ -15,9 +15,6 @@ module.exports = {
         return res.status(401).send('Password incorrect')
       }
 
-    // if(password !== foundUser[0].password){
-    //   return res.status(401).send('Password incorrect')
-    // }
 
     delete foundUser[0].password;
     req.session.userid = foundUser[0];
@@ -48,7 +45,7 @@ module.exports = {
 
     const foundUser = await db.user.check_user({email});
     if(foundUser[0]){
-      return res.status(400).send('Username already exists.')
+      return res.status(400).send('a user with that email already exists.')
     }
 
     let salt = bcrypt.genSaltSync(10),
@@ -57,6 +54,7 @@ module.exports = {
         const newUser = await db.user.new_user({password: hash, canedit, firstnm, lastnm, email});
         req.session.userid = newUser[0];
         res.status(201).send(req.session.userid)
+        
   },
 
   newUserAdmin: async (req, res) => {

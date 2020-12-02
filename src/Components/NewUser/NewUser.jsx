@@ -1,5 +1,5 @@
 import react, {useState, useEffect} from 'react';
-import {useSelector} from 'react-redux';
+import {useSelector, useDispatch} from 'react-redux';
 import {useHistory} from 'react-router-dom';
 import axios from 'axios';
 
@@ -9,8 +9,9 @@ const NewUser = () => {
         [adminPass, setAdminPass] = useState(''),
         lang = useSelector(state => state.languageReducer.english),
         user = useSelector(state => state.authReducer),
+        dispatch = useDispatch(),
         history = useHistory();
-    console.log(adminPass)
+    console.log(lang)
 
   const handleInput = (e, result) => {
    const {name, value} = result || e.target;
@@ -36,10 +37,22 @@ const NewUser = () => {
       alert("passwords don't match")
     } 
 
-    if(canedit === true){
+    if(canedit === true && adminPass !== '12345'){
+      alert("Admin password incorrect")
+    }
+
+    if(!email){
+      alert("please enter an email address")
+    }
+
+    if(email && email.includes('@') === true && canedit === true && adminPass === '12345' && password && password === confPass){
       axios.post('/auth/newuseradmin', {firstnm, lastnm, email, password, canedit, adminPass} )
 
-      .then(() => {
+      .then(res => {
+        dispatch({
+          type: 'GET_USER',
+          payload: res.data
+        })
         history.push('/main')
         if(lang === true){
           alert('User registration successful!')
@@ -47,11 +60,16 @@ const NewUser = () => {
           alert('Registro de usuario exitoso')
         }
       })
+      .catch(err => alert('a user with that email already exists.'))
     }
-    else{
+    else if(email && email.includes('@') === true && canedit === false && password && password === confPass){
       axios.post('/auth/newuser', {password, canedit, firstnm, lastnm, email})
 
-      .then(() => {
+      .then(res => {
+        dispatch({
+          type: 'GET_USER',
+          payload: res.data
+        })
         history.push('/main')
         if(lang === true){
           alert('User registration successful!')
@@ -59,6 +77,7 @@ const NewUser = () => {
           alert('Registro de usuario exitoso')
         }
       })
+      .catch(err => alert('a user with that email already exists.'))
     }
 
     
@@ -66,6 +85,8 @@ const NewUser = () => {
 
   return(
     <div>
+      {lang === true
+      ?
       <div>
         <p>First Name</p>
         <input onChange={(e) => handleInput(e)} name='firstnm'></input>
@@ -99,7 +120,45 @@ const NewUser = () => {
         null}
 
         <button onClick={handleSubmit}>Submit</button>
+        
       </div>
+      : 
+      <div>
+        <p>Primer nombre:</p>
+        <input onChange={(e) => handleInput(e)} name='firstnm'></input>
+
+        <p>Apellido:</p>
+        <input onChange={(e) => handleInput(e)} name='lastnm'></input>
+
+        <p>Correo electrónico</p>
+        <input type='email' onChange={(e) => handleInput(e)} name='email'></input>
+
+        <p>Contraseña</p>
+        <input type='password' onChange={(e) => handleInput(e)} name='password'></input>        
+
+        <p>Confirmar contraseña</p>
+        <input type='password' onChange={(e) => handleInput(e)} name='confPass'></input>
+
+        <p>Permisos de usuario</p> 
+        <input type='radio' value='false' onChange={(e) => handleInput(e)} name='canedit' defaultChecked></input>
+        <label>Sólo vista</label>
+        <br/>
+        <input type='radio' value='true' onChange={(e) => handleInput(e)} name='canedit'></input>
+        <label>Ver, agregar y editar registros</label>
+        
+        {newUser.canedit === true
+        ?
+        <>
+        <p>Contraseña Administrativa</p>
+        <input type='password' onChange={(e) => handleAdminPass(e)} ></input>
+        </>
+        :
+        null}
+
+        <button onClick={handleSubmit}>Submit</button>
+        
+      </div>
+      }
     </div>
   )
 }
