@@ -326,7 +326,7 @@ function PatientTable(patientList) {
         } = useSortableData(patientList);
 
   useEffect(() => {
-    if(!user.user.username){
+    if(!user.user.email){
       history.push('/')}
   })
   

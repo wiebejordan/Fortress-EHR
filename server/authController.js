@@ -10,14 +10,14 @@ module.exports = {
       return res.status(400).send('Username does not exist');
     }
 
-    // const authenticated = bcrypt.compareSync(password, foundUser[0].password);
-    //   if(!authenticated){
-    //     return res.status(401).send('Password incorrect')
-    //   }
+    const authenticated = bcrypt.compareSync(password, foundUser[0].password);
+      if(!authenticated){
+        return res.status(401).send('Password incorrect')
+      }
 
-    if(password !== foundUser[0].password){
-      return res.status(401).send('Password incorrect')
-    }
+    // if(password !== foundUser[0].password){
+    //   return res.status(401).send('Password incorrect')
+    // }
 
     delete foundUser[0].password;
     req.session.userid = foundUser[0];
@@ -54,9 +54,9 @@ module.exports = {
     let salt = bcrypt.genSaltSync(10),
         hash = bcrypt.hashSync(password, salt);
 
-    db.user.new_user(firstnm, lastnm, email, password, canedit)
-    .then(() => res.sendStatus(200))
-    .catch(err => res.status(500).send(err));
+        const newUser = await db.user.new_user({password: hash, canedit, firstnm, lastnm, email});
+        req.session.userid = newUser[0];
+        res.status(201).send(req.session.userid)
   },
 
   newUserAdmin: async (req, res) => {

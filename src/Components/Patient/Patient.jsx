@@ -43,7 +43,7 @@ const mapStateToProps = (reduxState) => reduxState;
   }, [])
 
   useEffect(() => {
-    if(!user.user.username){
+    if(!user.user.email){
       history.push('/')}
   })
 

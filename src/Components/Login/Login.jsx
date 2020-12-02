@@ -70,7 +70,7 @@ const Login = (props) => {
     <div className='login-box'>
       <h4>Bienvenido a ATOM Registros Médicos Electrónicos!</h4>
       <form onSubmit={handleLogin}>
-      <input onChange={(e) => handleUserInput(e.target.value)} placeholder='nombre'/>
+      <input onChange={(e) => handleUserInput(e.target.value)} placeholder='correo electrónico'/>
       <input onChange={(e) => handlePassInput(e.target.value)} placeholder='contraseña' type='password'/>
       <button>Iniciar sesión</button>
       </form>

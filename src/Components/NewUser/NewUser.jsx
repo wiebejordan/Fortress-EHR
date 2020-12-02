@@ -49,7 +49,7 @@ const NewUser = () => {
       })
     }
     else{
-      axios.post('/auth/newuser', {firstnm, lastnm, email, password, canedit})
+      axios.post('/auth/newuser', {password, canedit, firstnm, lastnm, email})
 
       .then(() => {
         history.push('/main')

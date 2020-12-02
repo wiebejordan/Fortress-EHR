@@ -26,7 +26,7 @@ const langOptions = [
 
 const Nav = (props) => {
   const [isEnglish, setIsEnglish] = useState(true),
-        [username, setUsername] = useState(''),
+        [email, setemail] = useState(''),
         [password, setPassword] = useState(''),
         [loggedIn, setLoggedIn] = useState(''),
          state = useSelector(state => state.languageReducer),
@@ -66,20 +66,20 @@ const Nav = (props) => {
   }
 
   const handleUserInput = (e) => {
-    setUsername(e)
+    setemail(e)
   }
 
  const handleLogin = () => {
 
-    axios.post('/auth/login', {username, password})
+    axios.post('/auth/login', {email, password})
     .then(res => {
-      setLoggedIn(res.data.username);
+      setLoggedIn(res.data.email);
       dispatch({
         type: 'GET_USER',
         payload: res.data
       })
     })
-    .catch(() => alert('username and password do not match'))
+    .catch(() => alert('email and password do not match'))
   }
 
 
@@ -87,12 +87,12 @@ const Nav = (props) => {
    axios.post('/auth/logout')
    .then(() => {
      setLoggedIn('')
-     setUsername('')
+     setemail('')
      setPassword('')
      dispatch({
        type: 'CLEAR_USER',
        payload: {user: {
-        username: '',
+        email: '',
         canedit: ''
       }}
      })
@@ -119,12 +119,12 @@ const Nav = (props) => {
         
       </Menu.Item>}
 
-        {!user.user.username 
+        {!user.user.email 
         ? 
           null
         :
       <>
-      <Menu.Item header>{user.user.username}</Menu.Item>
+      <Menu.Item header>{user.user.lastnm}, {user.user.firstnm}</Menu.Item>
       {state.english === true ?
       <Menu.Item>
         <Button onClick={logout}>Logout</Button>

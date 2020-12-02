@@ -1,6 +1,6 @@
 const initialState = {
   user: {
-    username: '',
+    email: '',
     canedit: ''
   }
 }
@@ -19,7 +19,7 @@ export function clearUser(){
   return{
       type: CLEAR_USER,
       payload: {user: {
-        username: '',
+        email: '',
         canedit: ''
       }}
   }
