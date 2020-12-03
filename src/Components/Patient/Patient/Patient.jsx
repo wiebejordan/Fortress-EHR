@@ -35,8 +35,8 @@ import PatientOverview from '../PatientOverview/PatientOverview'
     <div>
       
       <div className='patient-grid-container'>
-      <Grid padded>
-      <Grid.Row columns={2}>
+      <Grid columns='equal' padded>
+      
       {lang === true
       ?
       <Grid.Column >
@@ -75,7 +75,7 @@ import PatientOverview from '../PatientOverview/PatientOverview'
           </Grid.Column>
       // ////////////////////////////spanish menu////////////////////////////////////
       :
-      <Grid.Column >
+      <Grid.Column  >
       <Menu  vertical>
         <Menu.Item
           name='visión de conjunto'
@@ -111,14 +111,14 @@ import PatientOverview from '../PatientOverview/PatientOverview'
       </Grid.Column>
       }
 
-      <Grid.Column >
+      <Grid.Column  >
       <Segment>
         {item === 'overview' || item === 'visión de conjunto'
         ? <PatientOverview/>
         : null}
       </Segment>
       </Grid.Column>
-      </Grid.Row>
+      
       </Grid>
       </div>
       </div>
