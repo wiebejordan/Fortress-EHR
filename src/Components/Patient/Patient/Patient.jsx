@@ -2,7 +2,8 @@ import axios from 'axios';
 import React, {useState, useEffect} from 'react';
 import {connect, useSelector} from 'react-redux';
 import {useHistory} from 'react-router-dom';
-import {Loader} from 'semantic-ui-react';
+import {Loader, Menu} from 'semantic-ui-react';
+import PatientMenu from '../PatientMenu/PatientMenu'
 
 
 const mapStateToProps = (reduxState) => reduxState;
@@ -56,6 +57,7 @@ const mapStateToProps = (reduxState) => reduxState;
   }
   
   return(<div>
+    <PatientMenu/>
     
     {props.languageReducer.english === true 
     ?(
