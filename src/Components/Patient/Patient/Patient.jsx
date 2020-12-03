@@ -2,27 +2,44 @@ import axios from 'axios';
 import React, {useState, useEffect} from 'react';
 import {useSelector} from 'react-redux';
 import {useHistory} from 'react-router-dom';
-import {Loader, Menu} from 'semantic-ui-react';
-import PatientMenu from '../PatientMenu/PatientMenu'
+import {Loader, Menu, Segment, Grid, Container} from 'semantic-ui-react';
+import PatientOverview from '../PatientOverview/PatientOverview'
 
 
 
 
 
- const Patient = () => {
+ const Patient = (props) => {
   const [item, setItem] = useState('overview'),
-  lang = useSelector(state => state.languageReducer.english)
+        [patient, setPatient] = useState({}),
+  user = useSelector(state => state.authReducer),
+  lang = useSelector(state => state.languageReducer.english);
+  // console.log(patient)
+
+  useEffect(() => {
+    if(props.match.params.patientid){
+      axios.get(`/api/patient/${props.match.params.patientid}`)
+
+      .then(res => {
+        setPatient(res.data)
+      })
+    }
+  }, [])
 
   const handleItemClick = (e, { name }) => setItem(name);
 
-  console.log(item)
+  
   
   
   return(
     <div>
       
+      <div className='patient-grid-container'>
+      <Grid padded>
+      <Grid.Row columns={2}>
       {lang === true
       ?
+      <Grid.Column >
       <Menu  vertical>
         <Menu.Item
           name='overview'
@@ -53,10 +70,12 @@ import PatientMenu from '../PatientMenu/PatientMenu'
           name='visualization'
           active={item === 'visualization' || item === 'visualizaciones'}
           onClick={handleItemClick}
-        />
+          />
       </Menu>
+          </Grid.Column>
       // ////////////////////////////spanish menu////////////////////////////////////
       :
+      <Grid.Column >
       <Menu  vertical>
         <Menu.Item
           name='visión de conjunto'
@@ -89,7 +108,19 @@ import PatientMenu from '../PatientMenu/PatientMenu'
           onClick={handleItemClick}
         />
       </Menu>
+      </Grid.Column>
       }
+
+      <Grid.Column >
+      <Segment>
+        {item === 'overview' || item === 'visión de conjunto'
+        ? <PatientOverview/>
+        : null}
+      </Segment>
+      </Grid.Column>
+      </Grid.Row>
+      </Grid>
+      </div>
       </div>
   )
 }
