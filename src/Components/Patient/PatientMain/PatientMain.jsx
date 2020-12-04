@@ -3,13 +3,18 @@ import React, {useState, useEffect} from 'react';
 import {useSelector} from 'react-redux';
 import {useHistory} from 'react-router-dom';
 import {Loader, Menu, Segment, Grid, Container} from 'semantic-ui-react';
-import PatientOverview from '../PatientOverview/PatientOverview'
+import PatientOverview from '../PatientOverview/PatientOverview';
+import PatientHistory from '../PatientHistory/PatientHistory';
+import Medications from '../Medications/Medications';
+import Immunizations from '../Immunizations/Immunizations';
+import Visualization from '../Visualization/Visualization';
+import ActiveProblems from '../ActiveProblems/ActiveProblems';
 
 
 
 
 
- const Patient = (props) => {
+ const PatientMain = (props) => {
   const [item, setItem] = useState('overview'),
         [patient, setPatient] = useState({}),
   user = useSelector(state => state.authReducer),
@@ -116,6 +121,26 @@ import PatientOverview from '../PatientOverview/PatientOverview'
         {item === 'overview' || item === 'visión de conjunto'
         ? <PatientOverview/>
         : null}
+
+        {item === 'patient history' || item === 'historial del paciente'
+        ? <PatientHistory/>
+        : null}
+
+        {item === 'active problems' || item === 'problemas activos'
+        ? <ActiveProblems/>
+        : null}
+
+        {item === 'medications' || item === 'medicamentos'
+        ? <Medications/>
+        : null}
+
+        {item === 'immunizations' || item === 'inmunizaciones'
+        ? <Immunizations/>
+        : null}
+
+        {item === 'visualization' || item === 'visualizaciones'
+        ? <Visualization/>
+        : null}
       </Segment>
       </Grid.Column>
       
@@ -125,4 +150,4 @@ import PatientOverview from '../PatientOverview/PatientOverview'
   )
 }
 
-export default Patient
+export default PatientMain
