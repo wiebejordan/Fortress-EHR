@@ -40,12 +40,13 @@ import ActiveProblems from '../ActiveProblems/ActiveProblems';
     <div>
       
       <div className='patient-grid-container'>
-      <Grid columns='equal' padded>
-      
+      <Grid stackable  padded>
+      <Grid.Row>
+      <Grid.Column width={3} >
       {lang === true
       ?
-      <Grid.Column >
-      <Menu  vertical>
+      <Menu compact vertical>
+        
         <Menu.Item
           name='overview'
           active={item === 'overview' || item === 'visión de conjunto'}
@@ -77,11 +78,11 @@ import ActiveProblems from '../ActiveProblems/ActiveProblems';
           onClick={handleItemClick}
           />
       </Menu>
-          </Grid.Column>
+          
       // ////////////////////////////spanish menu////////////////////////////////////
       :
-      <Grid.Column  >
-      <Menu  vertical>
+      
+      <Menu compact vertical>
         <Menu.Item
           name='visión de conjunto'
           active={item === 'overview' || item === 'visión de conjunto'}
@@ -113,10 +114,10 @@ import ActiveProblems from '../ActiveProblems/ActiveProblems';
           onClick={handleItemClick}
         />
       </Menu>
-      </Grid.Column>
       }
+      </Grid.Column>
 
-      <Grid.Column  >
+      <Grid.Column  width={11}>
       <Segment>
         {item === 'overview' || item === 'visión de conjunto'
         ? <PatientOverview/>
@@ -143,8 +144,10 @@ import ActiveProblems from '../ActiveProblems/ActiveProblems';
         : null}
       </Segment>
       </Grid.Column>
-      
+      </Grid.Row>
+    
       </Grid>
+      
       </div>
       </div>
   )
