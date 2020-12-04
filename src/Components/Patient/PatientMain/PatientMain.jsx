@@ -19,14 +19,15 @@ import ActiveProblems from '../ActiveProblems/ActiveProblems';
         [patient, setPatient] = useState({}),
   user = useSelector(state => state.authReducer),
   lang = useSelector(state => state.languageReducer.english);
-  // console.log(patient)
+  
+  
 
   useEffect(() => {
     if(props.match.params.patientid){
       axios.get(`/api/patient/${props.match.params.patientid}`)
 
       .then(res => {
-        setPatient(res.data)
+        setPatient(res.data[0])
       })
     }
   }, [])
@@ -38,7 +39,7 @@ import ActiveProblems from '../ActiveProblems/ActiveProblems';
   
   return(
     <div>
-      
+      <h1 style={{textAlign: 'center'}}>{patient.lastnm}, {patient.firstnm}</h1>
       <div className='patient-grid-container'>
       <Grid stackable  padded>
       <Grid.Row>
@@ -120,27 +121,27 @@ import ActiveProblems from '../ActiveProblems/ActiveProblems';
       <Grid.Column  width={11}>
       <Segment>
         {item === 'overview' || item === 'visión de conjunto'
-        ? <PatientOverview/>
+        ? <PatientOverview patient={patient}/>
         : null}
 
         {item === 'patient history' || item === 'historial del paciente'
-        ? <PatientHistory/>
+        ? <PatientHistory patient={patient}/>
         : null}
 
         {item === 'active problems' || item === 'problemas activos'
-        ? <ActiveProblems/>
+        ? <ActiveProblems patient={patient}/>
         : null}
 
         {item === 'medications' || item === 'medicamentos'
-        ? <Medications/>
+        ? <Medications patient={patient}/>
         : null}
 
         {item === 'immunizations' || item === 'inmunizaciones'
-        ? <Immunizations/>
+        ? <Immunizations patient={patient}/>
         : null}
 
         {item === 'visualization' || item === 'visualizaciones'
-        ? <Visualization/>
+        ? <Visualization patient={patient}/>
         : null}
       </Segment>
       </Grid.Column>

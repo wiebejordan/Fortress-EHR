@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Menu, Segment } from 'semantic-ui-react';
 import {useSelector} from 'react-redux';
 
-const ActiveProblems = () => {
+const ActiveProblems = (props) => {
   const lang = useSelector(state => state.languageReducer.english)
 
   
@@ -12,10 +12,14 @@ const ActiveProblems = () => {
       
       {lang === true
       ?
-      <div>ACtive Problems</div>
+      <div>ACtive Problems
+        <p>{props.patient.firstnm}</p>
+      </div>
       // ////////////////////////////spanish menu////////////////////////////////////
       :
-      <div>hola</div>
+      <div>Problemas Activos
+        <p>{props.patient.firstnm}</p>
+      </div>
       }
       </div>
     )

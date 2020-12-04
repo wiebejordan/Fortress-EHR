@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Menu, Segment } from 'semantic-ui-react';
 import {useSelector} from 'react-redux';
 
-const IMMUNIZATION = () => {
+const IMMUNIZATION = (props) => {
   const [item, setItem] = useState('overview'),
         lang = useSelector(state => state.languageReducer.english)
 
@@ -15,10 +15,14 @@ const IMMUNIZATION = () => {
       
       {lang === true
       ?
-      <div>IMMUNIZATION</div>
+      <div>IMMUNIZATION
+        <p>{props.patient.firstnm}</p>
+      </div>
       // ////////////////////////////spanish menu////////////////////////////////////
       :
-      <div>hola</div>
+      <div>Inmunizaciones
+        <p>{props.patient.firstnm}</p>
+      </div>
       }
       </div>
     )

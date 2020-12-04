@@ -2,12 +2,12 @@ import React, { useState } from 'react';
 import { Menu, Segment } from 'semantic-ui-react';
 import {useSelector} from 'react-redux';
 
-const PatientOverview = () => {
-  const [item, setItem] = useState('overview'),
-        lang = useSelector(state => state.languageReducer.english)
+const PatientOverview = (props) => {
+  const [item, setItem] = useState({}),
+        lang = useSelector(state => state.languageReducer.english);
 
-  const handleItemClick = (e, { name }) => setItem(name);
-
+ 
+  
   
 
     return (
@@ -15,10 +15,17 @@ const PatientOverview = () => {
       
       {lang === true
       ?
-      <div>patient overview</div>
+      <div>
+        <h1>
+        patient overview
+          </h1>
+        <p>{props.patient.firstnm}</p>
+      </div>
       // ////////////////////////////spanish menu////////////////////////////////////
       :
-      <div>hola</div>
+      <div>Vision De Paciente
+        <p>{props.patient.firstnm}</p>
+      </div>
       }
       </div>
     )

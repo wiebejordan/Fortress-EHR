@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Menu, Segment } from 'semantic-ui-react';
 import {useSelector} from 'react-redux';
 
-const Medications = () => {
+const Medications = (props) => {
   const lang = useSelector(state => state.languageReducer.english)
 
   
@@ -14,10 +14,14 @@ const Medications = () => {
       
       {lang === true
       ?
-      <div>Medications</div>
+      <div>Medications
+        <p>{props.patient.firstnm}</p>
+      </div>
       // ////////////////////////////spanish menu////////////////////////////////////
       :
-      <div>hola</div>
+      <div>Medicamentos
+        <p>{props.patient.firstnm}</p>
+      </div>
       }
       </div>
     )
