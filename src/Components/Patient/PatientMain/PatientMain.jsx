@@ -17,9 +17,10 @@ import ActiveProblems from '../ActiveProblems/ActiveProblems';
  const PatientMain = (props) => {
   const [item, setItem] = useState('overview'),
         [patient, setPatient] = useState({}),
+        [encounters, setEncounters] = useState([]),
   user = useSelector(state => state.authReducer),
   lang = useSelector(state => state.languageReducer.english);
-  
+  console.log('enc', encounters)
   
 
   useEffect(() => {
@@ -29,6 +30,14 @@ import ActiveProblems from '../ActiveProblems/ActiveProblems';
       .then(res => {
         setPatient(res.data[0])
       })
+      .catch(err => console.log(err))
+
+      axios.get(`/api/encounters/${props.match.params.patientid}`)
+      
+      .then(res => {
+        setEncounters(res.data)
+      })
+      .catch(err => console.log(err))
     }
   }, [])
 
@@ -121,27 +130,27 @@ import ActiveProblems from '../ActiveProblems/ActiveProblems';
       <Grid.Column  width={11}>
       <Segment>
         {item === 'overview' || item === 'visión de conjunto'
-        ? <PatientOverview patient={patient}/>
+        ? <PatientOverview patient={patient} encounters={encounters}/>
         : null}
 
         {item === 'patient history' || item === 'historial del paciente'
-        ? <PatientHistory patient={patient}/>
+        ? <PatientHistory patient={patient} encounters={encounters}/>
         : null}
 
         {item === 'active problems' || item === 'problemas activos'
-        ? <ActiveProblems patient={patient}/>
+        ? <ActiveProblems patient={patient} encounters={encounters}/>
         : null}
 
         {item === 'medications' || item === 'medicamentos'
-        ? <Medications patient={patient}/>
+        ? <Medications patient={patient} encounters={encounters}/>
         : null}
 
         {item === 'immunizations' || item === 'inmunizaciones'
-        ? <Immunizations patient={patient}/>
+        ? <Immunizations patient={patient} encounters={encounters}/>
         : null}
 
         {item === 'visualization' || item === 'visualizaciones'
-        ? <Visualization patient={patient}/>
+        ? <Visualization patient={patient} encounters={encounters}/>
         : null}
       </Segment>
       </Grid.Column>

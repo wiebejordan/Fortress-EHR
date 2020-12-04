@@ -1,3 +1,5 @@
+const { getEncounters } = require('./encounterController');
+
 require ('dotenv').config();
 
 const express = require('express'),
@@ -6,6 +8,7 @@ const express = require('express'),
       massive = require('massive'),
       {SERVER_PORT, SESSION_SECRET, DB_URI} = process.env,
       patientCtrl = require('./patientController'),
+      encounterCtrl = require('./encounterController'),
       authCtrl = require('./authController');
 
 
@@ -40,5 +43,8 @@ app.get('/auth/user', authCtrl.keepUser);
 app.get('/api/patients', patientCtrl.getPatients);
 app.get('/api/patient/:patientid', patientCtrl.getPatient);
 app.post('/api/newpatient', patientCtrl.newPatient);
+
+//encounter endpoints
+app.get('/api/encounters/:patientid', encounterCtrl.getEncounters);
 
 app.listen(SERVER_PORT, () => console.log(`server is running on ${SERVER_PORT}`));
