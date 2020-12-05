@@ -20,7 +20,7 @@ import ActiveProblems from '../ActiveProblems/ActiveProblems';
         [encounters, setEncounters] = useState([]),
   user = useSelector(state => state.authReducer),
   lang = useSelector(state => state.languageReducer.english);
-  console.log('enc', encounters)
+  // console.log('enc', encounters)
   
 
   useEffect(() => {
