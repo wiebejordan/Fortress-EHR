@@ -4,13 +4,14 @@ import languageReducer from './languageReducer';
 import authReducer from './authReducer';
 import idleReducer from './idleReducer';
 import visReducer from './visReducer';
+import newEncReducer from './newEncReducer'
 import {persistStore, persistReducer} from 'redux-persist';
 import storage from 'redux-persist/lib/storage'
 
 const persistConfig = {
   key: 'root',
   storage,
-  blacklist: ['patientReducer']
+  blacklist: ['patientReducer, newEncReducer']
 }
 
 const rootReducer = combineReducers({
@@ -18,7 +19,8 @@ const rootReducer = combineReducers({
   languageReducer,
   authReducer,
   idleReducer,
-  visReducer
+  visReducer,
+  newEncReducer
 });
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);
