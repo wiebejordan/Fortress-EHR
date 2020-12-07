@@ -3,6 +3,7 @@ import patientReducer from './patientReducer';
 import languageReducer from './languageReducer';
 import authReducer from './authReducer';
 import idleReducer from './idleReducer';
+import visReducer from './visReducer';
 import {persistStore, persistReducer} from 'redux-persist';
 import storage from 'redux-persist/lib/storage'
 
@@ -16,8 +17,8 @@ const rootReducer = combineReducers({
   patientReducer,
   languageReducer,
   authReducer,
-  idleReducer
-  
+  idleReducer,
+  visReducer
 });
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);

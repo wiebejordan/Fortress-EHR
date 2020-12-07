@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Dropdown } from 'semantic-ui-react';
-import {useSelector} from 'react-redux';
+import {useDispatch, useSelector} from 'react-redux';
 import {Line} from 'react-chartjs-2'; 
 import { parseInt } from 'lodash';
 
@@ -39,13 +39,22 @@ const dropOptions = [
 
 const Visualization = (props) => {
   const [chartData, setChartData] = useState({}),
-        [dropdown, setDropdown] = useState('weight_lbs'),
-
-        lang = useSelector(state => state.languageReducer.english);
-        console.log(dropdown)
+        // [dropdown, setDropdown] = useState('weight_lbs'),
+        
+        vis = useSelector(state => state.visReducer.vis),
+        lang = useSelector(state => state.languageReducer.english),
+        dispatch = useDispatch();
+        console.log(vis)
 
         const handleDropdown = (e, {value}) => {
-          setDropdown(value)
+          // setDropdown(value);
+          dispatch({
+            type: 'CHANGE_VIS',
+            payload: {
+              vis: value
+            }
+          })
+
         }
   
         const chart = () => {
@@ -54,22 +63,22 @@ const Visualization = (props) => {
           
           for(let i = 0; i < props.encounters.length; i++){
 
-            if(dropdown === 'weight_lbs'){
+            if(vis === 'weight_lbs'){
               data.push(parseInt(props.encounters[i].weight_lbs));
              }
-             else if(dropdown === 'height_inch'){
+             else if(vis === 'height_inch'){
               data.push(parseInt(props.encounters[i].height_inch));
              }
-             else if(dropdown === 'diastolic_bp'){
+             else if(vis === 'diastolic_bp'){
               data.push(parseInt(props.encounters[i].diastolic_bp));
              }
-             else if(dropdown === 'systolic_bp'){
+             else if(vis === 'systolic_bp'){
               data.push(parseInt(props.encounters[i].systolic_bp));
              }
-             else if(dropdown === 'heart_rate'){
+             else if(vis === 'heart_rate'){
               data.push(parseInt(props.encounters[i].heart_rate));
              }
-             else if(dropdown === 'respirations_min'){
+             else if(vis === 'respirations_min'){
               data.push(parseInt(props.encounters[i].respirations_min));
              }
             date.push(parseInt(props.encounters[i].encounterdts));
@@ -78,7 +87,7 @@ const Visualization = (props) => {
           setChartData({
             labels: date,
             datasets: [{
-              label: 'Weight (lbs)',
+              label: vis,
               data: data,
               backgroundColor: [
                 'rgba(75, 192, 192, 0.6'
@@ -92,7 +101,7 @@ const Visualization = (props) => {
     useEffect(() => {
       chart()
       
-    }, [dropdown])
+    }, [vis])
   
 
     return (
@@ -105,8 +114,7 @@ const Visualization = (props) => {
         selection
         compact
         options={dropOptions}
-        value={dropdown}
-        defaultValue='weight_lbs'
+        defaultValue={vis}
         onChange={handleDropdown}/>
         <Line data={chartData}/>
       </div>
