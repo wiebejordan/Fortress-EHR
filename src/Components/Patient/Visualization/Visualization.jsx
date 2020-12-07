@@ -8,44 +8,44 @@ const dropOptions = [
   {
     key: 'Weight',
     text: 'Weight',
-    value: 'Weight'
+    value: 'weight_lbs'
   },
   {
     key: 'Height',
     text: 'Height',
-    value: 'Height'
+    value: 'height_inch'
   },
   {
     key: 'Diastolic BP',
     text: 'Diastolic BP',
-    value: 'Diastolic BP'
+    value: 'diastolic_bp'
   },
   {
     key: 'Systolic BP',
     text: 'Systolic BP',
-    value: 'Systolic BP'
+    value: 'systolic_bp'
   },
   {
     key: 'Heart Rate',
     text: 'Heart Rate',
-    value: 'Heart Rate'
+    value: 'heart_rate'
   },
   {
     key: 'Respirations PM',
     text: 'Respirations PM',
-    value: 'Respirations PM'
+    value: 'respirations_min'
   },
 ]
 
 const Visualization = (props) => {
   const [chartData, setChartData] = useState({}),
-        [dropdown, setDropdown] = useState(''),
+        [dropdown, setDropdown] = useState('weight_lbs'),
 
         lang = useSelector(state => state.languageReducer.english);
         console.log(dropdown)
 
-        const handleDropdown = (e) => {
-          setDropdown(e.target.value)
+        const handleDropdown = (e, {value}) => {
+          setDropdown(value)
         }
   
         const chart = () => {
@@ -54,7 +54,24 @@ const Visualization = (props) => {
           
           for(let i = 0; i < props.encounters.length; i++){
 
-            data.push(parseInt(props.encounters[i].weight_lbs));
+            if(dropdown === 'weight_lbs'){
+              data.push(parseInt(props.encounters[i].weight_lbs));
+             }
+             else if(dropdown === 'height_inch'){
+              data.push(parseInt(props.encounters[i].height_inch));
+             }
+             else if(dropdown === 'diastolic_bp'){
+              data.push(parseInt(props.encounters[i].diastolic_bp));
+             }
+             else if(dropdown === 'systolic_bp'){
+              data.push(parseInt(props.encounters[i].systolic_bp));
+             }
+             else if(dropdown === 'heart_rate'){
+              data.push(parseInt(props.encounters[i].heart_rate));
+             }
+             else if(dropdown === 'respirations_min'){
+              data.push(parseInt(props.encounters[i].respirations_min));
+             }
             date.push(parseInt(props.encounters[i].encounterdts));
           }
 
@@ -75,7 +92,7 @@ const Visualization = (props) => {
     useEffect(() => {
       chart()
       
-    }, [])
+    }, [dropdown])
   
 
     return (
@@ -89,7 +106,8 @@ const Visualization = (props) => {
         compact
         options={dropOptions}
         value={dropdown}
-        onChange={(e) => handleDropdown(e.target.value)}/>
+        defaultValue='weight_lbs'
+        onChange={handleDropdown}/>
         <Line data={chartData}/>
       </div>
       // ////////////////////////////spanish menu////////////////////////////////////
