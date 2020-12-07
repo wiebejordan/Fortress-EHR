@@ -1,3 +1,4 @@
+import { parseInt } from 'lodash';
 import React, { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 
@@ -16,6 +17,11 @@ const NewEncounter = (props) => {
   const handleInput = (e, result) => {
     const {name, value} = result || e.target;
     setEncounter({...encounter, [name]: value});
+  };
+
+  const handleNumberInput = (e, result) => {
+    const {name, value} = result || e.target;
+    setEncounter({...encounter, [name]: parseInt(value)});
   };
 
   return(
@@ -42,23 +48,27 @@ const NewEncounter = (props) => {
 
 
           <p>Systolic BP</p>
-          <input onChange={(e) => handleInput(e)}
+          <input onChange={(e) => handleNumberInput(e)}
           name='systolic_bp'
+          type='number'
           />
 
           <p>Diastolic BP</p>
-          <input onChange={(e) => handleInput(e)}
+          <input onChange={(e) => handleNumberInput(e)}
           name='diastolic_bp'
+          type='number'
           />
 
           <p>Heart Rate</p>
-          <input onChange={(e) => handleInput(e)}
+          <input onChange={(e) => handleNumberInput(e)}
           name='heart_rate'
+          type='number'
           />
 
           <p>Respirations per min</p>
-          <input onChange={(e) => handleInput(e)}
+          <input onChange={(e) => handleNumberInput(e)}
           name='respirations_min'
+          type='number'
           />
 
           <p>Encounter Notes</p>
@@ -90,23 +100,27 @@ const NewEncounter = (props) => {
           />
 
           <p>Presión Arterial Sistólica</p>
-          <input onChange={(e) => handleInput(e)}
+          <input onChange={(e) => handleNumberInput(e)}
           name='systolic_bp'
+          type='number'
           />
 
           <p>Presión Arterial Diastólica</p>
-          <input onChange={(e) => handleInput(e)}
+          <input onChange={(e) => handleNumberInput(e)}
           name='diastolic_bp'
+          type='number'
           />
 
           <p>Ritmo Cardiaco</p>
-          <input onChange={(e) => handleInput(e)}
+          <input onChange={(e) => handleNumberInput(e)}
           name='heart_rate'
+          type='number'
           />
 
           <p>Respiraciones Por Minuto</p>
-          <input onChange={(e) => handleInput(e)}
+          <input onChange={(e) => handleNumberInput(e)}
           name='respirations_min'
+          type='number'
           />
 
           <p>Notas de Encuentro</p>
