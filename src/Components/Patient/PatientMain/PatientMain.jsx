@@ -2,13 +2,14 @@ import axios from 'axios';
 import React, {useState, useEffect} from 'react';
 import {useSelector} from 'react-redux';
 import {useHistory} from 'react-router-dom';
-import {Loader, Menu, Segment, Grid, Container} from 'semantic-ui-react';
+import {Loader, Menu, Segment, Grid, Container, MenuItem} from 'semantic-ui-react';
 import PatientOverview from '../PatientOverview/PatientOverview';
 import PatientHistory from '../PatientHistory/PatientHistory';
 import Medications from '../Medications/Medications';
 import Immunizations from '../Immunizations/Immunizations';
 import Visualization from '../Visualization/Visualization';
 import ActiveProblems from '../ActiveProblems/ActiveProblems';
+import NewEncounter from '../NewEncounter/NewEncounter';
 
 
 
@@ -18,6 +19,7 @@ import ActiveProblems from '../ActiveProblems/ActiveProblems';
   const [item, setItem] = useState('overview'),
         [patient, setPatient] = useState({}),
         [encounters, setEncounters] = useState([]),
+        [toggleEncounter, setToggleEncounter ] = useState(false),
   user = useSelector(state => state.authReducer),
   lang = useSelector(state => state.languageReducer.english);
   // console.log('enc', encounters)
@@ -43,7 +45,9 @@ import ActiveProblems from '../ActiveProblems/ActiveProblems';
 
   const handleItemClick = (e, { name }) => setItem(name);
 
-  
+  const toggleEnc = () => {
+    setToggleEncounter(!toggleEncounter)
+  }
   
   
   return(
@@ -51,7 +55,7 @@ import ActiveProblems from '../ActiveProblems/ActiveProblems';
       <h1 style={{textAlign: 'center'}}>{patient.lastnm}, {patient.firstnm}</h1>
       <div className='patient-grid-container'>
       <Grid stackable  padded>
-      <Grid.Row>
+      <Grid.Row style={{paddingBottom: '0px'}}>
       <Grid.Column width={3} >
       {lang === true
       ?
@@ -87,6 +91,7 @@ import ActiveProblems from '../ActiveProblems/ActiveProblems';
           active={item === 'visualization' || item === 'visualizaciones'}
           onClick={handleItemClick}
           />
+          
       </Menu>
           
       // ////////////////////////////spanish menu////////////////////////////////////
@@ -154,6 +159,29 @@ import ActiveProblems from '../ActiveProblems/ActiveProblems';
         : null}
       </Segment>
       </Grid.Column>
+      </Grid.Row>
+      <Grid.Row>
+        <Grid.Column width={3}>
+
+        <Menu compact>
+        <Menu.Item
+          name='New Encounter'
+          active={toggleEncounter === true}
+          onClick={toggleEnc}
+          color='green'
+        />
+        </Menu>
+        </Grid.Column>
+        {toggleEncounter === true
+        ?
+        <Grid.Column width={11}>
+          <Segment>
+            <NewEncounter/>
+          </Segment>
+        
+        </Grid.Column>
+        :
+        null}
       </Grid.Row>
     
       </Grid>
