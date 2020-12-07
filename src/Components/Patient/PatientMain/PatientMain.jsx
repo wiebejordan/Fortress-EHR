@@ -164,19 +164,29 @@ import NewEncounter from '../NewEncounter/NewEncounter';
         <Grid.Column width={3}>
 
         <Menu compact>
+        {lang === true
+        ?
         <Menu.Item
           name='New Encounter'
           active={toggleEncounter === true}
           onClick={toggleEnc}
           color='green'
         />
+        :
+        <Menu.Item
+          name='Nuevo Encuentro'
+          active={toggleEncounter === true}
+          onClick={toggleEnc}
+          color='green'
+        />
+        }
         </Menu>
         </Grid.Column>
         {toggleEncounter === true
         ?
         <Grid.Column width={11}>
           <Segment>
-            <NewEncounter/>
+            <NewEncounter patient={patient}/>
           </Segment>
         
         </Grid.Column>
