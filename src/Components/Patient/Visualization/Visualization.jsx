@@ -37,6 +37,39 @@ const dropOptions = [
   },
 ]
 
+const spanishDropOptions = [
+  {
+    key: 'Peso',
+    text: 'Peso',
+    value: 'weight_lbs'
+  },
+  {
+    key: 'Altura',
+    text: 'Altura',
+    value: 'height_inch'
+  },
+  {
+    key: 'Presión Arterial Diastólica',
+    text: 'Presión Arterial Diastólica',
+    value: 'diastolic_bp'
+  },
+  {
+    key: 'Presión Arterial Sistólica',
+    text: 'Presión Arterial Sistólica',
+    value: 'systolic_bp'
+  },
+  {
+    key: 'Ritmo Cardiaco',
+    text: 'Ritmo Cardiaco',
+    value: 'heart_rate'
+  },
+  {
+    key: 'Respiraciones PM',
+    text: 'Respiraciones PM',
+    value: 'respirations_min'
+  },
+]
+
 const Visualization = (props) => {
   const [chartData, setChartData] = useState({}),
         // [dropdown, setDropdown] = useState('weight_lbs'),
@@ -97,6 +130,7 @@ const Visualization = (props) => {
           })
           console.log('data', date, data)
         }
+        
 
     useEffect(() => {
       chart()
@@ -109,8 +143,9 @@ const Visualization = (props) => {
       
       {lang === true
       ?
-      <div>VISUALIZATION
+      <div>
         <Dropdown
+        style={{width: '150px'}}
         selection
         compact
         options={dropOptions}
@@ -120,8 +155,15 @@ const Visualization = (props) => {
       </div>
       // ////////////////////////////spanish menu////////////////////////////////////
       :
-      <div>Visualizaciones
-        <p>{props.patient.firstnm}</p>
+      <div>
+        
+        <Dropdown
+        style={{width: '150px'}}
+        selection
+        compact
+        options={spanishDropOptions}
+        defaultValue={vis}
+        onChange={handleDropdown}/>
         <Line data={chartData}/>
       </div>
       }
