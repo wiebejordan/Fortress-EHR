@@ -20,6 +20,7 @@ import NewEncounter from '../NewEncounter/NewEncounter';
         [patient, setPatient] = useState({}),
         [encounters, setEncounters] = useState([]),
         [toggleEncounter, setToggleEncounter ] = useState(false),
+        [loading, setLoading] = useState(true),
   user = useSelector(state => state.authReducer),
   lang = useSelector(state => state.languageReducer.english);
   // console.log('enc', encounters)
@@ -41,6 +42,7 @@ import NewEncounter from '../NewEncounter/NewEncounter';
       })
       .catch(err => console.log(err))
     }
+    setLoading(false)
   }, [])
 
   const handleItemClick = (e, { name }) => setItem(name);
@@ -48,11 +50,16 @@ import NewEncounter from '../NewEncounter/NewEncounter';
   const toggleEnc = () => {
     setToggleEncounter(!toggleEncounter)
   }
+
   
   
   return(
     <div>
+      {loading === true 
+      ? <Loader size='massive' active />
+      : 
       <h1 style={{textAlign: 'center'}}>{patient.lastnm}, {patient.firstnm}</h1>
+      }
       <div className='patient-grid-container'>
       <Grid stackable  padded>
       <Grid.Row style={{paddingBottom: '0px'}}>

@@ -36,7 +36,12 @@ const NewEncounter = (props) => {
   return(
     <div>
       <div>
-        <h2>New Encounter</h2>
+        {lang === true
+        ? <h2>New Encounter</h2>
+        : 
+        <h2>Nuevo Encuentro</h2>
+        }
+        
         {lang === true
         ?
         <form>
