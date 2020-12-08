@@ -1,18 +1,27 @@
 import { parseInt } from 'lodash';
 import React, { useEffect, useState } from 'react';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
 const NewEncounter = (props) => {
 
   const [encounter, setEncounter] = useState({patientid: null, encounterdts: '', weight_lbs: '', height_inch: '', systolic_bp: null, diastolic_bp: null, heart_rate: null, respirations_min: null, commenttxt: ''}),
 
-  lang = useSelector(state => state.languageReducer.english);
+  lang = useSelector(state => state.languageReducer.english),
+  newEnc = useSelector(state => state.newEncReducer.newEncounter),
+  dispatch = useDispatch();
 
-  console.log(encounter)
+  console.log('reducer', newEnc)
 
   useEffect(() => {
-    setEncounter({...encounter, patientid: props.patient.patientid})
+    setEncounter({...encounter})
   }, [])
+
+  useEffect(() => {
+    dispatch({
+      type: 'NEW_ENC',
+      payload: {...encounter, diastolic_bp: encounter.diastolic_bp}
+    })
+  }, [encounter])
 
   const handleInput = (e, result) => {
     const {name, value} = result || e.target;
