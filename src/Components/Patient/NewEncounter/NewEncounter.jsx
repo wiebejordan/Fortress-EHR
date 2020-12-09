@@ -12,20 +12,24 @@ const NewEncounter = (props) => {
 
   console.log('reducer', newEnc)
 
-  useEffect(() => {
-    setEncounter({...encounter})
-  }, [])
+  // useEffect(() => {
+  //   setEncounter({...encounter})
+  // }, [])
 
-  useEffect(() => {
-    dispatch({
-      type: 'NEW_ENC',
-      payload: {...encounter, diastolic_bp: encounter.diastolic_bp}
-    })
-  }, [encounter])
+  // useEffect(() => {
+  //   dispatch({
+  //     type: 'NEW_ENC',
+  //     payload: {...encounter, diastolic_bp: encounter.diastolic_bp}
+  //   })
+  // }, [encounter])
 
   const handleInput = (e, result) => {
     const {name, value} = result || e.target;
-    setEncounter({...encounter, [name]: value});
+    dispatch({
+      type: 'NEW_ENC',
+      payload: {...encounter, [name]: value}
+    })
+    
   };
 
   const handleNumberInput = (e, result) => {
@@ -47,17 +51,17 @@ const NewEncounter = (props) => {
         <form>
           <p>Date</p>
           <input type='date' onChange={(e) => handleInput(e)}
-          name='encounterdts'
+          name='encounterdts' defaultValue={newEnc.encounterdts}
           />
 
           <p>Weight</p>
           <input onChange={(e) => handleInput(e)}
-          name='weight_lbs'
+          name='weight_lbs' defaultValue={newEnc.weight_lbs}
           />
 
           <p>Height</p>
           <input onChange={(e) => handleInput(e)}
-          name='height_inch'
+          name='height_inch' defaultValue={newEnc.height_inch}
           />
 
 
@@ -65,24 +69,28 @@ const NewEncounter = (props) => {
           <input onChange={(e) => handleNumberInput(e)}
           name='systolic_bp'
           type='number'
+          defaultValue={newEnc.systolic_bp}
           />
 
           <p>Diastolic BP</p>
           <input onChange={(e) => handleNumberInput(e)}
           name='diastolic_bp'
           type='number'
+          defaultValue={newEnc.diastolic_bp}
           />
 
           <p>Heart Rate</p>
           <input onChange={(e) => handleNumberInput(e)}
           name='heart_rate'
           type='number'
+          defaultValue={newEnc.heart_rate}
           />
 
           <p>Respirations per min</p>
           <input onChange={(e) => handleNumberInput(e)}
           name='respirations_min'
           type='number'
+          defaultValue={newEnc.respirations_min}
           />
 
           <p>Encounter Notes</p>
@@ -90,6 +98,7 @@ const NewEncounter = (props) => {
           onChange={(e) => handleInput(e)}
           name='commenttxt'
           style={{resize: 'none', width: '100%', height: '200px', overflow: 'scroll'}}
+          defaultValue={newEnc.commenttxt}
           />
 
 
