@@ -12,29 +12,26 @@ const NewEncounter = (props) => {
 
   console.log('reducer', newEnc)
 
-  // useEffect(() => {
-  //   setEncounter({...encounter})
-  // }, [])
+  useEffect(() => {
+    setEncounter(newEnc)
+  }, [])
 
-  // useEffect(() => {
-  //   dispatch({
-  //     type: 'NEW_ENC',
-  //     payload: {...encounter, diastolic_bp: encounter.diastolic_bp}
-  //   })
-  // }, [encounter])
+  useEffect(() => {
+    dispatch({
+      type: 'NEW_ENC',
+      payload: {...encounter, patientid: props.patient.patientid}
+    })
+  }, [encounter])
 
   const handleInput = (e, result) => {
     const {name, value} = result || e.target;
-    dispatch({
-      type: 'NEW_ENC',
-      payload: {...encounter, [name]: value}
-    })
+    setEncounter({...encounter, [name]: value})
     
   };
 
   const handleNumberInput = (e, result) => {
     const {name, value} = result || e.target;
-    setEncounter({...encounter, [name]: parseInt(value)});
+    setEncounter({...encounter, [name]: value})
   };
 
   return(
@@ -56,11 +53,13 @@ const NewEncounter = (props) => {
 
           <p>Weight</p>
           <input onChange={(e) => handleInput(e)}
+          type='number'
           name='weight_lbs' defaultValue={newEnc.weight_lbs}
           />
 
           <p>Height</p>
           <input onChange={(e) => handleInput(e)}
+          type='number'
           name='height_inch' defaultValue={newEnc.height_inch}
           />
 
