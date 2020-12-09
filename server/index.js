@@ -46,5 +46,6 @@ app.post('/api/newpatient', patientCtrl.newPatient);
 
 //encounter endpoints
 app.get('/api/encounters/:patientid', encounterCtrl.getEncounters);
+app.post('/api/newencounter', encounterCtrl.newEncounter)
 
 app.listen(SERVER_PORT, () => console.log(`server is running on ${SERVER_PORT}`));

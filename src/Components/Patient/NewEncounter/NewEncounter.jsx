@@ -1,3 +1,4 @@
+import axios from 'axios';
 import { parseInt } from 'lodash';
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
@@ -33,6 +34,24 @@ const NewEncounter = (props) => {
     const {name, value} = result || e.target;
     setEncounter({...encounter, [name]: value})
   };
+
+  const handleSubmit = () => {
+    const {patientid, encounterdts, weight_lbs, height_inch, systolic_bp, diastolic_bp, heart_rate, respirations_min, commenttxt} = encounter;
+
+    axios.post('/api/newencounter', {patientid, encounterdts, weight_lbs, height_inch, systolic_bp, diastolic_bp, heart_rate, respirations_min, commenttxt})
+
+    .then(() => {
+      if(lang === true){
+        alert('new encounter added!')
+
+      }
+      else{
+        alert('Nuevo encuentro agregada!')
+      }
+    })
+    .catch(err => console.log(err));
+    
+  }
 
   return(
     <div>
@@ -100,7 +119,7 @@ const NewEncounter = (props) => {
           defaultValue={newEnc.commenttxt}
           />
 
-
+          <button onClick={handleSubmit}>Submit New Encounter</button>
         </form>
         
         :
@@ -152,7 +171,7 @@ const NewEncounter = (props) => {
           style={{resize: 'none', width: '100%', height: '200px', overflow: 'scroll'}}
           />
 
-
+        <button onClick={handleSubmit}>Enviar Nuevo Encuentro</button>
         </form>
         }
 
