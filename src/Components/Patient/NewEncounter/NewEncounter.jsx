@@ -5,13 +5,15 @@ import { useDispatch, useSelector } from 'react-redux';
 
 const NewEncounter = (props) => {
 
-  const [encounter, setEncounter] = useState({patientid: null, encounterdts: '', weight_lbs: '', height_inch: '', systolic_bp: null, diastolic_bp: null, heart_rate: null, respirations_min: null, commenttxt: ''}),
+  const [encounter, setEncounter] = useState({patientid: props.patient.patientid, encounterdts: '', weight_lbs: '', height_inch: '', systolic_bp: null, diastolic_bp: null, heart_rate: null, respirations_min: null, commenttxt: ''}),
+        
 
   lang = useSelector(state => state.languageReducer.english),
   newEnc = useSelector(state => state.newEncReducer.newEncounter),
   dispatch = useDispatch();
 
   console.log('reducer', newEnc)
+  console.log('encounter', encounter)
 
   useEffect(() => {
     setEncounter(newEnc)
@@ -62,10 +64,13 @@ const NewEncounter = (props) => {
       else{
         alert('Nuevo encuentro agregada!')
       }
+      window.location.reload(true)
     })
     .catch(err => console.log(err));
     
   }
+
+  
 
   return(
     <div>
@@ -78,7 +83,7 @@ const NewEncounter = (props) => {
         
         {lang === true
         ?
-        <form>
+        <div>
           <p>Date</p>
           <input type='date' onChange={(e) => handleInput(e)}
           name='encounterdts' defaultValue={newEnc.encounterdts}
@@ -134,48 +139,53 @@ const NewEncounter = (props) => {
           />
 
           <button onClick={handleSubmit}>Submit New Encounter</button>
-        </form>
+        </div>
         
         :
         
         
-        <form>
+        <div>
           <p>Fecha del Encuentro</p>
           <input type='date' onChange={(e) => handleInput(e)}
-          name='encounterdts'/>
+          name='encounterdts' defaultValue={newEnc.encounterdts}/>
 
           <p>Peso</p>
           <input onChange={(e) => handleInput(e)}
-          name='weight_lbs'
+          name='weight_lbs' defaultValue={newEnc.weight_lbs}
           />
 
           <p>Altura</p>
           <input onChange={(e) => handleInput(e)}
           name='height_inch'
+          defaultValue={newEnc.height_inch}
           />
 
           <p>Presión Arterial Sistólica</p>
           <input onChange={(e) => handleNumberInput(e)}
           name='systolic_bp'
           type='number'
+          defaultValue={newEnc.systolic_bp}
           />
 
           <p>Presión Arterial Diastólica</p>
           <input onChange={(e) => handleNumberInput(e)}
           name='diastolic_bp'
           type='number'
+          defaultValue={newEnc.diastolic_bp}
           />
 
           <p>Ritmo Cardiaco</p>
           <input onChange={(e) => handleNumberInput(e)}
           name='heart_rate'
           type='number'
+          defaultValue={newEnc.heart_rate}
           />
 
           <p>Respiraciones Por Minuto</p>
           <input onChange={(e) => handleNumberInput(e)}
           name='respirations_min'
           type='number'
+          defaultValue={newEnc.respirations_min}
           />
 
           <p>Notas de Encuentro</p>
@@ -183,10 +193,11 @@ const NewEncounter = (props) => {
           onChange={(e) => handleInput(e)}
           name='commenttxt'
           style={{resize: 'none', width: '100%', height: '200px', overflow: 'scroll'}}
+          defaultValue={newEnc.commenttxt}
           />
 
         <button onClick={handleSubmit}>Enviar Nuevo Encuentro</button>
-        </form>
+        </div>
         }
 
       </div>
