@@ -41,6 +41,20 @@ const NewEncounter = (props) => {
     axios.post('/api/newencounter', {patientid, encounterdts, weight_lbs, height_inch, systolic_bp, diastolic_bp, heart_rate, respirations_min, commenttxt})
 
     .then(() => {
+      dispatch({
+        type: 'CLEAR_ENC',
+        payload: {
+          patientid: null, 
+          encounterdts: '', 
+          weight_lbs: '', 
+          height_inch: '', 
+          systolic_bp: null, 
+          diastolic_bp: null, 
+          heart_rate: null, 
+          respirations_min: null, 
+          commenttxt: ''
+        } 
+      })
       if(lang === true){
         alert('new encounter added!')
 
