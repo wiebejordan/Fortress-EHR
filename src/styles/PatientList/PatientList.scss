@@ -41,6 +41,7 @@
 
 table {
   width: 80vw;
+  // height: 400px;
   overflow: scroll;
   border-collapse: collapse;
   background-color: rgb(241, 240, 240);
@@ -82,9 +83,8 @@ thead button.descending::after {
 } */
 
 tbody{
-  // .loader-container{
-  //   height: 200px
-  // }
+  height: 100px;
+  overflow: hidden;
   td{
     text-align: center;
     padding: 0.5em;
@@ -105,5 +105,5 @@ tbody{
 }
 
 tbody tr:hover {
-  background-color: #eee;
+  background-color: rgb(202, 202, 202);
 }
