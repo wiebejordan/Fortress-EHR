@@ -167,12 +167,14 @@ import NewEncounter from '../NewEncounter/NewEncounter';
       </Segment>
       </Grid.Column>
       </Grid.Row>
+        {user.user.canedit === true
+        ?
       <Grid.Row>
         <Grid.Column width={3}>
 
         <Menu compact>
-        {lang === true
-        ?
+        {lang === true 
+        ? 
         <Menu.Item
           name='New Encounter'
           active={toggleEncounter === true}
@@ -200,7 +202,8 @@ import NewEncounter from '../NewEncounter/NewEncounter';
         :
         null}
       </Grid.Row>
-    
+        : null }
+        
       </Grid>
       
       </div>

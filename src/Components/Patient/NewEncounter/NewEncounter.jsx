@@ -2,10 +2,12 @@ import axios from 'axios';
 import { parseInt } from 'lodash';
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+// import {usePrompt, useBlocker} from 'react-router-dom';
 
 const NewEncounter = (props) => {
 
   const [encounter, setEncounter] = useState({patientid: props.patient.patientid, encounterdts: '', weight_lbs: '', height_inch: '', systolic_bp: null, diastolic_bp: null, heart_rate: null, respirations_min: null, commenttxt: ''}),
+        [isBlocking, setIsBlocking] = useState(false),
         
 
   lang = useSelector(state => state.languageReducer.english),
@@ -15,8 +17,13 @@ const NewEncounter = (props) => {
   console.log('reducer', newEnc)
   console.log('encounter', encounter)
 
+  // usePrompt(
+  //   "Hello from usePrompt -- Are you sure you want to leave?",
+  //   isBlocking
+  // );
+
   useEffect(() => {
-    setEncounter(newEnc)
+    setEncounter({...newEnc, patientid: props.patient.patientid})
   }, [])
 
   useEffect(() => {
