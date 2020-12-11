@@ -2,7 +2,7 @@ import axios from 'axios';
 import { parseInt } from 'lodash';
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-// import {usePrompt, useBlocker} from 'react-router-dom';
+import {usePrompt, useBlocker} from 'react-router-dom';
 
 const NewEncounter = (props) => {
 

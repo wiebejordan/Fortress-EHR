@@ -1,7 +1,7 @@
 import axios from 'axios';
 import React, {useState, useEffect} from 'react';
 import {useSelector} from 'react-redux';
-import {useHistory} from 'react-router-dom';
+import {useHistory, Prompt} from 'react-router-dom';
 import {Loader, Menu, Segment, Grid, Container, MenuItem} from 'semantic-ui-react';
 import PatientOverview from '../PatientOverview/PatientOverview';
 import PatientHistory from '../PatientHistory/PatientHistory';
@@ -15,6 +15,7 @@ import NewEncounter from '../NewEncounter/NewEncounter';
 
 
 
+
  const PatientMain = (props) => {
   const [item, setItem] = useState('overview'),
         [patient, setPatient] = useState({}),
@@ -22,6 +23,7 @@ import NewEncounter from '../NewEncounter/NewEncounter';
         [toggleEncounter, setToggleEncounter ] = useState(false),
         [loading, setLoading] = useState(true),
   user = useSelector(state => state.authReducer),
+  newEnc = useSelector(state => state.newEncReducer),
   lang = useSelector(state => state.languageReducer.english);
   // console.log('enc', encounters)
   
@@ -51,6 +53,9 @@ import NewEncounter from '../NewEncounter/NewEncounter';
     setToggleEncounter(!toggleEncounter)
   }
 
+
+
+  
   
   
   return(
@@ -203,8 +208,10 @@ import NewEncounter from '../NewEncounter/NewEncounter';
         null}
       </Grid.Row>
         : null }
-        
+
       </Grid>
+
+      
       
       </div>
       </div>
