@@ -19,7 +19,7 @@ import NewEncounter from '../NewEncounter/NewEncounter';
  const PatientMain = (props) => {
   const [item, setItem] = useState('overview'),
         [patient, setPatient] = useState({}),
-        [encounters, setEncounters] = useState([]),
+        [encounters, setEncounters] = useState([{commenttxt: ''}]),
         [toggleEncounter, setToggleEncounter ] = useState(false),
         [loading, setLoading] = useState(true),
   user = useSelector(state => state.authReducer),
@@ -28,24 +28,31 @@ import NewEncounter from '../NewEncounter/NewEncounter';
   // console.log('enc', encounters)
   
 
-  useEffect(() => {
+   useEffect(() => {
     if(props.match.params.patientid){
-      axios.get(`/api/patient/${props.match.params.patientid}`)
-
-      .then(res => {
-        setPatient(res.data[0])
-      })
-      .catch(err => console.log(err))
-
-      axios.get(`/api/encounters/${props.match.params.patientid}`)
-      
-      .then(res => {
-        setEncounters(res.data)
-      })
-      .catch(err => console.log(err))
+      getPatientData();
     }
+    
     setLoading(false)
   }, [])
+
+  const getPatientData = async () => {
+    try{
+      const res = await axios.get(`/api/patient/${props.match.params.patientid}`);
+        setPatient(res.data[0])
+      }
+      catch(err){
+        console.log(err)
+      }
+
+      try{
+       const res = await axios.get(`/api/encounters/${props.match.params.patientid}`);
+        setEncounters(res.data)
+      }
+      catch(err){
+        console.log(err)
+      }
+  }
 
   const handleItemClick = (e, { name }) => setItem(name);
 

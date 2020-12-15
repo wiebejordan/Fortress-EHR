@@ -17,6 +17,7 @@ const PatientHistory = (props) => {
       ?
       <div>patient HISTORY
         <p>{props.patient.firstnm}</p>
+        
       </div>
       // ////////////////////////////spanish menu////////////////////////////////////
       :
