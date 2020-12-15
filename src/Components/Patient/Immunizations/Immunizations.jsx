@@ -15,10 +15,19 @@ const IMMUNIZATION = (props) => {
     }, [])
 
 
+    if(immunes === []){
+      return(
+        <div>
+          <p>This patient has not had any immunizations.</p>
+        </div>
+      )
+    }
+
 
     return (
       <div style={{height: '400px', width: '600px'}}>
       
+
       {lang === true
       ?
       <div>IMMUNIZATION
@@ -30,6 +39,11 @@ const IMMUNIZATION = (props) => {
           </div>
           
         )}
+
+        {immunes.length === 0 
+        ? <p>This patient has not had any immunizations.</p>
+        : null}
+        
       </div>
       // ////////////////////////////spanish menu////////////////////////////////////
       :

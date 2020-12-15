@@ -15,14 +15,16 @@ const PatientHistory = (props) => {
       
       {lang === true
       ?
-      <div>patient HISTORY
-        <p>{props.patient.firstnm}</p>
+      <div>
+        <h3>Patient History</h3>
+        <p>{props.patient.history}</p>
         
       </div>
       // ////////////////////////////spanish menu////////////////////////////////////
       :
-      <div>Historial Del Paciente
-        <p>{props.patient.firstnm}</p>
+      <div>
+        <h3>Historial de Paciente</h3>
+        <p>{props.patient.history}</p>
       </div>
       }
       </div>

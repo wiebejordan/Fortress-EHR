@@ -56,7 +56,7 @@ const Login = (props) => {
     {state.english === true
     ?
     <div className='login-box'>
-      <h4>Welcome to ATOM Electronic Medical Records!</h4>
+      <h4>Welcome to FORTRESS Electronic Medical Records!</h4>
       <form onSubmit={handleLogin}>
       <input onChange={(e) => handleUserInput(e.target.value)} placeholder='email'/>
       <input onChange={(e) => handlePassInput(e.target.value)} placeholder='password' type='password'/>
@@ -68,7 +68,7 @@ const Login = (props) => {
     </div>
     :
     <div className='login-box'>
-      <h4>Bienvenido a ATOM Registros Médicos Electrónicos!</h4>
+      <h4>Bienvenido a FORTRESS Registros Médicos Electrónicos!</h4>
       <form onSubmit={handleLogin}>
       <input onChange={(e) => handleUserInput(e.target.value)} placeholder='correo electrónico'/>
       <input onChange={(e) => handlePassInput(e.target.value)} placeholder='contraseña' type='password'/>

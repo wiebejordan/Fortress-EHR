@@ -36,6 +36,10 @@ const PatientOverview = (props) => {
             <p>{allergy.reactiondsc}</p>
           </div>
         )}
+
+        {allergies.length === 0 
+        ? <p>This patient does not have any allergies on record.</p>
+        : null}
         </>
       </div>
       // ////////////////////////////spanish menu////////////////////////////////////
