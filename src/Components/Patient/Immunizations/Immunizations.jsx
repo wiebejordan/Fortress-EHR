@@ -1,14 +1,30 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Menu, Segment } from 'semantic-ui-react';
 import {useSelector} from 'react-redux';
 
 const IMMUNIZATION = (props) => {
   const [item, setItem] = useState('overview'),
-
-        {immunes} = props,
+        [immunes, setImmunes] = useState([]),
+        
         lang = useSelector(state => state.languageReducer.english)
         console.log(immunes)
 
+
+    useEffect(() => {
+      setImmunes(props.immunes)
+    }, [])
+
+    const mapImmunes = () => {
+      const mappedImmunes = immunes.map((immune, i) => (
+        <div key={i.immunizationid}>
+        </div>
+      ))
+      return (
+        <div>
+          {mappedImmunes}
+        </div>
+      )
+    }
 
   
 
@@ -18,7 +34,14 @@ const IMMUNIZATION = (props) => {
       {lang === true
       ?
       <div>IMMUNIZATION
-        <p>{immunes[immunes.length-1].immunizationtypedsc}</p>
+        {immunes.map((immune) => 
+          <div key={immune.immunizationid} value={immune}>
+            <p>{immune.createdts}</p>
+            <p>{immune.immunizationtypedsc}</p>
+            <p>{immune.routedsc}</p>
+          </div>
+          
+        )}
       </div>
       // ////////////////////////////spanish menu////////////////////////////////////
       :
