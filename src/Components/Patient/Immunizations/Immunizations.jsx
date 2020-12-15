@@ -14,19 +14,7 @@ const IMMUNIZATION = (props) => {
       setImmunes(props.immunes)
     }, [])
 
-    const mapImmunes = () => {
-      const mappedImmunes = immunes.map((immune, i) => (
-        <div key={i.immunizationid}>
-        </div>
-      ))
-      return (
-        <div>
-          {mappedImmunes}
-        </div>
-      )
-    }
 
-  
 
     return (
       <div style={{height: '400px', width: '600px'}}>

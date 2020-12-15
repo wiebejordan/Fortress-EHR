@@ -2,17 +2,18 @@ import React, { useState } from 'react';
 import { Menu, Segment } from 'semantic-ui-react';
 import {useSelector} from 'react-redux';
 
+
 const PatientOverview = (props) => {
   const [item, setItem] = useState({}),
         lang = useSelector(state => state.languageReducer.english),
-        {patient, encounters} = props
+        {patient, encounters, allergies} = props
         // console.log(encounters)
  
   
   
 
     return (
-      <div style={{height: '400px', width: '600px'}}>
+      <div style={{height: '400px', width: '600px', overflow:'auto'}}>
       
       {lang === true
       ?
@@ -24,6 +25,18 @@ const PatientOverview = (props) => {
         <p>Gender: {patient.genderdsc}</p>
         <p>Latest Encounter Date: {encounters[encounters.length-1].encounterdts}</p>
         <p>Recent Notes: {encounters[encounters.length-1].commenttxt}</p>
+        <h3>Allergies</h3>
+        <>
+        {allergies.map((allergy) => 
+          <div key={allergy.allergyid}>
+            <p>{allergy.createdts}</p>
+            <p>{allergy.typedsc}</p>
+            <p>{allergy.allergydsc}</p>
+            <p>{allergy.severitydsc}</p>
+            <p>{allergy.reactiondsc}</p>
+          </div>
+        )}
+        </>
       </div>
       // ////////////////////////////spanish menu////////////////////////////////////
       :
