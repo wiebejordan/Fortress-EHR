@@ -9,6 +9,7 @@ const express = require('express'),
       {SERVER_PORT, SESSION_SECRET, DB_URI} = process.env,
       patientCtrl = require('./patientController'),
       encounterCtrl = require('./encounterController'),
+      immuneCtrl = require('./immuneController'),
       authCtrl = require('./authController');
 
 
@@ -47,5 +48,8 @@ app.post('/api/newpatient', patientCtrl.newPatient);
 //encounter endpoints
 app.get('/api/encounters/:patientid', encounterCtrl.getEncounters);
 app.post('/api/newencounter', encounterCtrl.newEncounter)
+
+//immunization endpoints
+app.get('/api/immunes/:patientid', immuneCtrl.getImmunes);
 
 app.listen(SERVER_PORT, () => console.log(`server is running on ${SERVER_PORT}`));

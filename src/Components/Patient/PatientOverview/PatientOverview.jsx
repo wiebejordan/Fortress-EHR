@@ -6,7 +6,7 @@ const PatientOverview = (props) => {
   const [item, setItem] = useState({}),
         lang = useSelector(state => state.languageReducer.english),
         {patient, encounters} = props
-        console.log(encounters)
+        // console.log(encounters)
  
   
   

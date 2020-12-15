@@ -4,8 +4,10 @@ import {useSelector} from 'react-redux';
 
 const IMMUNIZATION = (props) => {
   const [item, setItem] = useState('overview'),
-        lang = useSelector(state => state.languageReducer.english)
 
+        {immunes} = props,
+        lang = useSelector(state => state.languageReducer.english)
+        console.log(immunes)
 
 
   
@@ -16,7 +18,7 @@ const IMMUNIZATION = (props) => {
       {lang === true
       ?
       <div>IMMUNIZATION
-        <p>{props.patient.firstnm}</p>
+        <p>{immunes[immunes.length-1].immunizationtypedsc}</p>
       </div>
       // ////////////////////////////spanish menu////////////////////////////////////
       :

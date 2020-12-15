@@ -20,12 +20,13 @@ import NewEncounter from '../NewEncounter/NewEncounter';
   const [item, setItem] = useState('overview'),
         [patient, setPatient] = useState({}),
         [encounters, setEncounters] = useState([{commenttxt: ''}]),
+        [immunes, setImmunes] = useState([]),
         [toggleEncounter, setToggleEncounter ] = useState(false),
         [loading, setLoading] = useState(true),
   user = useSelector(state => state.authReducer),
   newEnc = useSelector(state => state.newEncReducer),
   lang = useSelector(state => state.languageReducer.english);
-  // console.log('enc', encounters)
+  console.log('enc', immunes)
   
 
    useEffect(() => {
@@ -52,6 +53,14 @@ import NewEncounter from '../NewEncounter/NewEncounter';
       catch(err){
         console.log(err)
       }
+
+      try{
+        const res = await axios.get(`/api/immunes/${props.match.params.patientid}`);
+         setImmunes(res.data)
+       }
+       catch(err){
+         console.log(err)
+       }
   }
 
   const handleItemClick = (e, { name }) => setItem(name);
@@ -154,27 +163,27 @@ import NewEncounter from '../NewEncounter/NewEncounter';
       <Grid.Column  width={11}>
       <Segment>
         {item === 'overview' || item === 'visión de conjunto'
-        ? <PatientOverview patient={patient} encounters={encounters}/>
+        ? <PatientOverview patient={patient} encounters={encounters} immunes={immunes}/>
         : null}
 
         {item === 'patient history' || item === 'historial del paciente'
-        ? <PatientHistory patient={patient} encounters={encounters}/>
+        ? <PatientHistory patient={patient} encounters={encounters} immunes={immunes}/>
         : null}
 
         {item === 'active problems' || item === 'problemas activos'
-        ? <ActiveProblems patient={patient} encounters={encounters}/>
+        ? <ActiveProblems patient={patient} encounters={encounters} immunes={immunes}/>
         : null}
 
         {item === 'medications' || item === 'medicamentos'
-        ? <Medications patient={patient} encounters={encounters}/>
+        ? <Medications patient={patient} encounters={encounters} immunes={immunes}/>
         : null}
 
         {item === 'immunizations' || item === 'inmunizaciones'
-        ? <Immunizations patient={patient} encounters={encounters}/>
+        ? <Immunizations patient={patient} encounters={encounters} immunes={immunes}/>
         : null}
 
         {item === 'visualization' || item === 'visualizaciones'
-        ? <Visualization patient={patient} encounters={encounters}/>
+        ? <Visualization patient={patient} encounters={encounters} immunes={immunes}/>
         : null}
       </Segment>
       </Grid.Column>
