@@ -52,6 +52,7 @@ const Login = (props) => {
     } )
   }
   return(
+    <div>
     <div className='login-container'>
     {state.english === true
     ?
@@ -79,6 +80,16 @@ const Login = (props) => {
       </Link>
     </div>
     }
+
+    </div>
+    
+    <div className='about-container'>
+      <h1>What is Fortress EMR?</h1>
+
+      <p>Fortress EMR was born from the belief that every child, no matter their circumstances, deserves the best medical care possible. We believe this is especially true for children in orphanages, foster homes, and impoverished areas. In situations like these, where children receive much of their medical care from incoming and rotating short-term teams, it is essential for these teams to have access to each child's medical records so they can maximize their care giving efforts. </p>
+
+      <p>Fortress EMR provides custom, multilingual electronic medical records in an easy to use and secure platform.  </p>
+    </div>
     </div>
   )
 }

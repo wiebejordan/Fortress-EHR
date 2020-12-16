@@ -82,8 +82,11 @@ thead button.descending::after {
 } */
 
 tbody{
-  // .loader-container{
-  //   height: 200px
+  // .tbody-patients{
+  //   display: table-row-group;
+  //   box-sizing: border-box;
+  //   width:80vw;
+  //   vertical-align: middle;
   // }
   td{
     text-align: center;
@@ -105,5 +108,5 @@ tbody{
 }
 
 tbody tr:hover {
-  background-color: #eee;
+  background-color: rgb(185, 185, 185);
 }
