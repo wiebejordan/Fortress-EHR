@@ -49,7 +49,7 @@ const PatientHistory = (props) => {
 
         {editView
         ? <div>
-          <textarea defaultValue={props.patient.history} onChange={handleInput}/>
+          <textarea defaultValue={props.patient.history} onChange={handleInput} style={{resize: 'none', width: '90%', height: '200px'}}/>
           <button onClick={toggleEdit}>Cancel</button>
           <button onClick={handleHistoryEdit}>Save Changes</button>
         </div>

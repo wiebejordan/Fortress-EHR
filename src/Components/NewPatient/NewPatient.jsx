@@ -38,7 +38,7 @@ const NewPatient = () => {
     <div className='newpatient-container'>
       {lang === true 
       ?
-      <div classname='newpatient-form-container'>
+      <div className='newpatient-form-container'>
         <p>First name:</p>
         <input placeholder='First Name' onChange={(e) => handleInput(e)}  name='firstnm'></input>
         <p>Last name:</p>
