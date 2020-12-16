@@ -30,8 +30,8 @@ const Login = (props) => {
   })
 
 
-  const handleLogin = () => {
-    
+  const handleLogin = (e) => {
+    e.preventDefault()
 
     axios.post('/auth/login', {email, password})
     .then(res => {
