@@ -81,7 +81,9 @@ function App(props) {
     setPassword(e)
   }
 
-  const handleIdleLogin = () => {
+  const handleIdleLogin = (e) => {
+    e.preventDefault()
+    
     axios.post('/auth/login', {email, password})
     .then(res => {
       setemail(res.data.email);
