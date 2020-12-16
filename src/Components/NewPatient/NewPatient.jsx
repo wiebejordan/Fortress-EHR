@@ -5,7 +5,7 @@ import {useHistory} from 'react-router-dom';
 import '../../styles/style.scss'
 
 const NewPatient = () => {
-  const [patient, setPatient] = useState({firstnm: '', lastnm: '', birthdts: '', genderdsc: '', hispanicflg: '',          ethnicitydsc: '', race01dsc: '', race02dsc: '', race03dsc: '', activeflg: 'Y'}),
+  const [patient, setPatient] = useState({firstnm: '', lastnm: '', birthdts: '', genderdsc: '', hispanicflg: '',          ethnicitydsc: '', race01dsc: '', race02dsc: '', race03dsc: '', activeflg: 'Y', history: ''}),
 
         lang = useSelector(state => state.languageReducer.english),
         user = useSelector(state => state.authReducer),
@@ -18,8 +18,8 @@ const NewPatient = () => {
   };
 
   const handleSubmit = () => {
-    const {activeflg, birthdts, ethnicitydsc, firstnm, genderdsc, hispanicflg, lastnm, race01dsc, race02dsc, race03dsc} = patient;
-    axios.post('/api/newpatient', {activeflg, birthdts, ethnicitydsc, firstnm, genderdsc, hispanicflg, lastnm,  race01dsc, race02dsc, race03dsc})
+    const {activeflg, birthdts, ethnicitydsc, firstnm, genderdsc, hispanicflg, lastnm, race01dsc, race02dsc, race03dsc, history} = patient;
+    axios.post('/api/newpatient', {activeflg, birthdts, ethnicitydsc, firstnm, genderdsc, hispanicflg, lastnm,  race01dsc, race02dsc, race03dsc, history})
 
     .then(() => {
       history.push('/main')
@@ -72,6 +72,12 @@ const NewPatient = () => {
         {/* <input placeholder='race' onChange={(e) => handleInput(e)} name='race01dsc'></input>
         <input placeholder='race' onChange={(e) => handleInput(e)} name='race02dsc'></input>
         <input placeholder='race' onChange={(e) => handleInput(e)} name='race03dsc'></input> */}
+
+        <p>Patient History</p><br/>
+        <textarea onChange={(e) => handleInput(e)} name='history'/>
+
+        
+        
         <button  onClick={handleSubmit}>Submit New Patient</button>
         
       </div>
@@ -109,6 +115,9 @@ const NewPatient = () => {
         {/* <input placeholder='raza' onChange={(e) => handleInput(e)} name='race01dsc'></input>
         <input placeholder='raza' onChange={(e) => handleInput(e)} name='race02dsc'></input>
         <input placeholder='raza' onChange={(e) => handleInput(e)} name='race03dsc'></input> */}
+
+        <p>Historial del paciente</p><br/>
+        <textarea onChange={(e) => handleInput(e)} name='history'/>
         <button onClick={handleSubmit}>Enviar Nuevo Paciente</button>
     
       </div>

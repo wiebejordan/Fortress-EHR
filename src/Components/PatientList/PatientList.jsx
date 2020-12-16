@@ -33,10 +33,10 @@ const useSortableData = (items, config = null, props) => {
     .then(res => {
       
         setPatientList(res.data) 
-        setTimeout(() => {
+        
 
           setLoading(false)
-        }, 3000)
+        
       
     })
 
