@@ -45,6 +45,7 @@ app.get('/auth/user', authCtrl.keepUser);
 app.get('/api/patients', patientCtrl.getPatients);
 app.get('/api/patient/:patientid', patientCtrl.getPatient);
 app.post('/api/newpatient', patientCtrl.newPatient);
+app.put('/api/edithistory/:patientid', patientCtrl.editHistory);
 
 //encounter endpoints
 app.get('/api/encounters/:patientid', encounterCtrl.getEncounters);

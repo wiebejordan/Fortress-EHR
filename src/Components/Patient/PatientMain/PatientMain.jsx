@@ -176,7 +176,7 @@ import NewEncounter from '../NewEncounter/NewEncounter';
         : null}
 
         {item === 'patient history' || item === 'historial del paciente'
-        ? <PatientHistory patient={patient} encounters={encounters} immunes={immunes} allergies={allergies}/>
+        ? <PatientHistory patient={patient} encounters={encounters} immunes={immunes} allergies={allergies} user={user}/>
         : null}
 
         {item === 'active problems' || item === 'problemas activos'
