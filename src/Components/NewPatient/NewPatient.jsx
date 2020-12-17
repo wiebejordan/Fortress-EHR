@@ -74,7 +74,7 @@ const NewPatient = () => {
         <input placeholder='race' onChange={(e) => handleInput(e)} name='race03dsc'></input> */}
 
         <p>Patient History</p><br/>
-        <textarea onChange={(e) => handleInput(e)} name='history'/>
+        <textarea style={{resize: 'none', width: '100%', height: '200px', overflow: 'auto'}} onChange={(e) => handleInput(e)} name='history'/>
 
         
         
@@ -117,8 +117,8 @@ const NewPatient = () => {
         <input placeholder='raza' onChange={(e) => handleInput(e)} name='race03dsc'></input> */}
 
         <p>Historial del paciente</p><br/>
-        <textarea onChange={(e) => handleInput(e)} name='history'/>
-        <button onClick={handleSubmit}>Enviar Nuevo Paciente</button>
+        <textarea style={{resize: 'none', width: '100%', height: '200px', overflow: 'auto'}} onChange={(e) => handleInput(e)} name='history'/>
+        <button  onClick={handleSubmit}>Enviar Nuevo Paciente</button>
     
       </div>
     }

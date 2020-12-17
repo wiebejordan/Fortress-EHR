@@ -13,7 +13,7 @@ const PatientOverview = (props) => {
   
 
     return (
-      <div style={{height: '400px', width: '600px', overflow:'auto'}}>
+      <div style={{height: '400px', width: '100%', overflow:'auto'}}>
       
       {lang === true
       ?
@@ -26,6 +26,7 @@ const PatientOverview = (props) => {
         <p>Latest Encounter Date: {encounters[encounters.length-1].encounterdts}</p>
         <p>Recent Notes: {encounters[encounters.length-1].commenttxt}</p>
         <h3>Allergies</h3>
+        <button>Add/Edit</button>
         <>
         {allergies.map((allergy) => 
           <div key={allergy.allergyid}>

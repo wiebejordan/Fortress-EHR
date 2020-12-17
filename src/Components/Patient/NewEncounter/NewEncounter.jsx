@@ -141,7 +141,7 @@ const NewEncounter = (props) => {
           <textarea
           onChange={(e) => handleInput(e)}
           name='commenttxt'
-          style={{resize: 'none', width: '100%', height: '200px', overflow: 'scroll'}}
+          style={{resize: 'none', width: '100%', height: '200px', overflow: 'auto'}}
           defaultValue={newEnc.commenttxt}
           />
 
