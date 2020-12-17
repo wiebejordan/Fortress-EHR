@@ -56,5 +56,6 @@ app.get('/api/immunes/:patientid', immuneCtrl.getImmunes);
 
 //allergy endpoints
 app.get('/api/allergies/:patientid', allergyCtrl.getAllergies);
+app.post('/api/newallergy', allergyCtrl.newAllergy)
 
 app.listen(SERVER_PORT, () => console.log(`server is running on ${SERVER_PORT}`));
