@@ -60,11 +60,11 @@ const PatientOverview = (props) => {
         {allergyEdit
         ?
         <div>
-        <p>Allergy Type:</p>
         <p>Today's Date</p>
           <input type='date' onChange={(e) => handleInput(e)}
           name='createdts' 
           />
+        <p>Allergy Type:</p>
         <input name='typedsc' placeholder='food, animal, medicine, etc' onChange={(e) => handleInput(e)}/>
         <p>Allergy:</p>
         <input name='allergydsc' placeholder='Bees, peanuts, etc.' onChange={(e) => handleInput(e)}/>
@@ -101,7 +101,55 @@ const PatientOverview = (props) => {
       // ////////////////////////////spanish menu////////////////////////////////////
       :
       <div>
-        <p>Fecha de Nacimiento{patient.birthdts}</p>
+        <h1>
+        Resumen del Paciente
+          </h1>
+        <p>Fecha de Nacimiento: {patient.birthdts}</p>
+        <p>Género: {patient.genderdsc}</p>
+        <p>Fecha Del último Encuentro: {encounters[encounters.length-1].encounterdts}</p>
+        <p>Notas Recientes: {encounters[encounters.length-1].commenttxt}</p>
+        <h3>Alergias</h3>
+        {allergyEdit
+        ?
+        <div>
+        <p>Fecha</p>
+          <input type='date' onChange={(e) => handleInput(e)}
+          name='createdts' 
+          />
+        <p>Tipo de Alergias:</p>
+        <input name='typedsc' placeholder='comida, animal, medicina...' onChange={(e) => handleInput(e)}/>
+        <p>Alergia:</p>
+        <input name='allergydsc' placeholder='Abejas, cacahuetes ...' onChange={(e) => handleInput(e)}/>
+        <p>Gravedad:</p>
+        <input type='radio' value='mild' name='severitydsc' onChange={(e) => handleInput(e)}/>
+        <label>Leve</label><br/>
+        <input type='radio' value='moderate' name='severitydsc' onChange={(e) => handleInput(e)}/>
+        <label>Moderado</label><br/>
+        <input type='radio' value='Severe' name='severitydsc' onChange={(e) => handleInput(e)}/>
+        <label>Severo</label><br/>
+        <p>Reacciones:</p>
+        <input name='reactiondsc' placeholder='vómito, sarpullido...' onChange={(e) => handleInput(e)}/>
+        <button onClick={handleToggle}>Cancelar</button>
+        <button onClick={submitAllergy}>Enviar Alergia</button>
+        </div>
+        :
+        <button onClick={handleToggle}>
+        Agregar / Editar</button>}
+        <>
+        {allergies.map((allergy) => 
+          <div key={allergy.allergyid}>
+            <p>{allergy.createdts}</p>
+            <p>{allergy.typedsc}</p>
+            <p>{allergy.allergydsc}</p>
+            <p>{allergy.severitydsc}</p>
+            <p>{allergy.reactiondsc}</p>
+          </div>
+        )}
+
+        {allergies.length === 0 
+        ? <p>Este paciente no tiene alergias registradas.</p>
+        : null}
+        </>
       </div>
       }
       </div>
