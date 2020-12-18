@@ -9,7 +9,7 @@ const PatientHistory = (props) => {
         [editView, setEditView] = useState(false),
         [history, setHistory] = useState(props.patient.history),
         lang = useSelector(state => state.languageReducer.english)
-        console.log(history)
+        // console.log(history)
 
   
     const toggleEdit = () => {

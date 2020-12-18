@@ -27,7 +27,7 @@ import NewEncounter from '../NewEncounter/NewEncounter';
   user = useSelector(state => state.authReducer),
   newEnc = useSelector(state => state.newEncReducer),
   lang = useSelector(state => state.languageReducer.english);
-  console.log('enc', allergies)
+  // console.log('enc', allergies)
   
 
    useEffect(() => {
@@ -172,7 +172,7 @@ import NewEncounter from '../NewEncounter/NewEncounter';
       <Grid.Column  width={11}>
       <Segment>
         {item === 'overview' || item === 'visión de conjunto'
-        ? <PatientOverview patient={patient} encounters={encounters} immunes={immunes} allergies={allergies}/>
+        ? <PatientOverview patient={patient} encounters={encounters} immunes={immunes} allergies={allergies} user={user}/>
         : null}
 
         {item === 'patient history' || item === 'historial del paciente'

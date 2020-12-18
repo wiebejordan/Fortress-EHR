@@ -9,8 +9,8 @@ const PatientOverview = (props) => {
         [allergyEdit, setAllergyEdit] = useState(false),
         [newAllergy, setNewAllergy] = useState({typedsc: '', createdts: '', allergydsc: '', severitydsc: '', reactiondsc: ''}),
         lang = useSelector(state => state.languageReducer.english),
-        {patient, encounters, allergies} = props
-        console.log(newAllergy)
+        {user, patient, encounters, allergies} = props
+        console.log(user)
 
     
  
@@ -81,7 +81,7 @@ const PatientOverview = (props) => {
         <button onClick={submitAllergy}>Submit Allergy</button>
         </div>
         :
-        <button onClick={handleToggle}>Add/Edit</button>}
+        <button onClick={handleToggle} disabled={user.user.canedit === false}>Add/Edit</button>}
         <>
         {allergies.map((allergy) => 
           <div key={allergy.allergyid}>
@@ -133,7 +133,7 @@ const PatientOverview = (props) => {
         <button onClick={submitAllergy}>Enviar Alergia</button>
         </div>
         :
-        <button onClick={handleToggle}>
+        <button onClick={handleToggle} disabled={user.user.canedit === false}>
         Agregar / Editar</button>}
         <>
         {allergies.map((allergy) => 
