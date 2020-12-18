@@ -12,9 +12,9 @@ module.exports = {
 
   newAllergy: (req, res) => {
     const db = req.app.get('db'),
-          {patientid, typedsc, allergydsc, severitydsc, reactiondsc} = req.body;
+          {patientid, createdts, typedsc, allergydsc, severitydsc, reactiondsc} = req.body;
 
-    db.allergy.new_allergy(patientid, typedsc, allergydsc, severitydsc, reactiondsc)
+    db.allergy.new_allergy(patientid, createdts, typedsc, allergydsc, severitydsc, reactiondsc)
 
     .then(() => res.sendStatus(200))
     .catch(err => res.status(500).send(err))

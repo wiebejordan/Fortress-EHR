@@ -7,14 +7,12 @@ import axios from 'axios';
 const PatientOverview = (props) => {
   const [item, setItem] = useState({}),
         [allergyEdit, setAllergyEdit] = useState(false),
-        [newAllergy, setNewAllergy] = useState({patientid: null, typedsc: '', allergydsc: '', severitydsc: '', reactiondsc: ''}),
+        [newAllergy, setNewAllergy] = useState({typedsc: '', createdts: '', allergydsc: '', severitydsc: '', reactiondsc: ''}),
         lang = useSelector(state => state.languageReducer.english),
         {patient, encounters, allergies} = props
         console.log(newAllergy)
 
-    useEffect(() => {
-      setNewAllergy({...newAllergy, patientid: patient.patientid })
-    }, [])
+    
  
     const handleToggle = () => {
       setAllergyEdit(!allergyEdit)
@@ -26,9 +24,9 @@ const PatientOverview = (props) => {
     };
 
     const submitAllergy = () => {
-      const {patientid, typedsc, allergydsc, severitydsc, reactiondsc} = newAllergy;
+      const { typedsc, createdts, allergydsc, severitydsc, reactiondsc} = newAllergy;
 
-      axios.post(`/api/newallergy`, {patientid, typedsc, allergydsc, severitydsc, reactiondsc})
+      axios.post(`/api/newallergy`, {patientid: patient.patientid, createdts, typedsc, allergydsc, severitydsc, reactiondsc})
 
       .then(() => {
         if(lang === true){
@@ -63,6 +61,10 @@ const PatientOverview = (props) => {
         ?
         <div>
         <p>Allergy Type:</p>
+        <p>Today's Date</p>
+          <input type='date' onChange={(e) => handleInput(e)}
+          name='createdts' 
+          />
         <input name='typedsc' placeholder='food, animal, medicine, etc' onChange={(e) => handleInput(e)}/>
         <p>Allergy:</p>
         <input name='allergydsc' placeholder='Bees, peanuts, etc.' onChange={(e) => handleInput(e)}/>
