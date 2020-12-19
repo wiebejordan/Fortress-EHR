@@ -110,7 +110,7 @@ function App(props) {
     <div>
       <Nav/>
       {routes}
-      <Footer/>
+      
       
       {lang.english 
       ?
@@ -175,6 +175,8 @@ function App(props) {
         </Modal.Description>
       </Modal.Content>
     </Modal>}
+    
+    <Footer/>
     
     </div>
   );

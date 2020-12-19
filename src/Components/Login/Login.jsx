@@ -53,7 +53,7 @@ const Login = (props) => {
     } )
   }
   return(
-    <div>
+    <div className='main-container'>
     <div className='login-container'>
     {state.english === true
     ?
@@ -85,8 +85,8 @@ const Login = (props) => {
     </div>
     
     <div className='about-container'>
-      <h1>What is Fortress EHR?</h1>
       <div style={{margin: '20px'}}>
+      <h1>What is Fortress EHR?</h1>
       <Container >
       
       <Grid verticalAlign='middle' celled='internally' stackable>
@@ -110,6 +110,13 @@ const Login = (props) => {
       </Grid>
       </Container>
       </div>
+    </div>
+
+    <div className='video-container'>
+      
+      <h1>How does Fortress EHR work?</h1>
+      <iframe width="560" height="315" src="https://www.youtube.com/embed/Uoq2EG3BpS4" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+      
     </div>
     </div>
   )
