@@ -53,6 +53,7 @@ app.post('/api/newencounter', encounterCtrl.newEncounter)
 
 //immunization endpoints
 app.get('/api/immunes/:patientid', immuneCtrl.getImmunes);
+app.post('/api/newimmune', immuneCtrl.newImmune);
 
 //allergy endpoints
 app.get('/api/allergies/:patientid', allergyCtrl.getAllergies);

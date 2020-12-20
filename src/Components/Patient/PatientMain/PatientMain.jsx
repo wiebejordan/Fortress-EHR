@@ -188,7 +188,7 @@ import NewEncounter from '../NewEncounter/NewEncounter';
         : null}
 
         {item === 'immunizations' || item === 'inmunizaciones'
-        ? <Immunizations patient={patient} encounters={encounters} immunes={immunes} allergies={allergies}/>
+        ? <Immunizations patient={patient} encounters={encounters} immunes={immunes} allergies={allergies} user={user}/>
         : null}
 
         {item === 'visualization' || item === 'visualizaciones'
