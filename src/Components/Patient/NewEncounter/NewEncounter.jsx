@@ -37,11 +37,15 @@ const NewEncounter = (props) => {
     const {name, value} = result || e.target;
     setEncounter({...encounter, [name]: value})
     
+    if(name === 'commenttxt'){
+      setEncounter({...encounter, commenttxt: `zz_${value}`})
+    }
   };
 
   const handleNumberInput = (e, result) => {
     const {name, value} = result || e.target;
     setEncounter({...encounter, [name]: value})
+
   };
 
   const handleSubmit = () => {
