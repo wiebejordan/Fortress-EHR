@@ -76,7 +76,7 @@ const IMMUNIZATION = (props) => {
         <input name='routedsc' placeholder='injection, etc.' onChange={(e) => handleInput(e)}/>
         
         <button onClick={handleToggle}>Cancel</button>
-        <button onClick={submitImmune}>Submit Allergy</button>
+        <button onClick={submitImmune}>Submit Immunization</button>
         </div>
         :
         <button onClick={handleToggle} disabled={user.user.canedit === false}>Add/Edit</button>}
@@ -96,8 +96,38 @@ const IMMUNIZATION = (props) => {
       </div>
       // ////////////////////////////spanish menu////////////////////////////////////
       :
-      <div>Inmunizaciones
-        <p>{props.patient.firstnm}</p>
+      <div>
+        <h3>Inmunización</h3>
+        {editView
+        ?
+        <div>
+        <p>Fecha:</p>
+          <input type='date' onChange={(e) => handleInput(e)}
+          name='createdts' 
+          />
+        <p>Tipo de Inmunización:</p>
+        <input name='immunizationtypedsc' placeholder='Gripe, polio, etc' onChange={(e) => handleInput(e)}/>
+        <p>Método de Inmunización:</p>
+        <input name='routedsc' placeholder='inyección, etc.' onChange={(e) => handleInput(e)}/>
+        
+        <button onClick={handleToggle}>Cancelar</button>
+        <button onClick={submitImmune}>Enviar Inmunización</button>
+        </div>
+        :
+        <button onClick={handleToggle} disabled={user.user.canedit === false}>Add/Edit</button>}
+        {immunes.map((immune) => 
+          <div key={immune.immunizationid} value={immune}>
+            <p>{immune.createdts}</p>
+            <p>{immune.immunizationtypedsc}</p>
+            <p>{immune.routedsc}</p>
+          </div>
+          
+        )}
+
+        {immunes.length === 0 
+        ? <p>This patient has not had any immunizations.</p>
+        : null}
+        
       </div>
       }
       </div>
