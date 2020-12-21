@@ -9,7 +9,7 @@ const PatientOverview = (props) => {
         [allergyEdit, setAllergyEdit] = useState(false),
         [newAllergy, setNewAllergy] = useState({typedsc: '', createdts: '', allergydsc: '', severitydsc: '', reactiondsc: ''}),
         lang = useSelector(state => state.languageReducer.english),
-        {user, patient, encounters, allergies} = props
+        {user, patient, encounters, allergies, patientdob} = props
         console.log(user)
 
     
@@ -60,6 +60,8 @@ const PatientOverview = (props) => {
         <p>Gender: {patient.genderdsc}</p>
         <p>Latest Encounter Date: {encounters[encounters.length-1].encounterdts}</p>
         <p>Recent Notes: {encounters[encounters.length-1].commenttxt}</p>
+
+        <h3>Active Problems</h3>
         <h3>Allergies</h3>
         {allergyEdit
         ?

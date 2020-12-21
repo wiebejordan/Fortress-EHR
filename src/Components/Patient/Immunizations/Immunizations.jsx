@@ -86,7 +86,7 @@ const IMMUNIZATION = (props) => {
         <button onClick={handleToggle} disabled={user.user.canedit === false}>Add/Edit</button>}
         {immunes.map((immune) => 
           <div key={immune.immunizationid} value={immune}>
-            <p>{immune.createdts}</p>
+            <p>{immune.createdts.substr(0, 10)}</p>
             <p>{immune.immunizationtypedsc}</p>
             <p>{immune.routedsc}</p>
           </div>
