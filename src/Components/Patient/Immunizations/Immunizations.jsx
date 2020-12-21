@@ -20,7 +20,11 @@ const IMMUNIZATION = (props) => {
 
     const handleInput = (e, result) => {
       const {name, value} = result || e.target;
-      setNewImmune({...newImmune, [name]: value});
+      setNewImmune({...newImmune, [name]: value})
+
+      if(name === 'routedsc'){
+        setNewImmune({...newImmune, routedsc: `zz_${value}`})
+      }
     };
 
     const handleToggle = () => {

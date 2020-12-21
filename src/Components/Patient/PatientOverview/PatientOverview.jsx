@@ -20,7 +20,11 @@ const PatientOverview = (props) => {
 
     const handleInput = (e, result) => {
       const {name, value} = result || e.target;
-      setNewAllergy({...newAllergy, [name]: value});
+      setNewAllergy({...newAllergy, [name]: value})
+
+      if(name === 'reactiondsc'){
+        setNewAllergy({...newAllergy, reactiondsc: `zz_${value}`})
+      }
     };
 
     const submitAllergy = () => {
