@@ -106,24 +106,46 @@ const Nav = (props) => {
   return(
     <div>
     <Menu text style={{margin: '0'}}>
+      
         {location.pathname !== '/'
         ? 
+        <>
+        <Menu.Item>
+          <Image circular size='tiny' src='https://i.imgur.com/bgAzgoV.jpg'/>
+          
+        </Menu.Item>
+
         <Menu.Item>
           <Link to='/main'>
-          <Image circular size='tiny' src='https://i.imgur.com/bgAzgoV.jpg'/>
+            <Button basic>Patient List</Button>
           </Link>
         </Menu.Item>
+        </>
         : <Menu.Item>
         
         <Image circular size='tiny' src='https://i.imgur.com/bgAzgoV.jpg'/>
         
       </Menu.Item>}
 
-        {!user.user.email 
+        
+      
+      <div className='language-dropdown'>
+      {/* {state.english === true ?
+      <Menu.Item>
+      <Button >Settings</Button>
+    </Menu.Item>
+      :
+      <Menu.Item>
+        <Button >Ajustes</Button>
+      </Menu.Item>
+      } */}
+
+      {!user.user.email 
         ? 
           null
         :
       <>
+      
       <Menu.Item header>{user.user.lastnm}, {user.user.firstnm}</Menu.Item>
       {state.english === true ?
       <Menu.Item>
@@ -136,17 +158,6 @@ const Nav = (props) => {
       
       </>
       }
-      
-      <div className='language-dropdown'>
-      {/* {state.english === true ?
-      <Menu.Item>
-      <Button >Settings</Button>
-    </Menu.Item>
-      :
-      <Menu.Item>
-        <Button >Ajustes</Button>
-      </Menu.Item>
-      } */}
 
       <Menu.Item style={{marginRight: '20px'}}>
       <Dropdown

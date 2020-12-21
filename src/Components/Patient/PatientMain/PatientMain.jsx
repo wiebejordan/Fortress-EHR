@@ -17,7 +17,7 @@ import NewEncounter from '../NewEncounter/NewEncounter';
 
 
  const PatientMain = (props) => {
-  const [item, setItem] = useState('overview'),
+  const [item, setItem] = useState('patient history'),
         [patient, setPatient] = useState({}),
         [encounters, setEncounters] = useState([{commenttxt: ''}]),
         [immunes, setImmunes] = useState([]),
@@ -26,9 +26,14 @@ import NewEncounter from '../NewEncounter/NewEncounter';
         [loading, setLoading] = useState(true),
   user = useSelector(state => state.authReducer),
   newEnc = useSelector(state => state.newEncReducer),
+  history = useHistory(),
   lang = useSelector(state => state.languageReducer.english);
   // console.log('enc', allergies)
-  
+
+  useEffect(() => {
+    if(!user.user.email){
+      history.push('/')}
+  })
 
    useEffect(() => {
     if(props.match.params.patientid){
@@ -38,10 +43,13 @@ import NewEncounter from '../NewEncounter/NewEncounter';
     setLoading(false)
   }, [])
 
+  
+
   const getPatientData = async () => {
     try{
       const res = await axios.get(`/api/patient/${props.match.params.patientid}`);
         setPatient(res.data[0])
+        setItem('overview')
       }
       catch(err){
         console.log(err)
@@ -78,7 +86,7 @@ import NewEncounter from '../NewEncounter/NewEncounter';
     setToggleEncounter(!toggleEncounter)
   }
 
-
+  
 
   
   

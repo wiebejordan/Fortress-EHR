@@ -123,7 +123,7 @@ const Login = (props) => {
           </p>
         </Grid.Column>
         <Grid.Column width={8}>
-      <iframe width="400" height="225" src="https://www.youtube.com/embed/Uoq2EG3BpS4" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+      <iframe width="400" height="225" src="https://www.youtube.com/embed/Uoq2EG3BpS4" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowFullScreen></iframe>
 
         </Grid.Column>
       </Grid>

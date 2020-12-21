@@ -9,7 +9,7 @@ const PatientOverview = (props) => {
         [allergyEdit, setAllergyEdit] = useState(false),
         [newAllergy, setNewAllergy] = useState({typedsc: '', createdts: '', allergydsc: '', severitydsc: '', reactiondsc: ''}),
         lang = useSelector(state => state.languageReducer.english),
-        {user, patient, encounters, allergies, patientdob} = props
+        {user, patient, encounters, allergies} = props
         console.log(user)
 
     
@@ -56,7 +56,7 @@ const PatientOverview = (props) => {
         <h1>
         patient overview
           </h1>
-        <p>Birthdate: {patient.birthdts}</p>
+        <p>Birthdate: {patient.birthdts.substr(0, 10)}</p>
         <p>Gender: {patient.genderdsc}</p>
         <p>Latest Encounter Date: {encounters[encounters.length-1].encounterdts}</p>
         <p>Recent Notes: {encounters[encounters.length-1].commenttxt}</p>
@@ -91,7 +91,7 @@ const PatientOverview = (props) => {
         <>
         {allergies.map((allergy) => 
           <div key={allergy.allergyid}>
-            <p>{allergy.createdts}</p>
+            <p>{allergy.createdts.substr(0, 10)}</p>
             <p>{allergy.typedsc}</p>
             <p>{allergy.allergydsc}</p>
             <p>{allergy.severitydsc}</p>
