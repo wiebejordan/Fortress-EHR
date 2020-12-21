@@ -116,9 +116,16 @@ const Nav = (props) => {
         </Menu.Item>
 
         <Menu.Item>
+          {state.english
+          ?
           <Link to='/main'>
-            <Button basic>Patient List</Button>
+            <Button basic>Home</Button>
           </Link>
+          :
+          <Link to='/main'>
+            <Button basic>Inicio</Button>
+          </Link>
+          }
         </Menu.Item>
         </>
         : <Menu.Item>

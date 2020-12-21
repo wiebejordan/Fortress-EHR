@@ -298,7 +298,7 @@ const ProductTable = (patientList, props) => {
             <td>{item.lastnm}, {item.firstnm}</td>
                 </Link>
                 {/* <td>{item.age}</td> */}
-                <td>{item.birthdts}</td>
+                <td>{item.birthdts.substr(0, 10)}</td>
               </tr>
             ))}
             </>

@@ -29,7 +29,7 @@ const EncounterHistory = (props) => {
       <div>EncounterHistory
         {encounterArr.map((encounter) => 
           <div key={encounter.encounterid} value={encounter}>
-            <p>Encounter date: {encounter.encounterdts}</p>
+            <p>Encounter date: {encounter.encounterdts.substr(0, 10)}</p>
             <p>Weight(lbs): {encounter.weight_lbs}</p>
             <p>Height(inch): {encounter.height_inch}</p>
             <p>Systolic BP: {encounter.systolic_bp}</p>
@@ -42,8 +42,19 @@ const EncounterHistory = (props) => {
       </div>
       // ////////////////////////////spanish menu////////////////////////////////////
       :
-      <div>EncounterHistory
-        <p>{props.patient.firstnm}</p>
+      <div>Historia De Encuentros
+        {encounterArr.map((encounter) => 
+          <div key={encounter.encounterid} value={encounter}>
+            <p>Fecha de Encuentro: {encounter.encounterdts}</p>
+            <p>Peso(lbs): {encounter.weight_lbs}</p>
+            <p>Altura(inch): {encounter.height_inch}</p>
+            <p>Presión Arterial Sistólica: {encounter.systolic_bp}</p>
+            <p>Presión Arterial Diastólica: {encounter.diastolic_bp}</p>
+            <p>Ritmo Cardiaco: {encounter.heart_rate}</p>
+            <p>Respiraciones Por Minuto: {encounter.respirations_min}</p>
+            <p>Notas: {encounter.commenttxt}</p>
+          </div>
+        )}
       </div>
       }
       </div>

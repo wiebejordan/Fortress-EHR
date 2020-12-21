@@ -110,7 +110,7 @@ const PatientOverview = (props) => {
         <h1>
         Resumen del Paciente
           </h1>
-        <p>Fecha de Nacimiento: {patient.birthdts}</p>
+        <p>Fecha de Nacimiento: {patient.birthdts.substr(0, 10)}</p>
         <p>Género: {patient.genderdsc}</p>
         <p>Fecha Del último Encuentro: {encounters[encounters.length-1].encounterdts}</p>
         <p>Notas Recientes: {encounters[encounters.length-1].commenttxt}</p>
@@ -144,7 +144,7 @@ const PatientOverview = (props) => {
         <>
         {allergies.map((allergy) => 
           <div key={allergy.allergyid}>
-            <p>{allergy.createdts}</p>
+            <p>{allergy.createdts.substr(0, 10)}</p>
             <p>{allergy.typedsc}</p>
             <p>{allergy.allergydsc}</p>
             <p>{allergy.severitydsc}</p>
