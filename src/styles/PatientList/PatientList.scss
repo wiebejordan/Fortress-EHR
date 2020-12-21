@@ -44,6 +44,7 @@ table {
   overflow: scroll;
   border-collapse: collapse;
   background-color: rgb(241, 240, 240);
+  
 }
 
 thead th {
@@ -82,12 +83,7 @@ thead button.descending::after {
 } */
 
 tbody{
-  // .tbody-patients{
-  //   display: table-row-group;
-  //   box-sizing: border-box;
-  //   width:80vw;
-  //   vertical-align: middle;
-  // }
+  
   td{
     text-align: center;
     padding: 0.5em;

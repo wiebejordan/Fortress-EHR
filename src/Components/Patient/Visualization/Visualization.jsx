@@ -93,6 +93,7 @@ const Visualization = (props) => {
         const chart = () => {
           let data = [];
           let date = [];
+          console.log(date)
           
           for(let i = 0; i < props.encounters.length; i++){
 
@@ -114,7 +115,7 @@ const Visualization = (props) => {
              else if(vis === 'respirations_min'){
               data.push(parseInt(props.encounters[i].respirations_min));
              }
-            date.push(parseInt(props.encounters[i].encounterdts));
+            date.push(props.encounters[i].encounterdts.substr(0, 10));
           }
 
           setChartData({

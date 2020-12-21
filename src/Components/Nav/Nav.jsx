@@ -138,7 +138,7 @@ const Nav = (props) => {
       }
       
       <div className='language-dropdown'>
-      {state.english === true ?
+      {/* {state.english === true ?
       <Menu.Item>
       <Button >Settings</Button>
     </Menu.Item>
@@ -146,7 +146,7 @@ const Nav = (props) => {
       <Menu.Item>
         <Button >Ajustes</Button>
       </Menu.Item>
-      }
+      } */}
 
       <Menu.Item style={{marginRight: '20px'}}>
       <Dropdown

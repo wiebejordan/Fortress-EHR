@@ -125,7 +125,7 @@ const IMMUNIZATION = (props) => {
         )}
 
         {immunes.length === 0 
-        ? <p>This patient has not had any immunizations.</p>
+        ? <p>Este paciente no ha tenido ninguna inmunización.</p>
         : null}
         
       </div>

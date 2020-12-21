@@ -8,7 +8,7 @@ import PatientHistory from '../PatientHistory/PatientHistory';
 import Medications from '../Medications/Medications';
 import Immunizations from '../Immunizations/Immunizations';
 import Visualization from '../Visualization/Visualization';
-import ActiveProblems from '../ActiveProblems/ActiveProblems';
+import EncounterHistory from '../ActiveProblems/EncounterHistory';
 import NewEncounter from '../NewEncounter/NewEncounter';
 
 
@@ -109,8 +109,8 @@ import NewEncounter from '../NewEncounter/NewEncounter';
           onClick={handleItemClick}
         />
         <Menu.Item
-          name='active problems'
-          active={item === 'active problems' || item === 'problemas activos'}
+          name='encounter history'
+          active={item === 'encounter history' || item === 'historia de encuentros'}
           onClick={handleItemClick}
         />
         <Menu.Item
@@ -146,8 +146,8 @@ import NewEncounter from '../NewEncounter/NewEncounter';
           onClick={handleItemClick}
         />
           <Menu.Item
-            name='problemas activos'
-            active={item === 'active problems' || item === 'problemas activos'}
+            name='historia de encuentros'
+            active={item === 'encounter history' || item === 'historia de encuentros'}
             onClick={handleItemClick}
           />
         <Menu.Item
@@ -179,8 +179,8 @@ import NewEncounter from '../NewEncounter/NewEncounter';
         ? <PatientHistory patient={patient} encounters={encounters} immunes={immunes} allergies={allergies} user={user}/>
         : null}
 
-        {item === 'active problems' || item === 'problemas activos'
-        ? <ActiveProblems patient={patient} encounters={encounters} immunes={immunes} allergies={allergies}/>
+        {item === 'encounter history' || item === 'historia de encuentros'
+        ? <EncounterHistory patient={patient} encounters={encounters} immunes={immunes} allergies={allergies}/>
         : null}
 
         {item === 'medications' || item === 'medicamentos'
