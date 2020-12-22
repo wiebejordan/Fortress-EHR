@@ -137,15 +137,6 @@ const Nav = (props) => {
         
       
       <div className='language-dropdown'>
-      {/* {state.english === true ?
-      <Menu.Item>
-      <Button >Settings</Button>
-    </Menu.Item>
-      :
-      <Menu.Item>
-        <Button >Ajustes</Button>
-      </Menu.Item>
-      } */}
 
       {!user.user.email 
         ? 
