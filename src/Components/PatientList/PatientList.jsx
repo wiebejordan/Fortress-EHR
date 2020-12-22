@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useMemo } from "react";
 import { Link, useHistory } from "react-router-dom";
 import { useSelector } from "react-redux";
-import {  Dimmer, Loader, Image, Segment } from "semantic-ui-react";
+import {  Dimmer, Loader, Input, Segment } from "semantic-ui-react";
 import axios from 'axios';
 import '../../styles/style.scss'
 

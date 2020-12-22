@@ -116,13 +116,16 @@ const Login = (props) => {
       
       <h1>How does Fortress EHR work?</h1>
 
-      <Grid  stackable celled='internally'>
+      <Grid verticalAlign='middle' stackable celled='internally'>
         <Grid.Column width={8}>
           <p>
             Each recipient of Fortress EHR gets a closed system app customized to their exact needs. This means the health records are written in their primary language as well as English, the app is only as complex as what is useful to recipient, and each iteration of the app is 100% secure.  
           </p>
+          <p>
+            This means Fortress EHR can go to any country, community or organization and still be 100% effective!
+          </p>
         </Grid.Column>
-        <Grid.Column width={8}>
+        <Grid.Column  textAlign='center' width={8}>
       <iframe width="400" height="225" src="https://www.youtube.com/embed/Uoq2EG3BpS4" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowFullScreen></iframe>
 
         </Grid.Column>

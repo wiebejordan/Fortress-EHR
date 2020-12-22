@@ -1,30 +1,28 @@
 import axios from 'axios';
-import { parseInt } from 'lodash';
+import { parseInt, stubFalse } from 'lodash';
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import {usePrompt, useBlocker} from 'react-router-dom';
+import { Prompt } from 'react-router-dom';
 
 const NewEncounter = (props) => {
 
   const [encounter, setEncounter] = useState({patientid: props.patient.patientid, encounterdts: '', weight_lbs: '', height_inch: '', systolic_bp: null, diastolic_bp: null, heart_rate: null, respirations_min: null, commenttxt: ''}),
-        [isBlocking, setIsBlocking] = useState(false),
         
 
   lang = useSelector(state => state.languageReducer.english),
   newEnc = useSelector(state => state.newEncReducer.newEncounter),
   dispatch = useDispatch();
 
-  console.log('reducer', newEnc)
+  // console.log(isBlocking)
   console.log('encounter', encounter)
 
-  // usePrompt(
-  //   "Hello from usePrompt -- Are you sure you want to leave?",
-  //   isBlocking
-  // );
+  
 
   useEffect(() => {
     setEncounter({...newEnc, patientid: props.patient.patientid})
   }, [])
+
 
   useEffect(() => {
     dispatch({
@@ -203,13 +201,14 @@ const NewEncounter = (props) => {
           <textarea
           onChange={(e) => handleInput(e)}
           name='commenttxt'
-          style={{resize: 'none', width: '100%', height: '200px', overflow: 'scroll'}}
+          style={{resize: 'none', width: '100%', height: '200px', overflow: 'auto'}}
           defaultValue={newEnc.commenttxt}
           />
 
         <button onClick={handleSubmit}>Enviar Nuevo Encuentro</button>
         </div>
         }
+
 
       </div>
     </div>

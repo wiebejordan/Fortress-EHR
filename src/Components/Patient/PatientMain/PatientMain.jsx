@@ -1,6 +1,6 @@
 import axios from 'axios';
 import React, {useState, useEffect} from 'react';
-import {useSelector} from 'react-redux';
+import {useSelector, useDispatch} from 'react-redux';
 import {useHistory, Prompt} from 'react-router-dom';
 import {Loader, Menu, Segment, Grid, Container, MenuItem} from 'semantic-ui-react';
 import PatientOverview from '../PatientOverview/PatientOverview';
@@ -24,9 +24,11 @@ import NewEncounter from '../NewEncounter/NewEncounter';
         [allergies, setAllergies] = useState([]),
         [toggleEncounter, setToggleEncounter ] = useState(false),
         [loading, setLoading] = useState(true),
+        [isBlocking, setIsBlocking] = useState(false),
   user = useSelector(state => state.authReducer),
   newEnc = useSelector(state => state.newEncReducer),
   history = useHistory(),
+  dispatch = useDispatch(),
   lang = useSelector(state => state.languageReducer.english);
   // console.log('enc', allergies)
 
@@ -41,7 +43,32 @@ import NewEncounter from '../NewEncounter/NewEncounter';
     }
     
     setLoading(false)
+
+    return function cleanup() {
+      dispatch({
+        type: 'CLEAR_ENC',
+        payload: {
+          patientid: null, 
+          encounterdts: '', 
+          weight_lbs: '', 
+          height_inch: '', 
+          systolic_bp: null, 
+          diastolic_bp: null, 
+          heart_rate: null, 
+          respirations_min: null, 
+          commenttxt: ''
+        } 
+      })
+    }
   }, [])
+
+  useEffect(() => {
+    if(
+      toggleEncounter
+    ){
+      setIsBlocking(true)
+    }
+  })
 
   
 
@@ -233,7 +260,7 @@ import NewEncounter from '../NewEncounter/NewEncounter';
         ?
         <Grid.Column width={11}>
           <Segment>
-            <NewEncounter patient={patient}/>
+            <NewEncounter patient={patient} toggleEncounter ={toggleEncounter}/>
           </Segment>
         
         </Grid.Column>
@@ -243,7 +270,11 @@ import NewEncounter from '../NewEncounter/NewEncounter';
         : null }
 
       </Grid>
-
+      
+      <Prompt
+      when={isBlocking === true}
+      message={lang === true ?'You have a new encounter with unsaved changes, are you sure you want to leave?' : 'Tienes un nuevo encuentro con cambios no guardados, ¿estás seguro de que quieres irte?'}
+    />
       
       
       </div>
