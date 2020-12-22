@@ -53,7 +53,7 @@ const PatientOverview = (props) => {
       {lang === true
       ?
       <div>
-        <h1>
+        <h1 style={{textAlign: 'center'}}>
         patient overview
           </h1>
         <p>Birthdate: {patient.birthdts.substr(0, 10)}</p>

@@ -82,7 +82,7 @@ const NewPatient = () => {
         
       </div>
       :
-      <div>
+      <div className='newpatient-form-container'>
         <p>Primer nombre:</p>
         <input placeholder='First Name' onChange={(e) => handleInput(e)}  name='firstnm' ></input>
         <p>Apellido:</p>

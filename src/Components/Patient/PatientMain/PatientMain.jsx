@@ -30,7 +30,7 @@ import NewEncounter from '../NewEncounter/NewEncounter';
   history = useHistory(),
   dispatch = useDispatch(),
   lang = useSelector(state => state.languageReducer.english);
-  // console.log('enc', allergies)
+  // console.log('enc', user)
 
   useEffect(() => {
     if(!user.user.email){
