@@ -119,7 +119,7 @@ import NewEncounter from '../NewEncounter/NewEncounter';
   
   
   return(
-    <div>
+    <div style={{marginBottom: '25px'}}>
       {loading === true 
       ? <Loader size='massive' active />
       : 

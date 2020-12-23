@@ -6,7 +6,10 @@
   flex-direction: column;
   // justify-content: center;
   align-items: center;
-  background-color: #bada55;
+  background-color: rgb(66, 110, 180);
+  h1{
+    color: white;
+  }
 }
 
 .searchbar-container{
@@ -16,11 +19,14 @@
 }
 
 .patientlist-header{
-  width: 100vw;
-  
+  width: auto;
+  height: 50px;
+  padding: 10px;
+  background-color: white;
   display: flex;
   justify-content: center;
   align-items: center;
+  margin-top: 25px;
   .newpatient-btn{
     margin-right: 50px;
   }
@@ -36,8 +42,10 @@
   input{
     width: 200px;
   }
+  
 
 }
+
 
 table {
   width: 80vw;
@@ -50,6 +58,9 @@ table {
 thead th {
   text-align: center;
   border-bottom: 2px solid black;
+  position: sticky;
+  top: 0;
+  background-color: white;
   button {
     border: 0;
     border-radius: 5%;
@@ -105,4 +116,13 @@ tbody{
 
 tbody tr:hover {
   background-color: rgb(185, 185, 185);
+}
+
+.patient-table-container{
+  height: 600px;
+  overflow: auto;
+  margin-bottom: 50px;
+  ::-webkit-scrollbar {
+    display: none;
+}
 }

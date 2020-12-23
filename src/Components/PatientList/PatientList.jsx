@@ -164,6 +164,9 @@ const ProductTable = (patientList, props) => {
       {state.english === true ? (
       <>
       <h1>Patient List</h1>
+
+      <div className='patient-table-container' >
+      
       <table>
         <thead>
           <tr>
@@ -234,6 +237,7 @@ const ProductTable = (patientList, props) => {
           }
         </tbody>
       </table>
+      </div>
       </>)
     : (
       <>
@@ -333,11 +337,11 @@ function PatientTable(patientList) {
   
 
   return (
-    <div>
+    
       
       <ProductTable />
   
-    </div>
+    
   );
 }
 
