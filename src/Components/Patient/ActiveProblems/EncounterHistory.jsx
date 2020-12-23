@@ -11,7 +11,7 @@ const EncounterHistory = (props) => {
   
 
       useEffect(() => {
-        setEncounterArr(encounters)
+        setEncounterArr(encounters.reverse())
       }, [])
 
       if(encounterArr === []){
@@ -41,7 +41,7 @@ const EncounterHistory = (props) => {
               <th className='enc-th'>Encounter Notes</th>
             </tr>
             </thead>
-
+          
         {encounterArr.map((encounter) => 
             <tbody className='enc-tr' key={encounter.encounterid} value={encounter}>
             

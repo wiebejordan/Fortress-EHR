@@ -124,7 +124,7 @@ const Visualization = (props) => {
               label: vis,
               data: data,
               backgroundColor: [
-                'rgba(75, 192, 192, 0.6'
+                'rgba(236, 187, 25, 0.6'
               ],
               borderWidth: 4
             }]

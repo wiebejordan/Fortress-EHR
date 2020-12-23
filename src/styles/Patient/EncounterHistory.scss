@@ -9,12 +9,23 @@
   width: 100%;
 }
 
-.enc-td, .enc-th {
+.enc-td{
   border: 1px solid #dddddd;
   text-align: left;
   padding: 8px;
 }
 
+.enc-th{
+  border: 1px solid #dddddd;
+  text-align: left;
+  position: sticky;
+  top: 0;
+  background-color: rgb(236, 187, 25);
+  color: white;
+  padding: 10px;
+  
+}
+
 .enc-tr:nth-child(even) {
-  background-color: #dddddd;
+  background-color: #ffffff;
 }
