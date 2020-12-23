@@ -23,11 +23,11 @@ const EncounterHistory = (props) => {
       }
 
     return (
-      <div style={{height: '400px', width: '600px', overflow:'auto'}}>
+      <div style={{height: '400px', width: 'auto', overflow:'auto', margin: '0'}}>
       
       {lang === true
       ?
-      <div>
+      <div className='enc-table-container'>
           <table className='enc-table'>
             <thead className='enc-head'>
             <tr className='enc-tr'>
