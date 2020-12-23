@@ -58,7 +58,7 @@ const PatientHistory = (props) => {
         {props.user.user.canedit && !editView
         ? 
         <button onClick={toggleEdit}>edit</button>
-        : false}
+        : null}
       </div>
       // ////////////////////////////spanish menu////////////////////////////////////
       :
@@ -67,6 +67,18 @@ const PatientHistory = (props) => {
         <p>{props.patient.history}</p>
       </div>
       }
+      {editView
+        ? <div>
+          <textarea defaultValue={props.patient.history} onChange={handleInput} style={{resize: 'none', width: '90%', height: '200px'}}/>
+          <button onClick={toggleEdit}>Cancel</button>
+          <button onClick={handleHistoryEdit}>Save Changes</button>
+        </div>
+        : null}
+        
+        {lang === false && props.user.user.canedit && !editView
+        ? 
+        <button onClick={toggleEdit}>edit</button>
+        : null}
       </div>
     )
   }

@@ -54,12 +54,12 @@ const PatientOverview = (props) => {
       ?
       <div>
         <h1 style={{textAlign: 'center'}}>
-        patient overview
+        Patient Overview
           </h1>
-        <p>Birthdate: {patient.birthdts.substr(0, 10)}</p>
-        <p>Gender: {patient.genderdsc}</p>
-        <p>Latest Encounter Date: {encounters[encounters.length-1].encounterdts}</p>
-        <p>Recent Notes: {encounters[encounters.length-1].commenttxt}</p>
+        <p>Birthdate: <b>{patient.birthdts.substr(0, 10)}</b></p>
+        <p>Gender: <b>{patient.genderdsc}</b> </p>
+        <p>Latest Encounter Date: <b>{encounters[encounters.length-1].encounterdts}</b></p>
+        <p>Recent Notes: <b>{encounters[encounters.length-1].commenttxt}</b></p>
 
         <h3>Active Problems</h3>
         <h3>Allergies</h3>
@@ -107,13 +107,13 @@ const PatientOverview = (props) => {
       // ////////////////////////////spanish menu////////////////////////////////////
       :
       <div>
-        <h1>
+        <h1 style={{textAlign: 'center'}}>
         Resumen del Paciente
           </h1>
-        <p>Fecha de Nacimiento: {patient.birthdts.substr(0, 10)}</p>
-        <p>Género: {patient.genderdsc}</p>
-        <p>Fecha Del último Encuentro: {encounters[encounters.length-1].encounterdts}</p>
-        <p>Notas Recientes: {encounters[encounters.length-1].commenttxt}</p>
+        <p>Fecha de Nacimiento: <b>{patient.birthdts.substr(0, 10)}</b></p>
+        <p>Género: <b>{patient.genderdsc}</b></p>
+        <p>Fecha Del último Encuentro: <b>{encounters[encounters.length-1].encounterdts}</b></p>
+        <p>Notas Recientes: <b>{encounters[encounters.length-1].commenttxt}</b></p>
         <h3>Alergias</h3>
         {allergyEdit
         ?

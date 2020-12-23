@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Menu, Segment } from 'semantic-ui-react';
 import {useSelector} from 'react-redux';
+import '../../../styles/style.scss';
 
 const EncounterHistory = (props) => {
   const [encounterArr, setEncounterArr] = useState([]),
@@ -26,19 +27,36 @@ const EncounterHistory = (props) => {
       
       {lang === true
       ?
-      <div>EncounterHistory
+      <div>
+          <table className='enc-table'>
+            <thead className='enc-head'>
+            <tr className='enc-tr'>
+              <th className='enc-th'>Encounter Date</th>
+              <th className='enc-th'>Weight (lbs)</th>
+              <th className='enc-th'>Height (inch)</th>
+              <th className='enc-th'>Systolic BP</th>
+              <th className='enc-th'>Diastolic BP</th>
+              <th className='enc-th'>Heart Rate</th>
+              <th className='enc-th'>Respirations p/m</th>
+              <th className='enc-th'>Encounter Notes</th>
+            </tr>
+            </thead>
+
         {encounterArr.map((encounter) => 
-          <div key={encounter.encounterid} value={encounter}>
-            <p>Encounter date: {encounter.encounterdts.substr(0, 10)}</p>
-            <p>Weight(lbs): {encounter.weight_lbs}</p>
-            <p>Height(inch): {encounter.height_inch}</p>
-            <p>Systolic BP: {encounter.systolic_bp}</p>
-            <p>Diastolic BP: {encounter.diastolic_bp}</p>
-            <p>Heart Rate: {encounter.heart_rate}</p>
-            <p>Respirations per Minute: {encounter.respirations_min}</p>
-            <p>Notes: {encounter.commenttxt}</p>
-          </div>
+            <tr className='enc-tr' key={encounter.encounterid} value={encounter}>
+              
+            <td className='enc-td'>{encounter.encounterdts.substr(0, 10)}</td>
+            <td className='enc-td'>{encounter.weight_lbs}</td>
+            <td className='enc-td'>{encounter.height_inch}</td>
+            <td className='enc-td'>{encounter.systolic_bp}</td>
+            <td className='enc-td'>{encounter.diastolic_bp}</td>
+            <td className='enc-td'>{encounter.heart_rate}</td>
+            <td className='enc-td'>{encounter.respirations_min}</td>
+            <td className='enc-td'>{encounter.commenttxt}</td>
+
+            </tr>
         )}
+          </table>
       </div>
       // ////////////////////////////spanish menu////////////////////////////////////
       :
