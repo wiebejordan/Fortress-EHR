@@ -159,8 +159,6 @@ const Nav = (props) => {
 
       <Menu.Item style={{marginRight: '20px'}}>
       <Dropdown
-      
-      
       defaultValue={state.english}
       selection
       compact
