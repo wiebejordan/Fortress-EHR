@@ -216,27 +216,27 @@ import NewEncounter from '../NewEncounter/NewEncounter';
       <Grid.Column  width={11}>
       <Segment>
         {item === 'overview' || item === 'visión de conjunto'
-        ? <PatientOverview patient={patient} encounters={encounters} immunes={immunes} allergies={allergies} user={user}/>
+        ? <PatientOverview patient={patient} encounters={encounters} immunes={immunes} allergies={allergies} user={user} meds={meds}/>
         : null}
 
         {item === 'patient history' || item === 'historial del paciente'
-        ? <PatientHistory patient={patient} encounters={encounters} immunes={immunes} allergies={allergies} user={user}/>
+        ? <PatientHistory patient={patient} encounters={encounters} immunes={immunes} allergies={allergies} user={user} meds={meds}/>
         : null}
 
         {item === 'encounter history' || item === 'historia de encuentros'
-        ? <EncounterHistory patient={patient} encounters={encounters} immunes={immunes} allergies={allergies}/>
+        ? <EncounterHistory patient={patient} encounters={encounters} immunes={immunes} allergies={allergies} meds={meds}/>
         : null}
 
         {item === 'medications' || item === 'medicamentos'
-        ? <Medications patient={patient} encounters={encounters} immunes={immunes} allergies={allergies}/>
+        ? <Medications patient={patient} encounters={encounters} immunes={immunes} allergies={allergies} meds={meds}/>
         : null}
 
         {item === 'immunizations' || item === 'inmunizaciones'
-        ? <Immunizations patient={patient} encounters={encounters} immunes={immunes} allergies={allergies} user={user}/>
+        ? <Immunizations patient={patient} encounters={encounters} immunes={immunes} allergies={allergies} user={user} meds={meds}/>
         : null}
 
         {item === 'visualization' || item === 'visualizaciones'
-        ? <Visualization patient={patient} encounters={encounters} immunes={immunes} allergies={allergies}/>
+        ? <Visualization patient={patient} encounters={encounters} immunes={immunes} allergies={allergies} meds={meds}/>
         : null}
       </Segment>
       </Grid.Column>
