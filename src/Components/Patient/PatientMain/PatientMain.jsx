@@ -22,6 +22,7 @@ import NewEncounter from '../NewEncounter/NewEncounter';
         [encounters, setEncounters] = useState([{commenttxt: ''}]),
         [immunes, setImmunes] = useState([]),
         [allergies, setAllergies] = useState([]),
+        [meds, setMeds] = useState([]),
         [toggleEncounter, setToggleEncounter ] = useState(false),
         [loading, setLoading] = useState(true),
         [isBlocking, setIsBlocking] = useState(false),
@@ -30,7 +31,7 @@ import NewEncounter from '../NewEncounter/NewEncounter';
   history = useHistory(),
   dispatch = useDispatch(),
   lang = useSelector(state => state.languageReducer.english);
-  // console.log('enc', user)
+  console.log('enc', meds)
 
   useEffect(() => {
     if(!user.user.email){
@@ -101,6 +102,14 @@ import NewEncounter from '../NewEncounter/NewEncounter';
        try{
         const res = await axios.get(`/api/allergies/${props.match.params.patientid}`);
          setAllergies(res.data)
+       }
+       catch(err){
+         console.log(err)
+       }
+
+       try{
+        const res = await axios.get(`/api/medications/${props.match.params.patientid}`);
+         setMeds(res.data)
        }
        catch(err){
          console.log(err)

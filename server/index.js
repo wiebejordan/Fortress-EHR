@@ -11,6 +11,7 @@ const express = require('express'),
       encounterCtrl = require('./encounterController'),
       immuneCtrl = require('./immuneController'),
       allergyCtrl = require('./allergyController'),
+      medicateCtrl = require('./medicateController'),
       authCtrl = require('./authController');
 
 
@@ -58,5 +59,8 @@ app.post('/api/newimmune', immuneCtrl.newImmune);
 //allergy endpoints
 app.get('/api/allergies/:patientid', allergyCtrl.getAllergies);
 app.post('/api/newallergy', allergyCtrl.newAllergy)
+
+//medication endpoints
+app.get('/api/medications/:patientid', medicateCtrl.getMedications);
 
 app.listen(SERVER_PORT, () => console.log(`server is running on ${SERVER_PORT}`));
