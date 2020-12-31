@@ -60,13 +60,32 @@ const IMMUNIZATION = (props) => {
 
 
     return (
-      <div style={{height: '400px', width: '600px', overflow:'auto'}}>
+      <div style={{height: '400px', width: 'auto', overflow:'auto'}}>
       
 
       {lang === true
       ?
       <div>
-        <h3>Immunizations</h3>
+        <table className='enc-table'>
+            <thead className='enc-head'>
+            <tr className='enc-tr'>
+              <th className='enc-th'>Immunization Date</th>
+              <th className='enc-th'>Immunization Type</th>
+              <th className='enc-th'>Route</th>
+            </tr>
+            </thead>
+          
+        {immunes.map((immune) => 
+            <tbody className='enc-tr' key={immune.immunizationid} value={immune}>
+            
+            <tr className='enc-tr'>
+            <td className='enc-td'>{immune.createdts.substr(0, 10)}</td>
+            <td className='enc-td'>{immune.immunizationtypedsc}</td>
+            <td className='enc-td'>{immune.routedsc}</td>
+            </tr>
+            </tbody>
+        )}
+          </table>
         {editView
         ?
         <div>
@@ -83,15 +102,8 @@ const IMMUNIZATION = (props) => {
         <button onClick={submitImmune}>Submit Immunization</button>
         </div>
         :
-        <button onClick={handleToggle} disabled={user.user.canedit === false}>Add/Edit</button>}
-        {immunes.map((immune) => 
-          <div key={immune.immunizationid} value={immune}>
-            <p>{immune.createdts.substr(0, 10)}</p>
-            <p>{immune.immunizationtypedsc}</p>
-            <p>{immune.routedsc}</p>
-          </div>
-          
-        )}
+        <button style={{marginTop: '20px'}} onClick={handleToggle} disabled={user.user.canedit === false}>Add/Edit</button>}
+        
 
         {immunes.length === 0 
         ? <p>This patient has not had any immunizations.</p>
@@ -101,7 +113,26 @@ const IMMUNIZATION = (props) => {
       // ////////////////////////////spanish menu////////////////////////////////////
       :
       <div>
-        <h3>Inmunización</h3>
+        <table className='enc-table'>
+            <thead className='enc-head'>
+            <tr className='enc-tr'>
+              <th className='enc-th'>fecha de inmunización</th>
+              <th className='enc-th'>tipo de inmunización</th>
+              <th className='enc-th'>Método de Inmunización</th>
+            </tr>
+            </thead>
+          
+        {immunes.map((immune) => 
+            <tbody className='enc-tr' key={immune.immunizationid} value={immune}>
+            
+            <tr className='enc-tr'>
+            <td className='enc-td'>{immune.createdts.substr(0, 10)}</td>
+            <td className='enc-td'>{immune.immunizationtypedsc}</td>
+            <td className='enc-td'>{immune.routedsc}</td>
+            </tr>
+            </tbody>
+        )}
+          </table>
         {editView
         ?
         <div>
@@ -118,15 +149,8 @@ const IMMUNIZATION = (props) => {
         <button onClick={submitImmune}>Enviar Inmunización</button>
         </div>
         :
-        <button onClick={handleToggle} disabled={user.user.canedit === false}>Add/Edit</button>}
-        {immunes.map((immune) => 
-          <div key={immune.immunizationid} value={immune}>
-            <p>{immune.createdts}</p>
-            <p>{immune.immunizationtypedsc}</p>
-            <p>{immune.routedsc}</p>
-          </div>
-          
-        )}
+        <button style={{marginTop: '20px'}} onClick={handleToggle} disabled={user.user.canedit === false}>Add/Edit</button>}
+        
 
         {immunes.length === 0 
         ? <p>Este paciente no ha tenido ninguna inmunización.</p>
