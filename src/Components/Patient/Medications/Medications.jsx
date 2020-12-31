@@ -95,9 +95,9 @@ const Medications = (props) => {
           name='effectiveenddts' 
           />      
         <p>Medication Name:</p>
-        <input name='medicationnm' placeholder='Flu, polio, etc' onChange={(e) => handleInput(e)}/>
+        <input name='medicationnm' placeholder='Tylenol, Adderal, etc' onChange={(e) => handleInput(e)}/>
         <p>Medication Description:</p>
-        <input name='medicationdsc' placeholder='injection, etc.' onChange={(e) => handleInput(e)}/>
+        <input name='medicationdsc' placeholder='For joint pain, etc.' onChange={(e) => handleInput(e)}/>
         <p>Route:</p>
         <input name='routedsc' placeholder='injection, etc.' onChange={(e) => handleInput(e)}/>
         
@@ -135,7 +135,31 @@ const Medications = (props) => {
         </tbody>
     )}
       </table>
-      <button style={{marginTop: '20px'}}>Agregar Medicación</button>
+      {editView
+        ?
+        <div>
+        <p>Fecha de Inicio:</p>
+          <input type='date' onChange={(e) => handleInput(e)}
+          name='effectivestartdts' 
+          />
+
+        <p>Fecha Final:</p>
+          <input type='date' onChange={(e) => handleInput(e)}
+          name='effectiveenddts' 
+          />      
+        <p>Nombre del Medicamento:</p>
+        <input name='medicationnm' placeholder='Tylenol, Adderal, etc' onChange={(e) => handleInput(e)}/>
+        <p>Descripción de la Medicación:</p>
+        <input name='medicationdsc' placeholder='para el dolor articular, etc.' onChange={(e) => handleInput(e)}/>
+        <p>Método:</p>
+        <input name='routedsc' placeholder='inyección, oral, etc.' onChange={(e) => handleInput(e)}/>
+        
+        <button onClick={handleToggle}>Cancelar</button>
+        <button onClick={submitMed} >Enviar medicación</button>
+        </div>
+        :
+          <button style={{marginTop: '20px'}} onClick={handleToggle}>Agregar medicación</button>
+          }
   </div>
       }
       </div>
