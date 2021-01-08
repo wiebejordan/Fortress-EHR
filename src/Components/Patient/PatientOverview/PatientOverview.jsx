@@ -46,7 +46,7 @@ const PatientOverview = (props) => {
     }
 
   
-
+   
 
 
     return (
@@ -65,7 +65,7 @@ const PatientOverview = (props) => {
 
         {/* <h3>Active Problems</h3> */}
         <h3>Allergies</h3>
-
+        
         <>
         <table className='enc-table'>
             <thead className='enc-head'>
@@ -92,7 +92,10 @@ const PatientOverview = (props) => {
 
           
         </>
-
+        {allergies.length === 0 
+        ? <p>This patient has no allergies on record</p>
+        
+        : null}
 
         {allergyEdit
         ?
@@ -163,7 +166,10 @@ const PatientOverview = (props) => {
           
         </>
         
+        {allergies.length === 0 
+        ? <p>Este paciente no tiene alergias registradas.</p>
         
+        : null}
         
         {allergyEdit
         ?

@@ -12,13 +12,7 @@ const Medications = (props) => {
         {meds, patient} = props;
         console.log(newMed);
   
-        if(meds === []){
-          return(
-            <div>
-              <p>This patient has not had any medications.</p>
-            </div>
-          )
-        }
+       
         
         const handleToggle = () => {
           setEditView(!editView)
@@ -82,6 +76,11 @@ const Medications = (props) => {
         )}
           </table>
 
+          {meds.length === 0 
+        ? <p>{patient.firstnm} has no medications on record.</p>
+        
+        : null}
+
           {editView
         ?
         <div>
@@ -135,6 +134,12 @@ const Medications = (props) => {
         </tbody>
     )}
       </table>
+
+      {meds.length === 0 
+        ? <p>{patient.firstnm} no tiene medicamentos registrados.</p>
+        
+        : null}
+
       {editView
         ?
         <div>
