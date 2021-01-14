@@ -10,7 +10,7 @@ import Immunizations from '../Immunizations/Immunizations';
 import Visualization from '../Visualization/Visualization';
 import EncounterHistory from '../ActiveProblems/EncounterHistory';
 import NewEncounter from '../NewEncounter/NewEncounter';
-
+import NewWindow from 'react-new-window';
 
 
 
@@ -24,6 +24,7 @@ import NewEncounter from '../NewEncounter/NewEncounter';
         [allergies, setAllergies] = useState([]),
         [meds, setMeds] = useState([]),
         [toggleEncounter, setToggleEncounter ] = useState(false),
+        [togglePopout, setTogglePopout] = useState(false),
         [loading, setLoading] = useState(true),
         [isBlocking, setIsBlocking] = useState(false),
   user = useSelector(state => state.authReducer),
@@ -31,7 +32,7 @@ import NewEncounter from '../NewEncounter/NewEncounter';
   history = useHistory(),
   dispatch = useDispatch(),
   lang = useSelector(state => state.languageReducer.english);
-  console.log('enc', meds)
+  console.log('enc', togglePopout)
 
   useEffect(() => {
     if(!user.user.email){
@@ -122,7 +123,11 @@ import NewEncounter from '../NewEncounter/NewEncounter';
     setToggleEncounter(!toggleEncounter)
   }
 
-  
+  const handlePopout = () => {
+    if(!togglePopout){
+      setTogglePopout(true)
+    }
+  }
 
   
   
@@ -269,7 +274,7 @@ import NewEncounter from '../NewEncounter/NewEncounter';
         ?
         <Grid.Column width={11}>
           <Segment>
-            <NewEncounter patient={patient} toggleEncounter ={toggleEncounter}/>
+            <NewEncounter patient={patient} toggleEncounter ={toggleEncounter} handlePopout = {handlePopout}/>
           </Segment>
         
         </Grid.Column>
@@ -280,6 +285,12 @@ import NewEncounter from '../NewEncounter/NewEncounter';
 
       </Grid>
       
+      {togglePopout ? 
+      <NewWindow title={`New Encounter for ${patient.lastnm}, ${patient.firstnm}`}>
+        <NewEncounter patient={patient} toggleEncounter ={toggleEncounter}/>
+      </NewWindow>
+      : null}
+
       <Prompt
       when={isBlocking === true}
       message={lang === true ?'You have a new encounter with unsaved changes, are you sure you want to leave?' : 'Tienes un nuevo encuentro con cambios no guardados, ¿estás seguro de que quieres irte?'}

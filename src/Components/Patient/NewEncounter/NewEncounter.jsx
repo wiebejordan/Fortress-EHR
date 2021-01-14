@@ -4,6 +4,8 @@ import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import {usePrompt, useBlocker} from 'react-router-dom';
 import { Prompt } from 'react-router-dom';
+import {Button, Icon} from 'semantic-ui-react';
+
 
 const NewEncounter = (props) => {
 
@@ -80,14 +82,26 @@ const NewEncounter = (props) => {
   }
 
   
+  
 
   return(
     <div>
       <div>
         {lang === true
-        ? <h2>New Encounter</h2>
+        ? 
+        <div>
+          <h2>New Encounter</h2>
+          <Button icon onClick={props.handlePopout}>
+            <Icon name='external alternate'/>
+          </Button>
+          </div>
         : 
-        <h2>Nuevo Encuentro</h2>
+        <div>
+          <h2>Nuevo Encuentro</h2>
+          <Button icon onClick={props.handlePopout}>
+            <Icon name='external alternate'/>
+          </Button>
+          </div>
         }
         
         {lang === true
