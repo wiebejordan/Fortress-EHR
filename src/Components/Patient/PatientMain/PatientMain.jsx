@@ -127,6 +127,9 @@ import NewWindow from 'react-new-window';
     if(!togglePopout){
       setTogglePopout(true)
     }
+    if(togglePopout){
+      setTogglePopout(false)
+    }
   }
 
   
@@ -286,8 +289,8 @@ import NewWindow from 'react-new-window';
       </Grid>
       
       {togglePopout ? 
-      <NewWindow title={`New Encounter for ${patient.lastnm}, ${patient.firstnm}`}>
-        <NewEncounter patient={patient} toggleEncounter ={toggleEncounter}/>
+      <NewWindow title={`New Encounter for ${patient.lastnm}, ${patient.firstnm}`} name='newEncPopout'>
+        <NewEncounter patient={patient} toggleEncounter ={toggleEncounter} togglePopout={togglePopout}/>
       </NewWindow>
       : null}
 

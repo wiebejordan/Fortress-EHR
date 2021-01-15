@@ -17,7 +17,7 @@ const NewEncounter = (props) => {
   dispatch = useDispatch();
 
   // console.log(isBlocking)
-  console.log('encounter', encounter)
+  console.log('props', props)
 
   
 
@@ -76,6 +76,7 @@ const NewEncounter = (props) => {
         alert('Nuevo encuentro agregada!')
       }
       window.location.reload(true)
+      props.handlePopout()
     })
     .catch(err => console.log(err));
     
@@ -91,9 +92,11 @@ const NewEncounter = (props) => {
         ? 
         <div>
           <h2>New Encounter</h2>
+          
           <Button icon onClick={props.handlePopout}>
             <Icon name='external alternate'/>
           </Button>
+          
           </div>
         : 
         <div>
