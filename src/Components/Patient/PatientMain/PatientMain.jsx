@@ -289,8 +289,9 @@ import NewWindow from 'react-new-window';
       </Grid>
       
       {togglePopout ? 
-      <NewWindow title={`New Encounter for ${patient.lastnm}, ${patient.firstnm}`} name='newEncPopout'>
-        <NewEncounter patient={patient} toggleEncounter ={toggleEncounter} togglePopout={togglePopout}/>
+      <NewWindow title={`New Encounter for ${patient.lastnm}, ${patient.firstnm}`} name='newEncPopout' onUnload={handlePopout}>
+        <NewEncounter patient={patient} toggleEncounter ={toggleEncounter} togglePopout={togglePopout}
+        handlePopout={handlePopout}/>
       </NewWindow>
       : null}
 
