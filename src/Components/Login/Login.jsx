@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import axios from 'axios';
 import {useSelector, useDispatch} from 'react-redux';
-import { Menu, Segment, Grid, Image, Container, Divider } from 'semantic-ui-react';
+import { Menu, Segment, Grid, Image, Container, Divider, Input } from 'semantic-ui-react';
 import {Link} from 'react-router-dom';
 import '../../styles/style.scss'
 
@@ -60,8 +60,10 @@ const Login = (props) => {
     <div className='login-box'>
       <h4>Welcome to FORTRESS Electronic Health Records!</h4>
       <form onSubmit={handleLogin}>
-      <input onChange={(e) => handleUserInput(e.target.value)} placeholder='email'/>
-      <input onChange={(e) => handlePassInput(e.target.value)} placeholder='password' type='password'/>
+      <Grid centered padded style={{margin: '0'}}>
+      <Input style={{marginBottom: '5px'}} onChange={(e) => handleUserInput(e.target.value)} placeholder='email'/>
+      <Input onChange={(e) => handlePassInput(e.target.value)} placeholder='password' type='password'/>
+      </Grid>
       <button>Login</button>
       </form>
       <Link to='/newuser'>

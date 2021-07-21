@@ -4,7 +4,7 @@ import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import {usePrompt, useBlocker} from 'react-router-dom';
 import { Prompt } from 'react-router-dom';
-import {Button, Icon} from 'semantic-ui-react';
+import {Button, Icon, Input, Form, TextArea, Grid} from 'semantic-ui-react';
 
 
 const NewEncounter = (props) => {
@@ -110,61 +110,81 @@ const NewEncounter = (props) => {
         {lang === true
         ?
         <div>
-          <p>Date</p>
-          <input type='date' onChange={(e) => handleInput(e)}
+         <Grid container centered stackable verticalAlign='middle'  >
+           <Grid.Row columns={2} >
+          <Grid.Column> 
+          <Input type='date' onChange={(e) => handleInput(e)}
           name='encounterdts' defaultValue={newEnc.encounterdts}
+          label='Date' labelPosition='left '
           />
 
-          <p>Weight</p>
-          <input onChange={(e) => handleInput(e)}
+          
+          <Input onChange={(e) => handleInput(e)}
           type='number'
           name='weight_lbs' defaultValue={newEnc.weight_lbs}
+          label='Weight' labelPosition='left '
           />
 
-          <p>Height</p>
-          <input onChange={(e) => handleInput(e)}
+          
+          <Input onChange={(e) => handleInput(e)}
           type='number'
           name='height_inch' defaultValue={newEnc.height_inch}
+          label='Height' labelPosition='left '
           />
 
+          </Grid.Column>
 
-          <p>Systolic BP</p>
-          <input onChange={(e) => handleNumberInput(e)}
+          <Grid.Column verticalAlign='middle'>
+          
+          <Input onChange={(e) => handleNumberInput(e)}
           name='systolic_bp'
           type='number'
           defaultValue={newEnc.systolic_bp}
+          label='Systolic BP' labelPosition='left '
           />
 
-          <p>Diastolic BP</p>
-          <input onChange={(e) => handleNumberInput(e)}
+        
+          <Input onChange={(e) => handleNumberInput(e)}
           name='diastolic_bp'
           type='number'
           defaultValue={newEnc.diastolic_bp}
+          label='Diastolic BP' labelPosition='left '
           />
 
-          <p>Heart Rate</p>
-          <input onChange={(e) => handleNumberInput(e)}
+        
+          <Input onChange={(e) => handleNumberInput(e)}
           name='heart_rate'
           type='number'
           defaultValue={newEnc.heart_rate}
+          label='Heart Rate' labelPosition='left '
           />
 
-          <p>Respirations per min</p>
-          <input onChange={(e) => handleNumberInput(e)}
+          
+          <Input onChange={(e) => handleNumberInput(e)}
           name='respirations_min'
           type='number'
           defaultValue={newEnc.respirations_min}
+          label='Respirations /min' labelPosition='left '
           />
+          </Grid.Column>
+          </Grid.Row>
 
-          <p>Encounter Notes</p>
-          <textarea
+          <Grid.Row verticalAlign='middle'>
+           
+          <Form>
+          <TextArea
           onChange={(e) => handleInput(e)}
           name='commenttxt'
           style={{resize: 'none', width: '100%', height: '200px', overflow: 'auto'}}
           defaultValue={newEnc.commenttxt}
           />
-
-          <button onClick={handleSubmit}>Submit New Encounter</button>
+          </Form>
+          </Grid.Row>
+          
+          <Grid.Row>
+          <Button onClick={handleSubmit}>Submit New Encounter</Button>
+          </Grid.Row>
+          </Grid>
         </div>
         
         :
