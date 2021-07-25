@@ -18,7 +18,7 @@ function App(props) {
          history = useHistory(),
          user = useSelector(state => state.authReducer),
          lang = useSelector(state => state.languageReducer),
-         idle = useSelector(state => state.idleReducer),
+         idle = useSelector(state => state.idleReducer), 
          dispatch = useDispatch();
 
         useEffect(() => {

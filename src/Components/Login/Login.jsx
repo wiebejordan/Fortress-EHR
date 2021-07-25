@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import axios from 'axios';
 import {useSelector, useDispatch} from 'react-redux';
-import { Menu, Segment, Grid, Image, Container, Divider, Input } from 'semantic-ui-react';
+import { Menu, Segment, Grid, Image, Container, Divider, Input, Button } from 'semantic-ui-react';
 import {Link} from 'react-router-dom';
 import '../../styles/style.scss'
 
@@ -64,7 +64,7 @@ const Login = (props) => {
       <Input style={{marginBottom: '5px'}} onChange={(e) => handleUserInput(e.target.value)} placeholder='email'/>
       <Input onChange={(e) => handlePassInput(e.target.value)} placeholder='password' type='password'/>
       </Grid>
-      <button>Login</button>
+      <Button>Login</Button>
       </form>
       <Link to='/newuser'>
       <button>New User</button>
