@@ -100,7 +100,7 @@ const PatientList = (items, config = null, props) => {
   }
 
   return (
-    <div style={{height: '86vh'}}>
+    <div style={{height: '86vh', overflow: 'auto'}}>
       <Grid container direction='column' alignItems='center'>
       <h1>Patient List</h1>
 

@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Menu, Segment } from 'semantic-ui-react';
 import {useSelector} from 'react-redux';
 import axios from 'axios';
+import DataTable from '../../Global/data-table.component'
 
 
 const PatientOverview = (props) => {
@@ -10,7 +11,7 @@ const PatientOverview = (props) => {
         [newAllergy, setNewAllergy] = useState({typedsc: '', createdts: '', allergydsc: '', severitydsc: '', reactiondsc: ''}),
         lang = useSelector(state => state.languageReducer.english),
         {user, patient, encounters, allergies} = props
-        console.log(allergies)
+        
 
     
  
@@ -44,9 +45,42 @@ const PatientOverview = (props) => {
       })
       .catch(err => console.log(err));
     }
+    
+
+    const columns = [
+      {
+        label: 'Date Added',
+        name: 'createdts',
+        options: {
+          customBodyRender: (record, index) => {
+            return record.substr(0, 10)
+          }
+        }
+      },
+      {
+        label: 'Allergy Type',
+        name: 'typedsc'
+      },
+      {
+        label: 'Severity',
+        name: 'severitydsc'
+      },
+      {
+        label: 'Reactions',
+        name: 'reactiondsc'
+      },
+    ]
 
   
-   
+    const options = {
+      download: false,
+      enableNestedDataAccess: '.',
+      print: false,
+      selectableRows: 'none',
+      tableBodyHeight: 'auto',
+      searchOpen: false,
+      viewColumns: false,
+    }
 
 
     return (
@@ -63,40 +97,7 @@ const PatientOverview = (props) => {
         <p>Latest Encounter Date: <b>{encounters[encounters.length-1].encounterdts}</b></p>
         <p>Recent Notes: <b>{encounters[encounters.length-1].commenttxt}</b></p>
 
-        {/* <h3>Active Problems</h3> */}
-        <h3>Allergies</h3>
-        
-        <>
-        <table className='enc-table'>
-            <thead className='enc-head'>
-            <tr className='enc-tr'>
-              <th className='enc-th'>Date Added</th>
-              <th className='enc-th'>Allergy Type</th>
-              <th className='enc-th'>Severity</th>
-              <th className='enc-th'>Reactions</th>
-            </tr>
-            </thead>
-          
-        {allergies.map((allergy) => 
-            <tbody className='enc-tr' key={allergy.immunizationid} value={allergy}>
-            
-            <tr className='enc-tr'>
-            <td className='enc-td'>{allergy.createdts.substr(0, 10)}</td>
-            <td className='enc-td'>{allergy.typedsc}</td>
-            <td className='enc-td'>{allergy.severitydsc}</td>
-            <td className='enc-td'>{allergy.reactiondsc}</td>
-            </tr>
-            </tbody>
-        )}
-          </table>
-
-          
-        </>
-        {allergies.length === 0 
-        ? <p>This patient has no allergies on record</p>
-        
-        : null}
-
+        <DataTable data={allergies} columns={columns} options={options} title={'Allergies'}  />
         {allergyEdit
         ?
         <div>

@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Menu, Segment } from 'semantic-ui-react';
 import {useSelector} from 'react-redux';
 import axios from 'axios';
+import DataTable from '../../Global/data-table.component'
 
 const IMMUNIZATION = (props) => {
   const [item, setItem] = useState('overview'),
@@ -11,7 +12,7 @@ const IMMUNIZATION = (props) => {
         
         {patient, user} = props,
         lang = useSelector(state => state.languageReducer.english)
-        console.log(newImmune)
+        console.log(immunes)
 
 
     useEffect(() => {
@@ -58,6 +59,38 @@ const IMMUNIZATION = (props) => {
       )
     }
 
+    const columns = [
+      {
+        label: 'Immunization Date',
+        name: 'createdts',
+        options: {
+          customBodyRender: (record, index) => {
+            return record.substr(0, 10)
+          }
+        }
+      },
+      {
+        label: 'Immunization Type',
+        name: 'immunizationtypedsc'
+      },
+      {
+        label: 'Route',
+        name: 'routedsc'
+      },
+     
+    ]
+
+  
+    const options = {
+      download: false,
+      enableNestedDataAccess: '.',
+      print: false,
+      selectableRows: 'none',
+      tableBodyHeight: 'auto',
+      searchOpen: false,
+      viewColumns: false,
+    }
+
 
     return (
       <div style={{height: '400px', width: 'auto', overflow:'auto'}}>
@@ -66,26 +99,9 @@ const IMMUNIZATION = (props) => {
       {lang === true
       ?
       <div>
-        <table className='enc-table'>
-            <thead className='enc-head'>
-            <tr className='enc-tr'>
-              <th className='enc-th'>Immunization Date</th>
-              <th className='enc-th'>Immunization Type</th>
-              <th className='enc-th'>Route</th>
-            </tr>
-            </thead>
-          
-        {immunes.map((immune) => 
-            <tbody className='enc-tr' key={immune.immunizationid} value={immune}>
-            
-            <tr className='enc-tr'>
-            <td className='enc-td'>{immune.createdts.substr(0, 10)}</td>
-            <td className='enc-td'>{immune.immunizationtypedsc}</td>
-            <td className='enc-td'>{immune.routedsc}</td>
-            </tr>
-            </tbody>
-        )}
-          </table>
+      
+
+          <DataTable data={immunes} columns={columns} options={options} />
         {editView
         ?
         <div>

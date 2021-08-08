@@ -221,7 +221,7 @@ import NewWindow from 'react-new-window';
       }
       </Grid.Column>
 
-      <Grid.Column  width={11}>
+      <Grid.Column  width={13}>
       <Segment>
         {item === 'overview' || item === 'visión de conjunto'
         ? <PatientOverview patient={patient} encounters={encounters} immunes={immunes} allergies={allergies} user={user} meds={meds}/>

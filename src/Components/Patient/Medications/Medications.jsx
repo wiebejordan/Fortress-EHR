@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Menu, Segment } from 'semantic-ui-react';
 import {useSelector} from 'react-redux';
 import axios from 'axios';
+import DataTable from '../../Global/data-table.component'
 
 const Medications = (props) => {
 
@@ -10,7 +11,7 @@ const Medications = (props) => {
   
         lang = useSelector(state => state.languageReducer.english),
         {meds, patient} = props;
-        console.log(newMed);
+        console.log(meds);
   
        
         
@@ -45,36 +46,62 @@ const Medications = (props) => {
           .catch(err => console.log(err));
         }
 
+        const columns = [
+          
+          {
+            label: 'Medication Name',
+            name: 'medicationnm'
+          },
+          {
+            label: 'Description',
+            name: 'medicationdsc'
+          },
+          {
+            label: 'Route',
+            name: 'routedsc'
+          },
+          {
+            label: 'Start Date',
+            name: 'effectivestartdts',
+            options: {
+              customBodyRender: (record, index) => {
+                return record.substr(0, 10)
+              }
+            }
+          },
+          {
+            label: 'End Date',
+            name: 'effectiveenddts',
+            options: {
+              customBodyRender: (record, index) => {
+                return record.substr(0, 10)
+              }
+            }
+          },
+         
+        ]
+    
+      
+        const options = {
+          download: false,
+          enableNestedDataAccess: '.',
+          print: false,
+          selectableRows: 'none',
+          tableBodyHeight: 'auto',
+          searchOpen: false,
+          viewColumns: false,
+        }
+  
+
     return (
       <div style={{height: '400px', width: 'auto', overflow: 'auto'}}>
       
       {lang === true
       ?
       <div className='enc-table-container'>
-          <table className='enc-table'>
-            <thead className='enc-head'>
-            <tr className='enc-tr'>
-              <th className='enc-th'>Medication Name</th>
-              <th className='enc-th'>Description</th>
-              <th className='enc-th'>Route</th>
-              <th className='enc-th'>Start Date</th>
-              <th className='enc-th'>End Date</th>
-            </tr>
-            </thead>
-          
-        {meds.map((med) => 
-            <tbody className='enc-tr' key={med.medicationid} value={med}>
-            
-            <tr className='enc-tr'>
-            <td className='enc-td'>{med.medicationnm.substr(0, 10)}</td>
-            <td className='enc-td'>{med.medicationdsc}</td>
-            <td className='enc-td'>{med.routedsc}</td>
-            <td className='enc-td'>{med.effectivestartdts.substr(0, 10)}</td>
-            <td className='enc-td'>{med.effectiveenddts.substr(0, 10)}</td>
-            </tr>
-            </tbody>
-        )}
-          </table>
+     
+
+          <DataTable data={meds} columns={columns} options={options} />
 
           {meds.length === 0 
         ? <p>{patient.firstnm} has no medications on record.</p>

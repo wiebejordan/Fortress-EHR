@@ -109,7 +109,10 @@ function App(props) {
   return (
     <div>
       <Nav/>
+      <div >
+
       {routes}
+      </div>
       
       
       {lang.english 
@@ -176,7 +179,9 @@ function App(props) {
       </Modal.Content>
     </Modal>}
     
+
     <Footer/>
+   
     
     </div>
   );
