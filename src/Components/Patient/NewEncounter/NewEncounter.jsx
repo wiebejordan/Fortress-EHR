@@ -4,7 +4,9 @@ import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import {usePrompt, useBlocker} from 'react-router-dom';
 import { Prompt } from 'react-router-dom';
-import {Button, Icon, Input, Form, TextArea, Grid} from 'semantic-ui-react';
+import {Button, TextField, Grid, IconButton} from '@material-ui/core';
+import OpenInNewIcon from '@material-ui/icons/OpenInNew';
+
 
 
 const NewEncounter = (props) => {
@@ -92,98 +94,110 @@ const NewEncounter = (props) => {
         ? 
         <div>
           <h2>New Encounter</h2>
+       <IconButton onClick={props.handlePopout}>
+
+            <OpenInNewIcon />
+       </IconButton>
           
-          <Button icon onClick={props.handlePopout}>
-            <Icon name='external alternate'/>
-          </Button>
           
           </div>
         : 
         <div>
           <h2>Nuevo Encuentro</h2>
-          <Button icon onClick={props.handlePopout}>
-            <Icon name='external alternate'/>
-          </Button>
+         <IconButton onClick={props.handlePopout}>
+            <OpenInNewIcon />
+
+         </IconButton>
+         
           </div>
         }
         
         {lang === true
         ?
         <div>
-         <Grid container centered stackable verticalAlign='middle'  >
-           <Grid.Row columns={2} >
-          <Grid.Column> 
-          <Input type='date' onChange={(e) => handleInput(e)}
-          name='encounterdts' defaultValue={newEnc.encounterdts}
-          label='Date' labelPosition='left '
+         <Grid container direction='column' justify='space-around' alignItems='center' style={{height: '550px'}}  >
+         <Grid container justify='space-around' >
+           <Grid container direction='column' xs={3}>
+          <TextField type='date' onChange={(e) => handleInput(e)}
+          name='encounterdts' value={newEnc.encounterdts}
+          label='Encounter Date' variant='outlined'
+          style={{marginTop: '10px', marginBottom: '10px'}}
           />
 
           
-          <Input onChange={(e) => handleInput(e)}
+          <TextField onChange={(e) => handleInput(e)}
           type='number'
           name='weight_lbs' defaultValue={newEnc.weight_lbs}
-          label='Weight' labelPosition='left '
+          label='Weight' variant='outlined'
+          style={{marginTop: '10px', marginBottom: '10px'}}
           />
 
           
-          <Input onChange={(e) => handleInput(e)}
+          <TextField onChange={(e) => handleInput(e)}
           type='number'
           name='height_inch' defaultValue={newEnc.height_inch}
-          label='Height' labelPosition='left '
+          label='Height' variant='outlined'
+          style={{marginTop: '10px', marginBottom: '10px'}}
           />
 
-          </Grid.Column>
-
-          <Grid.Column verticalAlign='middle'>
+     
           
-          <Input onChange={(e) => handleNumberInput(e)}
+          <TextField onChange={(e) => handleNumberInput(e)}
           name='systolic_bp'
           type='number'
           defaultValue={newEnc.systolic_bp}
-          label='Systolic BP' labelPosition='left '
+          label='Systolic BP' variant='outlined'
+          style={{marginTop: '10px', marginBottom: '10px'}}
           />
-
-        
-          <Input onChange={(e) => handleNumberInput(e)}
+          </Grid>
+          <Grid container direction='column' xs={3}>
+          <TextField onChange={(e) => handleNumberInput(e)}
           name='diastolic_bp'
           type='number'
           defaultValue={newEnc.diastolic_bp}
-          label='Diastolic BP' labelPosition='left '
+          label='Diastolic BP' variant='outlined'
+          style={{marginTop: '10px', marginBottom: '10px'}}
           />
 
         
-          <Input onChange={(e) => handleNumberInput(e)}
+          <TextField onChange={(e) => handleNumberInput(e)}
           name='heart_rate'
           type='number'
           defaultValue={newEnc.heart_rate}
-          label='Heart Rate' labelPosition='left '
+          label='Heart Rate' variant='outlined'
+          style={{marginTop: '10px', marginBottom: '10px'}}
           />
 
           
-          <Input onChange={(e) => handleNumberInput(e)}
+          <TextField onChange={(e) => handleNumberInput(e)}
           name='respirations_min'
           type='number'
           defaultValue={newEnc.respirations_min}
-          label='Respirations /min' labelPosition='left '
+          label='Respirations /min' variant='outlined'
+          style={{marginTop: '10px', marginBottom: '10px'}}
           />
-          </Grid.Column>
-          </Grid.Row>
+          </Grid>
+         </Grid>
 
-          <Grid.Row verticalAlign='middle'>
+         
            
-          <Form>
-          <TextArea
+         <Grid container direction='column' alignItems='center'>
+          <TextField
+          multiline
+          label='Encounter Notes'
+          variant='outlined'
           onChange={(e) => handleInput(e)}
           name='commenttxt'
-          style={{resize: 'none', width: '100%', height: '200px', overflow: 'auto'}}
+          style={{width: '800px'}}
+          rows={4}
           defaultValue={newEnc.commenttxt}
           />
-          </Form>
-          </Grid.Row>
-          
-          <Grid.Row>
-          <Button onClick={handleSubmit}>Submit New Encounter</Button>
-          </Grid.Row>
+       
+        
+          <Button style={{margin: '25px'}} variant='contained' onClick={handleSubmit}>Submit New Encounter</Button>
+
+         </Grid>
+         
           </Grid>
         </div>
         
@@ -192,50 +206,53 @@ const NewEncounter = (props) => {
         
         <div>
           <p>Fecha del Encuentro</p>
-          <input type='date' onChange={(e) => handleInput(e)}
+          <TextField type='date' onChange={(e) => handleInput(e)}
           name='encounterdts' defaultValue={newEnc.encounterdts}/>
 
           <p>Peso</p>
-          <input onChange={(e) => handleInput(e)}
+          <TextField onChange={(e) => handleInput(e)}
           name='weight_lbs' defaultValue={newEnc.weight_lbs}
           />
 
           <p>Altura</p>
-          <input onChange={(e) => handleInput(e)}
+          <TextField onChange={(e) => handleInput(e)}
           name='height_inch'
           defaultValue={newEnc.height_inch}
           />
 
           <p>Presión Arterial Sistólica</p>
-          <input onChange={(e) => handleNumberInput(e)}
+          <TextField onChange={(e) => handleNumberInput(e)}
           name='systolic_bp'
           type='number'
           defaultValue={newEnc.systolic_bp}
           />
 
           <p>Presión Arterial Diastólica</p>
-          <input onChange={(e) => handleNumberInput(e)}
+          <TextField onChange={(e) => handleNumberInput(e)}
           name='diastolic_bp'
           type='number'
           defaultValue={newEnc.diastolic_bp}
           />
 
           <p>Ritmo Cardiaco</p>
-          <input onChange={(e) => handleNumberInput(e)}
+          <TextField onChange={(e) => handleNumberInput(e)}
           name='heart_rate'
           type='number'
           defaultValue={newEnc.heart_rate}
           />
 
           <p>Respiraciones Por Minuto</p>
-          <input onChange={(e) => handleNumberInput(e)}
+          <TextField onChange={(e) => handleNumberInput(e)}
           name='respirations_min'
           type='number'
           defaultValue={newEnc.respirations_min}
           />
 
           <p>Notas de Encuentro</p>
-          <textarea
+          <TextField
+          multiline
+          label='Encounter Notes'
+          variant='outlined'
           onChange={(e) => handleInput(e)}
           name='commenttxt'
           style={{resize: 'none', width: '100%', height: '200px', overflow: 'auto'}}

@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useMemo } from "react";
 import { Link, useHistory } from "react-router-dom";
 import { useSelector } from "react-redux";
-import {  Dimmer, Loader, Input, Segment } from "semantic-ui-react";
+import {Button} from '@material-ui/core'
 import axios from 'axios';
 import '../../styles/style.scss'
 import Datatable from '../Global/data-table.component'
@@ -103,7 +103,7 @@ const PatientList = (items, config = null, props) => {
     <div style={{height: '86vh', overflow: 'auto'}}>
       <Grid container direction='column' alignItems='center'>
       <h1>Patient List</h1>
-
+      <Button onClick={() => history.push('/newpatient')} variant='contained' disabled={user.user.canedit === false} style={{margin: '10px'}}>New Patient</Button>
       <div style={{width: '80%'}}>
 
       <Datatable data={patientList} columns={columns} options={options}  />
