@@ -3,6 +3,7 @@ import { Menu, Segment } from 'semantic-ui-react';
 import {useSelector} from 'react-redux';
 import axios from 'axios';
 import DataTable from '../../Global/data-table.component'
+import {get} from 'lodash'
 
 
 const PatientOverview = (props) => {
@@ -94,8 +95,8 @@ const PatientOverview = (props) => {
           </h1>
         <p>Birthdate: <b>{patient.birthdts.substr(0, 10)}</b></p>
         <p>Gender: <b>{patient.genderdsc}</b> </p>
-        <p>Latest Encounter Date: <b>{encounters[encounters.length-1].encounterdts}</b></p>
-        <p>Recent Notes: <b>{encounters[encounters.length-1].commenttxt}</b></p>
+        <p>Latest Encounter Date: <b>{get(encounters[encounters.length-1], 'encounterdts', 'n/a')}</b></p>
+        <p>Recent Notes: <b>{get(encounters[encounters.length-1], 'commenttxt', 'n/a')}</b></p>
 
         <DataTable data={allergies} columns={columns} options={options} title={'Allergies'}  />
         {allergyEdit
