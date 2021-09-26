@@ -1,5 +1,9 @@
 import React, { useEffect, useState } from 'react';
-import { Menu, Segment } from 'semantic-ui-react';
+import {
+  TextField,
+  Grid,
+  Button,
+} from "@material-ui/core";
 import {useSelector} from 'react-redux';
 import axios from 'axios';
 import DataTable from '../../Global/data-table.component'
@@ -89,6 +93,11 @@ const IMMUNIZATION = (props) => {
       tableBodyHeight: 'auto',
       searchOpen: false,
       viewColumns: false,
+      textLabels: {
+        body: {
+          noMatch: `${patient.firstnm} has no immunizations on record.`
+        }
+      }
     }
 
 
@@ -104,21 +113,55 @@ const IMMUNIZATION = (props) => {
           <DataTable data={immunes} columns={columns} options={options} />
         {editView
         ?
-        <div>
-        <p>Today's Date</p>
-          <input type='date' onChange={(e) => handleInput(e)}
-          name='createdts' 
+       
+           <Grid style={{marginTop: '25px', marginBottom: '25px'}} container direction='column' justifyContent='space-around' alignItems='center'>
+          <h2>New Immunization Form</h2>
+        <Grid container justifyContent='center' alignItems='center'>
+         
+          <Grid container direction='column' alignItems='center' xs={3}>
+        <TextField
+            variant="outlined"
+            type="date"
+            label="Today's Date"
+            onChange={(e) => handleInput(e)}
+            name="createdts"
+            style={{marginBottom: '20px'}}
+            InputLabelProps={{ shrink: true }}
           />
-        <p>Immunization Type:</p>
-        <input name='immunizationtypedsc' placeholder='Flu, polio, etc' onChange={(e) => handleInput(e)}/>
-        <p>Route:</p>
-        <input name='routedsc' placeholder='injection, etc.' onChange={(e) => handleInput(e)}/>
+
+<TextField
+            variant="outlined"
+            label="Immunization Type"
+            onChange={(e) => handleInput(e)}
+            name="immunizationtypedsc"
+            style={{marginBottom: '20px'}}
+            
+          />
+   
+        <TextField
+            variant="outlined"
+            label="Route"
+            onChange={(e) => handleInput(e)}
+            name="routedsc"
+            style={{marginBottom: '20px'}}
+          />
+
+
+
+        </Grid>
+
         
-        <button onClick={handleToggle}>Cancel</button>
-        <button onClick={submitImmune}>Submit Immunization</button>
-        </div>
+        
+       
+       <Grid container justifyContent='center'>
+        <Button style={{marginRight: '20px'}} onClick={handleToggle} children={'Cancel'} variant='contained'/>
+        <Button onClick={submitImmune} children={'Submit Immunization'} variant='contained' />
+        </Grid>
+        </Grid>
+        </Grid>
+        
         :
-        <button style={{marginTop: '20px'}} onClick={handleToggle} disabled={user.user.canedit === false}>Add/Edit</button>}
+        <Button style={{marginTop: '20px'}} variant='contained' onClick={handleToggle} disabled={user.user.canedit === false}>Add/Edit</Button>}
         
 
         {immunes.length === 0 

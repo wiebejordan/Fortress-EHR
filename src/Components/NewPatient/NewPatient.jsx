@@ -104,6 +104,7 @@ const NewPatient = () => {
             label="Birthdate"
             onChange={(e) => handleInput(e)}
             name="birthdts"
+            InputLabelProps={{ shrink: true }}
           ></TextField>
           </Grid>
           <Grid container style={{marginBottom: '25px'}} xs={5} justifyContent='space-around' >

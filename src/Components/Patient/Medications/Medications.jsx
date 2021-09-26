@@ -1,5 +1,9 @@
 import React, { useState } from 'react';
-import { Menu, Segment } from 'semantic-ui-react';
+import {
+  TextField,
+  Grid,
+  Button,
+} from "@material-ui/core";
 import {useSelector} from 'react-redux';
 import axios from 'axios';
 import DataTable from '../../Global/data-table.component'
@@ -90,6 +94,11 @@ const Medications = (props) => {
           tableBodyHeight: 'auto',
           searchOpen: false,
           viewColumns: false,
+          textLabels: {
+            body: {
+              noMatch: `${patient.firstnm} has no medications on record.`
+            }
+          }
         }
   
 
@@ -103,35 +112,76 @@ const Medications = (props) => {
 
           <DataTable data={meds} columns={columns} options={options} />
 
-          {meds.length === 0 
-        ? <p>{patient.firstnm} has no medications on record.</p>
-        
-        : null}
+         
 
           {editView
         ?
-        <div>
-        <p>Start Date</p>
-          <input type='date' onChange={(e) => handleInput(e)}
-          name='effectivestartdts' 
+     
+           <Grid style={{marginTop: '25px', marginBottom: '25px'}} container direction='column' justifyContent='space-around' alignItems='center'>
+          <h2>New Medication Form</h2>
+        <Grid container justifyContent='center' alignItems='center'>
+         
+          <Grid container direction='column' alignItems='center' xs={3}>
+        <TextField
+            variant="outlined"
+            type="date"
+            label="Start Date"
+            onChange={(e) => handleInput(e)}
+            name="effectivestartdts"
+            style={{marginBottom: '20px'}}
+            InputLabelProps={{ shrink: true }}
           />
 
-        <p>End Date</p>
-          <input type='date' onChange={(e) => handleInput(e)}
-          name='effectiveenddts' 
-          />      
-        <p>Medication Name:</p>
-        <input name='medicationnm' placeholder='Tylenol, Adderal, etc' onChange={(e) => handleInput(e)}/>
-        <p>Medication Description:</p>
-        <input name='medicationdsc' placeholder='For joint pain, etc.' onChange={(e) => handleInput(e)}/>
-        <p>Route:</p>
-        <input name='routedsc' placeholder='injection, etc.' onChange={(e) => handleInput(e)}/>
+<TextField
+            variant="outlined"
+            type="date"
+            label="End Date"
+            onChange={(e) => handleInput(e)}
+            name="effectiveenddts"
+            style={{marginBottom: '20px'}}
+            InputLabelProps={{ shrink: true }}
+          />
+   
+        <TextField
+            variant="outlined"
+            label="Medication Name"
+            onChange={(e) => handleInput(e)}
+            name="medicationnm"
+            style={{marginBottom: '20px'}}
+          />
+
+
+
+        </Grid>
+
         
-        <button onClick={handleToggle}>Cancel</button>
-        <button onClick={submitMed} >Submit Medication</button>
-        </div>
+        
+        <Grid container direction='column' justifyContent='flex-start' alignItems='center' xs={3}>
+        <TextField
+            variant="outlined"
+            label="Medication Description"
+            onChange={(e) => handleInput(e)}
+            name="medicationdsc"
+            style={{marginBottom: '20px'}}
+          />
+
+<TextField
+            variant="outlined"
+            label="Route"
+            onChange={(e) => handleInput(e)}
+            name="routedsc"
+            style={{marginBottom: '20px'}}
+          />
+       </Grid>
+       <Grid container justifyContent='center'>
+        <Button style={{marginRight: '20px'}} onClick={handleToggle} children={'Cancel'} variant='contained'/>
+        <Button onClick={submitMed} children={'Submit Medication'} variant='contained' />
+        </Grid>
+        </Grid>
+        </Grid>
+       
         :
-          <button style={{marginTop: '20px'}} onClick={handleToggle}>Add Medication</button>
+          <Button style={{marginTop: '20px', marginBottom: '25px'}} variant='contained' onClick={handleToggle}>Add Medication</Button>
           }
       </div>
       // ////////////////////////////spanish menu////////////////////////////////////

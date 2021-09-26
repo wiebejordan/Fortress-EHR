@@ -1,5 +1,9 @@
 import React, { useState } from 'react';
-import { Menu, Segment } from 'semantic-ui-react';
+import {
+  TextField,
+  Grid,
+  Button,
+} from "@material-ui/core";
 import {useSelector} from 'react-redux';
 import userEvent from '@testing-library/user-event';
 import axios from 'axios';
@@ -49,15 +53,18 @@ const PatientHistory = (props) => {
 
         {editView
         ? <div>
-          <textarea defaultValue={props.patient.history} onChange={handleInput} style={{resize: 'none', width: '90%', height: '200px'}}/>
-          <button onClick={toggleEdit}>Cancel</button>
-          <button onClick={handleHistoryEdit}>Save Changes</button>
+          <TextField defaultValue={props.patient.history} onChange={handleInput} multiline minRows="5" variant='outlined' style={{width: '100%'}}/>
+          <Grid style={{marginTop: '25px'}}>
+          <Button variant='contained' style={{marginRight: '25px'}} onClick={toggleEdit}>Cancel</Button>
+          <Button variant='contained' onClick={handleHistoryEdit}>Save Changes</Button>
+
+          </Grid>
         </div>
         : null}
         
         {props.user.user.canedit && !editView
         ? 
-        <button onClick={toggleEdit}>edit</button>
+        <Button onClick={toggleEdit} variant='contained'>edit</Button>
         : null}
       </div>
       // ////////////////////////////spanish menu////////////////////////////////////
@@ -68,10 +75,11 @@ const PatientHistory = (props) => {
       </div>
       }
       {editView
-        ? <div>
-          <textarea defaultValue={props.patient.history} onChange={handleInput} style={{resize: 'none', width: '90%', height: '200px'}}/>
+        ? 
+        <div>
+          {/* <textarea defaultValue={props.patient.history} onChange={handleInput} style={{resize: 'none', width: '90%', height: '200px'}}/>
           <button onClick={toggleEdit}>Cancel</button>
-          <button onClick={handleHistoryEdit}>Save Changes</button>
+          <button onClick={handleHistoryEdit}>Save Changes</button> */}
         </div>
         : null}
         

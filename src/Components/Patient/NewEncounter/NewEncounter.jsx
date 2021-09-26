@@ -122,6 +122,7 @@ const NewEncounter = (props) => {
           name='encounterdts' value={newEnc.encounterdts}
           label='Encounter Date' variant='outlined'
           style={{marginTop: '10px', marginBottom: '10px'}}
+          InputLabelProps={{ shrink: true }}
           />
 
           

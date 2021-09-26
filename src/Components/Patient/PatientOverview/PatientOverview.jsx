@@ -1,5 +1,14 @@
 import React, { useEffect, useState } from 'react';
-import { Menu, Segment } from 'semantic-ui-react';
+import {
+  TextField,
+  Grid,
+  Button,
+  Radio,
+  FormControl,
+  FormControlLabel,
+  FormLabel,
+  RadioGroup,
+} from "@material-ui/core";
 import {useSelector} from 'react-redux';
 import axios from 'axios';
 import DataTable from '../../Global/data-table.component'
@@ -81,6 +90,11 @@ const PatientOverview = (props) => {
       tableBodyHeight: 'auto',
       searchOpen: false,
       viewColumns: false,
+      textLabels: {
+        body: {
+          noMatch: `${patient.firstnm} has no allergies on record.`
+        }
+      }
     }
 
 
@@ -101,29 +115,74 @@ const PatientOverview = (props) => {
         <DataTable data={allergies} columns={columns} options={options} title={'Allergies'}  />
         {allergyEdit
         ?
-        <div>
-        <p>Today's Date</p>
-          <input type='date' onChange={(e) => handleInput(e)}
-          name='createdts' 
+        <Grid style={{marginTop: '25px', marginBottom: '25px'}} container direction='column' justifyContent='space-around' alignItems='center'>
+          <h2>New Allergy Form</h2>
+        <Grid container justifyContent='center' alignItems='center'>
+         
+          <Grid container direction='column' alignItems='center' xs={3}>
+        <TextField
+            variant="outlined"
+            type="date"
+            label="Today's Date"
+            onChange={(e) => handleInput(e)}
+            name="createdts"
+            style={{marginBottom: '20px'}}
+            InputLabelProps={{ shrink: true }}
           />
-        <p>Allergy Type:</p>
-        <input name='typedsc' placeholder='food, animal, medicine, etc' onChange={(e) => handleInput(e)}/>
-        <p>Allergy:</p>
-        <input name='allergydsc' placeholder='Bees, peanuts, etc.' onChange={(e) => handleInput(e)}/>
-        <p>Severity:</p>
-        <input type='radio' value='mild' name='severitydsc' onChange={(e) => handleInput(e)}/>
-        <label>Mild</label><br/>
-        <input type='radio' value='moderate' name='severitydsc' onChange={(e) => handleInput(e)}/>
-        <label>Moderate</label><br/>
-        <input type='radio' value='Severe' name='severitydsc' onChange={(e) => handleInput(e)}/>
-        <label>Severe</label><br/>
-        <p>Reactions:</p>
-        <input name='reactiondsc' placeholder='hives, vomiting, etc.' onChange={(e) => handleInput(e)}/>
-        <button onClick={handleToggle}>Cancel</button>
-        <button onClick={submitAllergy}>Submit Allergy</button>
-        </div>
+   
+        <TextField
+            variant="outlined"
+            label="Allergy Type"
+            onChange={(e) => handleInput(e)}
+            name="typedsc"
+            style={{marginBottom: '20px'}}
+          />
+
+<TextField
+            variant="outlined"
+            label="Allergy"
+            onChange={(e) => handleInput(e)}
+            name="allergydsc"
+            style={{marginBottom: '20px'}}
+          />
+        </Grid>
+        
+        <Grid container direction='column' alignItems='center' xs={3}>
+        <FormControl component="fieldset">
+            <FormLabel component="legend">Severity</FormLabel>
+            <RadioGroup
+              aria-label="Severity"
+              // defaultValue="female"
+              name="severitydsc"
+              onChange={(e) => handleInput(e)}
+              
+            >
+              <FormControlLabel
+                value="mild"
+                control={<Radio />}
+                label="Mild"
+              />
+              <FormControlLabel value="moderate" control={<Radio />} label="Moderate" />
+              <FormControlLabel value="severe" control={<Radio />} label="Severe" />
+            </RadioGroup>
+          </FormControl>
+        
+          <TextField
+            variant="outlined"
+            label="Reactions"
+            onChange={(e) => handleInput(e)}
+            name="reactiondsc"
+            
+          />
+       </Grid>
+       <Grid container justifyContent='center'>
+        <Button style={{marginRight: '20px'}} onClick={handleToggle} children={'Cancel'} variant='contained'/>
+        <Button onClick={submitAllergy} children={'Submit Allergy'} variant='contained' />
+        </Grid>
+        </Grid>
+        </Grid>
         :
-        <button style={{marginTop: '20px'}} onClick={handleToggle} disabled={user.user.canedit === false}>Add/Edit</button>
+        <Button style={{marginTop: '20px', marginBottom: '25px'}} onClick={handleToggle} disabled={user.user.canedit === false} variant='contained'>Add/Edit</Button>
         }
         
         
