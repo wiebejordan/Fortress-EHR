@@ -112,15 +112,14 @@ const NewEncounter = (props) => {
           </div>
         }
         
-        {lang === true
-        ?
+       
         <div>
          <Grid container direction='column' justify='space-around' alignItems='center' style={{height: '550px'}}  >
          <Grid container justify='space-around' >
            <Grid container direction='column' xs={3}>
           <TextField type='date' onChange={(e) => handleInput(e)}
           name='encounterdts' value={newEnc.encounterdts}
-          label='Encounter Date' variant='outlined'
+          label={lang ? 'Encounter Date' : 'Fecha de Encuentro'} variant='outlined'
           style={{marginTop: '10px', marginBottom: '10px'}}
           InputLabelProps={{ shrink: true }}
           />
@@ -129,7 +128,7 @@ const NewEncounter = (props) => {
           <TextField onChange={(e) => handleInput(e)}
           type='number'
           name='weight_lbs' defaultValue={newEnc.weight_lbs}
-          label='Weight' variant='outlined'
+          label={lang ? 'Weight' : 'Peso'} variant='outlined'
           style={{marginTop: '10px', marginBottom: '10px'}}
           />
 
@@ -137,7 +136,7 @@ const NewEncounter = (props) => {
           <TextField onChange={(e) => handleInput(e)}
           type='number'
           name='height_inch' defaultValue={newEnc.height_inch}
-          label='Height' variant='outlined'
+          label={lang ? 'Height' : 'Altura'} variant='outlined'
           style={{marginTop: '10px', marginBottom: '10px'}}
           />
 
@@ -147,7 +146,7 @@ const NewEncounter = (props) => {
           name='systolic_bp'
           type='number'
           defaultValue={newEnc.systolic_bp}
-          label='Systolic BP' variant='outlined'
+          label={lang ? 'Systolic BP' : 'Presión Arterial Sistólica'} variant='outlined'
           style={{marginTop: '10px', marginBottom: '10px'}}
           />
           </Grid>
@@ -156,7 +155,7 @@ const NewEncounter = (props) => {
           name='diastolic_bp'
           type='number'
           defaultValue={newEnc.diastolic_bp}
-          label='Diastolic BP' variant='outlined'
+          label={lang ? 'Diastolic BP' : 'Presión Arterial Diastólica'} variant='outlined'
           style={{marginTop: '10px', marginBottom: '10px'}}
           />
 
@@ -165,7 +164,7 @@ const NewEncounter = (props) => {
           name='heart_rate'
           type='number'
           defaultValue={newEnc.heart_rate}
-          label='Heart Rate' variant='outlined'
+          label={lang ? 'Heart Rate' : 'Ritmo Cardiaco'} variant='outlined'
           style={{marginTop: '10px', marginBottom: '10px'}}
           />
 
@@ -174,7 +173,7 @@ const NewEncounter = (props) => {
           name='respirations_min'
           type='number'
           defaultValue={newEnc.respirations_min}
-          label='Respirations /min' variant='outlined'
+          label={lang ? 'Respirations /min' : 'Respiraciones Por Minuto'} variant='outlined'
           style={{marginTop: '10px', marginBottom: '10px'}}
           />
           </Grid>
@@ -185,7 +184,7 @@ const NewEncounter = (props) => {
          <Grid container direction='column' alignItems='center'>
           <TextField
           multiline
-          label='Encounter Notes'
+          label={lang ? 'Encounter Notes' : 'Notas de Encuentro'}
           variant='outlined'
           onChange={(e) => handleInput(e)}
           name='commenttxt'
@@ -195,74 +194,14 @@ const NewEncounter = (props) => {
           />
        
         
-          <Button style={{margin: '25px'}} variant='contained' onClick={handleSubmit}>Submit New Encounter</Button>
+          <Button style={{margin: '25px'}} variant='contained' onClick={handleSubmit} children={lang ? 'Submit New Encounter' : 'Enviar Nuevo Encuentro'}/>
 
          </Grid>
          
           </Grid>
         </div>
         
-        :
-        
-        
-        <div>
-          <p>Fecha del Encuentro</p>
-          <TextField type='date' onChange={(e) => handleInput(e)}
-          name='encounterdts' defaultValue={newEnc.encounterdts}/>
-
-          <p>Peso</p>
-          <TextField onChange={(e) => handleInput(e)}
-          name='weight_lbs' defaultValue={newEnc.weight_lbs}
-          />
-
-          <p>Altura</p>
-          <TextField onChange={(e) => handleInput(e)}
-          name='height_inch'
-          defaultValue={newEnc.height_inch}
-          />
-
-          <p>Presión Arterial Sistólica</p>
-          <TextField onChange={(e) => handleNumberInput(e)}
-          name='systolic_bp'
-          type='number'
-          defaultValue={newEnc.systolic_bp}
-          />
-
-          <p>Presión Arterial Diastólica</p>
-          <TextField onChange={(e) => handleNumberInput(e)}
-          name='diastolic_bp'
-          type='number'
-          defaultValue={newEnc.diastolic_bp}
-          />
-
-          <p>Ritmo Cardiaco</p>
-          <TextField onChange={(e) => handleNumberInput(e)}
-          name='heart_rate'
-          type='number'
-          defaultValue={newEnc.heart_rate}
-          />
-
-          <p>Respiraciones Por Minuto</p>
-          <TextField onChange={(e) => handleNumberInput(e)}
-          name='respirations_min'
-          type='number'
-          defaultValue={newEnc.respirations_min}
-          />
-
-          <p>Notas de Encuentro</p>
-          <TextField
-          multiline
-          label='Encounter Notes'
-          variant='outlined'
-          onChange={(e) => handleInput(e)}
-          name='commenttxt'
-          style={{resize: 'none', width: '100%', height: '200px', overflow: 'auto'}}
-          defaultValue={newEnc.commenttxt}
-          />
-
-        <button onClick={handleSubmit}>Enviar Nuevo Encuentro</button>
-        </div>
-        }
+       
 
 
       </div>

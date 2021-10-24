@@ -8,6 +8,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import {useIdleTimer} from 'react-idle-timer';
 import {useHistory, useLocation} from 'react-router-dom'
 import {Modal, Button, Image, Header} from 'semantic-ui-react'
+import {Grid, TextField} from '@material-ui/core'
 import axios from 'axios'
 
 
@@ -70,7 +71,9 @@ function App(props) {
   }
  
   const { getRemainingTime, getLastActiveTime } = useIdleTimer({
-    timeout: 1000 * 60 * 5,
+    timeout: 
+    1000 * 60 * 5,
+   
     onIdle: handleOnIdle,
     onActive: handleOnActive,
     onAction: handleOnAction,
@@ -109,14 +112,13 @@ function App(props) {
   return (
     <div>
       <Nav/>
-      <div >
+      <div style={{height: '100%'}}>
 
       {routes}
       </div>
       
       
-      {lang.english 
-      ?
+    
 
       <Modal
       onClose={() => setModal(false)}
@@ -133,51 +135,28 @@ function App(props) {
       <Modal.Content centered>
         
         <Modal.Description>
+          <Grid container direction='column' justifyContent='space-around' alignItems='center' style={{height: '175px'}}>
           <Header>{user.user.firstnm}
           {user.user.lastnm ? user.user.lastnm[0] : null}</Header>
           <p>
-            Please enter your password to log back in.
+            {lang.english ? 'Please enter your password to log back in.' : 'por favor ingrese su contraseña para volver a iniciar sesión'}
           </p>
-          <form onSubmit={handleIdleLogin}>
-          <input type='password' onChange={(e) => handlePassInput(e.target.value)} />
+  
+          <TextField placeholder={lang.english ? 'password' : 'contraseña'} variant='outlined' size='small' type='password' onChange={(e) => handlePassInput(e.target.value)} />
         <Button
-          content="Log in"
+          content={lang.english ? "Log in" : 'Iniciar sesión' }
           positive
+          onClick={handleIdleLogin}
         />
+         
+          
+        
 
-          </form>
+          </Grid>
         </Modal.Description>
       </Modal.Content>
     </Modal>
-    :
-    <Modal
-      onClose={() => setModal(false)}
-      onOpen={() => setModal(true)}
-      open={modal}
-      closeOnDimmerClick={false}
-      closeOnEscape={false}
-      dimmer='blurring'
-      size='mini'
-    >
-
-      <Modal.Content>
-        
-        <Modal.Description>
-          <Header>{user.user.firstnm} {user.user.lastnm ? user.user.lastnm[0] : null}</Header>
-          <p>
-          por favor ingrese su contraseña para volver a iniciar sesión
-          </p>
-          <form onSubmit={handleIdleLogin}>
-          <input type='password' onChange={(e) => handlePassInput(e.target.value)} />
-        <Button
-          content="
-          Iniciar sesión"
-          positive
-        />
-        </form>
-        </Modal.Description>
-      </Modal.Content>
-    </Modal>}
+    
     
 
     <Footer/>

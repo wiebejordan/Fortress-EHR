@@ -1,7 +1,8 @@
 import React, {useEffect, useState} from 'react';
 import axios from 'axios';
 import {useSelector, useDispatch} from 'react-redux';
-import { Menu, Segment, Grid, Image, Container, Divider, Input, Button } from 'semantic-ui-react';
+import { Grid, Image, Container, Input, Button } from 'semantic-ui-react';
+
 import {Link} from 'react-router-dom';
 import '../../styles/style.scss'
 
@@ -37,6 +38,7 @@ const Login = (props) => {
     axios.post('/auth/login', {email, password})
     .then(res => {
       setLoggedIn(res.data.email);
+      console.log(res.data)
       dispatch({
         type: 'GET_USER',
         payload: res.data
@@ -64,22 +66,22 @@ const Login = (props) => {
       <Input style={{marginBottom: '5px'}} onChange={(e) => handleUserInput(e.target.value)} placeholder='email'/>
       <Input onChange={(e) => handlePassInput(e.target.value)} placeholder='password' type='password'/>
       </Grid>
-      <Button>Login</Button>
+      <Button color='blue'>Login</Button>
       </form>
       <Link to='/newuser'>
-      <button>New User</button>
+      <Button color='grey'>New User</Button>
       </Link>
     </div>
     :
     <div className='login-box'>
       <h4>Bienvenido a FORTRESS Registros de Salud Electrónicos!</h4>
       <form onSubmit={handleLogin}>
-      <input onChange={(e) => handleUserInput(e.target.value)} placeholder='correo electrónico'/>
-      <input onChange={(e) => handlePassInput(e.target.value)} placeholder='contraseña' type='password'/>
-      <button>Iniciar sesión</button>
+      <Input style={{marginBottom: '5px'}} onChange={(e) => handleUserInput(e.target.value)} placeholder='correo electrónico'/>
+      <Input onChange={(e) => handlePassInput(e.target.value)} placeholder='contraseña' type='password'/>
+      <Button color='blue'>Iniciar sesión</Button>
       </form>
       <Link to='/newuser'>
-      <button>Nuevo Usuario</button>
+      <Button color='grey'>Nuevo Usuario</Button>
       </Link>
     </div>
     }

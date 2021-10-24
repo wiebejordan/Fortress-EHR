@@ -79,11 +79,11 @@ const NewPatient = () => {
   };
 
   return (
-    <div >
+    <div style={{marginBottom: '50px'}}>
       {lang === true ? (
         <Grid  container direction='column' justifyContent='space-around' alignItems='center'>
           <h2>New Patient</h2>
-          <Grid style={{marginBottom: '25px'}} container  xs={5} justifyContent='space-around' alignItems='center'>
+          <Grid style={{marginBottom: '25px'}} container  xs={6} justifyContent='space-around' alignItems='center'>
           <TextField
             variant="outlined"
             label="First Name"

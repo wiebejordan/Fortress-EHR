@@ -9,6 +9,7 @@ const GET_USER = 'GET_USER';
 const CLEAR_USER = 'CLEAR_USER';
 
 export function getUser(userObj){
+  
   return {
       type: GET_USER,
       payload: userObj

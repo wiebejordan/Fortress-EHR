@@ -110,7 +110,7 @@ const Medications = (props) => {
       <div className='enc-table-container'>
      
 
-          <DataTable data={meds} columns={columns} options={options} />
+          <DataTable data={meds} columns={columns} options={options} title='Medications' />
 
          
 

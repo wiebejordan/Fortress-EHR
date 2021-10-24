@@ -16,6 +16,7 @@ const PatientList = (items, config = null, props) => {
     [patientList, setPatientList] = useState([]),
     [loading, setLoading] = useState(true),
     user = useSelector(state => state.authReducer),
+    lang = useSelector((state) => state.languageReducer.english),
         history = useHistory();
     // console.log(...patientList)
     // console.log(loading)
@@ -100,10 +101,10 @@ const PatientList = (items, config = null, props) => {
   }
 
   return (
-    <div style={{height: '86vh', overflow: 'auto'}}>
+    <div style={{height: '100%', marginBottom: '50px', overflow: 'auto'}}>
       <Grid container direction='column' alignItems='center'>
       <h1>Patient List</h1>
-      <Button onClick={() => history.push('/newpatient')} variant='contained' disabled={user.user.canedit === false} style={{margin: '10px'}}>New Patient</Button>
+      <Button onClick={() => history.push('/newpatient')} variant='contained' disabled={user.user.canedit === false} style={{margin: '10px'}} children={lang ? 'new patient' : 'nueve paciente'}/>
       <div style={{width: '80%'}}>
 
       <Datatable data={patientList} columns={columns} options={options}  />

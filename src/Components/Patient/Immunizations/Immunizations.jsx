@@ -110,7 +110,7 @@ const IMMUNIZATION = (props) => {
       <div>
       
 
-          <DataTable data={immunes} columns={columns} options={options} />
+          <DataTable data={immunes} columns={columns} options={options} title='Immunizations' />
         {editView
         ?
        
