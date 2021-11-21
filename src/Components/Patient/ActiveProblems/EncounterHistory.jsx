@@ -16,7 +16,7 @@ const EncounterHistory = (props) => {
 
       const columns = [
         {
-          label: 'Encounter Date',
+          label: lang === true ? 'Encounter Date' : 'Fecha del Encuentro',
           name: 'encounterdts',
           options: {
             customBodyRender: (record, index) => {
@@ -25,31 +25,31 @@ const EncounterHistory = (props) => {
           }
         },
         {
-          label: 'Weight (lbs)',
+          label: lang === true ? 'Weight (lbs)' : 'Peso (lbs)',
           name: 'weight_lbs'
         },
         {
-          label: 'Height (inch)',
+          label: lang === true ? 'Height (inch)' : 'Altura (inch)',
           name: 'height_inch'
         },
         {
-          label: 'Systollic BP',
+          label: lang === true ? 'Systollic BP' : 'Presión Arterial Sistólica',
           name: 'systolic_bp'
         },
         {
-          label: 'Diastolic BP',
+          label: lang === true ? 'Diastolic BP' : 'Presión Arterial Diastólica',
           name: 'diastolic_bp'
         },
         {
-          label: 'Heart Rate',
+          label: lang === true ? 'Heart Rate' : 'Ritmo Cardiaco',
           name: 'heart_rate'
         },
         {
-          label: 'Respirations p/m',
+          label: lang === true ? 'Respirations p/m' : 'Respiraciones Por Minuto',
           name: 'respirations_min'
         },
         {
-          label: 'Encounter Notes',
+          label: lang === true ? 'Encounter Notes' : 'Notas de Encuentro',
           name: 'commenttxt'
         },
       ]
@@ -84,35 +84,7 @@ const EncounterHistory = (props) => {
       // ////////////////////////////spanish menu////////////////////////////////////
       :
       <div>
-          <table className='enc-table'>
-            <thead className='enc-head'>
-            <tr className='enc-tr'>
-              <th className='enc-th'>Fecha del Encuentro</th>
-              <th className='enc-th'>Peso (lbs)</th>
-              <th className='enc-th'>Altura (inch)</th>
-              <th className='enc-th'>Presión Arterial Sistólica</th>
-              <th className='enc-th'>Presión Arterial Diastólica</th>
-              <th className='enc-th'>Ritmo Cardiaco</th>
-              <th className='enc-th'>Respiraciones Por Minuto</th>
-              <th className='enc-th'>Notas de Encuentro</th>
-            </tr>
-            </thead>
-
-        {encounterArr.map((encounter) => 
-            <tbody className='enc-tr' key={encounter.encounterid} value={encounter}>
-              
-            <td className='enc-td'>{encounter.encounterdts.substr(0, 10)}</td>
-            <td className='enc-td'>{encounter.weight_lbs}</td>
-            <td className='enc-td'>{encounter.height_inch}</td>
-            <td className='enc-td'>{encounter.systolic_bp}</td>
-            <td className='enc-td'>{encounter.diastolic_bp}</td>
-            <td className='enc-td'>{encounter.heart_rate}</td>
-            <td className='enc-td'>{encounter.respirations_min}</td>
-            <td className='enc-td'>{encounter.commenttxt}</td>
-
-            </tbody>
-        )}
-          </table>
+       <DataTable data={encounterArr} columns={columns} options={options} title={'Historial de Encuentros'}  />
       </div>
       }
       </div>

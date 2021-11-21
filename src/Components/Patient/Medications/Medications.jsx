@@ -53,19 +53,19 @@ const Medications = (props) => {
         const columns = [
           
           {
-            label: 'Medication Name',
+            label: lang === true ? 'Medication Name' : 'Nombre del Medicamento',
             name: 'medicationnm'
           },
           {
-            label: 'Description',
+            label: lang === true ? 'Description' : 'Descripción',
             name: 'medicationdsc'
           },
           {
-            label: 'Route',
+            label: lang === true ? 'Route' : 'Método de Entrega',
             name: 'routedsc'
           },
           {
-            label: 'Start Date',
+            label: lang === true ? 'Start Date' : 'Fecha de Inicio',
             name: 'effectivestartdts',
             options: {
               customBodyRender: (record, index) => {
@@ -74,7 +74,7 @@ const Medications = (props) => {
             }
           },
           {
-            label: 'End Date',
+            label: lang === true ? 'End Date' : 'Fecha Final',
             name: 'effectiveenddts',
             options: {
               customBodyRender: (record, index) => {
@@ -187,60 +187,75 @@ const Medications = (props) => {
       // ////////////////////////////spanish menu////////////////////////////////////
       :
       <div className='enc-table-container'>
-      <table className='enc-table'>
-        <thead className='enc-head'>
-        <tr className='enc-tr'>
-          <th className='enc-th'>Nombre del Medicamento</th>
-          <th className='enc-th'>Descripción</th>
-          <th className='enc-th'>Método de Entrega </th>
-          <th className='enc-th'>Fecha de Inicio</th>
-          <th className='enc-th'>Fecha Final</th>
-        </tr>
-        </thead>
-      
-    {meds.map((med) => 
-        <tbody className='enc-tr' key={med.medicationid} value={med}>
-        
-        <tr className='enc-tr'>
-        <td className='enc-td'>{med.medicationnm.substr(0, 10)}</td>
-        <td className='enc-td'>{med.medicationdsc}</td>
-        <td className='enc-td'>{med.routedsc}</td>
-        <td className='enc-td'>{med.effectivestartdts.substr(0, 10)}</td>
-        <td className='enc-td'>{med.effectiveenddts.substr(0, 10)}</td>
-        </tr>
-        </tbody>
-    )}
-      </table>
-
-      {meds.length === 0 
-        ? <p>{patient.firstnm} no tiene medicamentos registrados.</p>
-        
-        : null}
+     <DataTable data={meds} columns={columns} options={options} title='Medications' />
 
       {editView
         ?
-        <div>
-        <p>Fecha de Inicio:</p>
-          <input type='date' onChange={(e) => handleInput(e)}
-          name='effectivestartdts' 
+        <Grid style={{marginTop: '25px', marginBottom: '25px'}} container direction='column' justifyContent='space-around' alignItems='center'>
+          <h2>Nueva Forma de Medicación</h2>
+        <Grid container justifyContent='center' alignItems='center'>
+         
+          <Grid container direction='column' alignItems='center' xs={3}>
+        <TextField
+            variant="outlined"
+            type="date"
+            label="Fecha de Inicio"
+            onChange={(e) => handleInput(e)}
+            name="effectivestartdts"
+            style={{marginBottom: '20px'}}
+            InputLabelProps={{ shrink: true }}
           />
 
-        <p>Fecha Final:</p>
-          <input type='date' onChange={(e) => handleInput(e)}
-          name='effectiveenddts' 
-          />      
-        <p>Nombre del Medicamento:</p>
-        <input name='medicationnm' placeholder='Tylenol, Adderal, etc' onChange={(e) => handleInput(e)}/>
-        <p>Descripción de la Medicación:</p>
-        <input name='medicationdsc' placeholder='para el dolor articular, etc.' onChange={(e) => handleInput(e)}/>
-        <p>Método:</p>
-        <input name='routedsc' placeholder='inyección, oral, etc.' onChange={(e) => handleInput(e)}/>
+<TextField
+            variant="outlined"
+            type="date"
+            label="Fecha Final"
+            onChange={(e) => handleInput(e)}
+            name="effectiveenddts"
+            style={{marginBottom: '20px'}}
+            InputLabelProps={{ shrink: true }}
+          />
+   
+        <TextField
+            variant="outlined"
+            label="Nombre del Medicamento"
+            onChange={(e) => handleInput(e)}
+            name="medicationnm"
+            style={{marginBottom: '20px'}}
+          />
+
+
+
+        </Grid>
+
         
-        <button onClick={handleToggle}>Cancelar</button>
-        <button onClick={submitMed} >Enviar medicación</button>
-        </div>
+        
+        <Grid container direction='column' justifyContent='flex-start' alignItems='center' xs={3}>
+        <TextField
+            variant="outlined"
+            label="Descripción"
+            onChange={(e) => handleInput(e)}
+            name="medicationdsc"
+            style={{marginBottom: '20px'}}
+          />
+
+<TextField
+            variant="outlined"
+            label="Método"
+            onChange={(e) => handleInput(e)}
+            name="routedsc"
+            style={{marginBottom: '20px'}}
+          />
+       </Grid>
+       <Grid container justifyContent='center'>
+        <Button style={{marginRight: '20px'}} onClick={handleToggle} children={'Cancel'} variant='contained'/>
+        <Button onClick={submitMed} children={'Submit Medication'} variant='contained' />
+        </Grid>
+        </Grid>
+        </Grid>
+       
         :
-          <button style={{marginTop: '20px'}} onClick={handleToggle}>Agregar medicación</button>
+          <Button variant='contained' style={{marginTop: '20px'}} onClick={handleToggle}>Agregar medicación</Button>
           }
   </div>
       }

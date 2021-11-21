@@ -65,7 +65,7 @@ const IMMUNIZATION = (props) => {
 
     const columns = [
       {
-        label: 'Immunization Date',
+        label: lang === true ? 'Immunization Date' : 'Fecha de Vacunación',
         name: 'createdts',
         options: {
           customBodyRender: (record, index) => {
@@ -74,11 +74,11 @@ const IMMUNIZATION = (props) => {
         }
       },
       {
-        label: 'Immunization Type',
+        label: lang === true ? 'Immunization Type' : 'Tipo de Vacunación',
         name: 'immunizationtypedsc'
       },
       {
-        label: 'Route',
+        label: lang === true ? 'Route' : 'Método',
         name: 'routedsc'
       },
      
@@ -172,47 +172,64 @@ const IMMUNIZATION = (props) => {
       // ////////////////////////////spanish menu////////////////////////////////////
       :
       <div>
-        <table className='enc-table'>
-            <thead className='enc-head'>
-            <tr className='enc-tr'>
-              <th className='enc-th'>fecha de inmunización</th>
-              <th className='enc-th'>tipo de inmunización</th>
-              <th className='enc-th'>Método de Inmunización</th>
-            </tr>
-            </thead>
-          
-        {immunes.map((immune) => 
-            <tbody className='enc-tr' key={immune.immunizationid} value={immune}>
-            
-            <tr className='enc-tr'>
-            <td className='enc-td'>{immune.createdts.substr(0, 10)}</td>
-            <td className='enc-td'>{immune.immunizationtypedsc}</td>
-            <td className='enc-td'>{immune.routedsc}</td>
-            </tr>
-            </tbody>
-        )}
-          </table>
+      
+
+          <DataTable data={immunes} columns={columns} options={options} title='Immunizations' />
         {editView
         ?
-        <div>
-        <p>Fecha:</p>
-          <input type='date' onChange={(e) => handleInput(e)}
-          name='createdts' 
+       
+           <Grid style={{marginTop: '25px', marginBottom: '25px'}} container direction='column' justifyContent='space-around' alignItems='center'>
+          <h2>Nuevo formulario de vacunación</h2>
+        <Grid container justifyContent='center' alignItems='center'>
+         
+          <Grid container direction='column' alignItems='center' xs={3}>
+        <TextField
+            variant="outlined"
+            type="date"
+            label="Fecha"
+            onChange={(e) => handleInput(e)}
+            name="createdts"
+            style={{marginBottom: '20px'}}
+            InputLabelProps={{ shrink: true }}
           />
-        <p>Tipo de Inmunización:</p>
-        <input name='immunizationtypedsc' placeholder='Gripe, polio, etc' onChange={(e) => handleInput(e)}/>
-        <p>Método de Inmunización:</p>
-        <input name='routedsc' placeholder='inyección, etc.' onChange={(e) => handleInput(e)}/>
+
+<TextField
+            variant="outlined"
+            label="Tipo de Inmunización"
+            onChange={(e) => handleInput(e)}
+            name="immunizationtypedsc"
+            style={{marginBottom: '20px'}}
+            
+          />
+   
+        <TextField
+            variant="outlined"
+            label="Método de Entrega"
+            onChange={(e) => handleInput(e)}
+            name="routedsc"
+            style={{marginBottom: '20px'}}
+          />
+
+
+
+        </Grid>
+
         
-        <button onClick={handleToggle}>Cancelar</button>
-        <button onClick={submitImmune}>Enviar Inmunización</button>
-        </div>
+        
+       
+       <Grid container justifyContent='center'>
+        <Button style={{marginRight: '20px'}} onClick={handleToggle} children={'Cancelar'} variant='contained'/>
+        <Button onClick={submitImmune} children={'Enviar vacunación'} variant='contained' />
+        </Grid>
+        </Grid>
+        </Grid>
+        
         :
-        <button style={{marginTop: '20px'}} onClick={handleToggle} disabled={user.user.canedit === false}>Add/Edit</button>}
+        <Button style={{marginTop: '20px'}} variant='contained' onClick={handleToggle} disabled={user.user.canedit === false}>Add/Edit</Button>}
         
 
         {immunes.length === 0 
-        ? <p>Este paciente no ha tenido ninguna inmunización.</p>
+        ? <p>This patient has not had any immunizations.</p>
         : null}
         
       </div>

@@ -70,24 +70,26 @@ const PatientHistory = (props) => {
       // ////////////////////////////spanish menu////////////////////////////////////
       :
       <div>
-        <h3>Historial de Paciente</h3>
-        <p>{props.patient.history}</p>
-      </div>
-      }
+      <h3>Historial del Paciente</h3>
+      <p>{props.patient.history}</p>
+
       {editView
-        ? 
-        <div>
-          {/* <textarea defaultValue={props.patient.history} onChange={handleInput} style={{resize: 'none', width: '90%', height: '200px'}}/>
-          <button onClick={toggleEdit}>Cancel</button>
-          <button onClick={handleHistoryEdit}>Save Changes</button> */}
-        </div>
-        : null}
-        
-        {lang === false && props.user.user.canedit && !editView
-        ? 
-        <button onClick={toggleEdit}>edit</button>
-        : null}
+      ? <div>
+        <TextField defaultValue={props.patient.history} onChange={handleInput} multiline minRows="5" variant='outlined' style={{width: '100%'}}/>
+        <Grid style={{marginTop: '25px'}}>
+        <Button variant='contained' style={{marginRight: '25px'}} onClick={toggleEdit}>Cancelar</Button>
+        <Button variant='contained' onClick={handleHistoryEdit}>guardar cambios</Button>
+
+        </Grid>
       </div>
+      : null}
+      
+      {props.user.user.canedit && !editView
+      ? 
+      <Button onClick={toggleEdit} variant='contained'>Editar</Button>
+      : null}
+    </div> }
+    </div>
     )
   }
 
