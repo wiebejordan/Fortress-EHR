@@ -201,29 +201,8 @@ const PatientOverview = (props) => {
         <h3>Alergias</h3>
         
         <>
-        <table className='enc-table'>
-            <thead className='enc-head'>
-            <tr className='enc-tr'>
-              <th className='enc-th'>Fecha Agregada</th>
-              <th className='enc-th'>Tipo de Alergia</th>
-              <th className='enc-th'>Gravedad</th>
-              <th className='enc-th'>Reacciones</th>
-            </tr>
-            </thead>
-          
-        {allergies.map((allergy) => 
-            <tbody className='enc-tr' key={allergy.immunizationid} value={allergy}>
-            
-            <tr className='enc-tr'>
-            <td className='enc-td'>{allergy.createdts.substr(0, 10)}</td>
-            <td className='enc-td'>{allergy.typedsc}</td>
-            <td className='enc-td'>{allergy.severitydsc}</td>
-            <td className='enc-td'>{allergy.reactiondsc}</td>
-            </tr>
-            </tbody>
-        )}
-          </table>
-
+       
+        <DataTable data={allergies} columns={columns} options={options} title={'Allergies'}  />
           
         </>
         
@@ -234,28 +213,76 @@ const PatientOverview = (props) => {
         
         {allergyEdit
         ?
-        <div>
-        <p>Fecha</p>
-          <input type='date' onChange={(e) => handleInput(e)}
-          name='createdts' 
+        <Grid style={{marginTop: '25px', marginBottom: '25px'}} container direction='column' justifyContent='space-around' alignItems='center'>
+          <h2>Nueva Alergia</h2>
+        <Grid container justifyContent='center' alignItems='center'>
+         
+          <Grid container direction='column' alignItems='center' xs={3}>
+        <TextField
+            variant="outlined"
+            type="date"
+            label="Fecha"
+            onChange={(e) => handleInput(e)}
+            name="createdts"
+            style={{marginBottom: '20px'}}
+            InputLabelProps={{ shrink: true }}
           />
-        <p>Tipo de Alergias:</p>
-        <input name='typedsc' placeholder='comida, animal, medicina...' onChange={(e) => handleInput(e)}/>
-        <p>Alergia:</p>
-        <input name='allergydsc' placeholder='Abejas, cacahuetes ...' onChange={(e) => handleInput(e)}/>
-        <p>Gravedad:</p>
-        <input type='radio' value='mild' name='severitydsc' onChange={(e) => handleInput(e)}/>
-        <label>Leve</label><br/>
-        <input type='radio' value='moderate' name='severitydsc' onChange={(e) => handleInput(e)}/>
-        <label>Moderado</label><br/>
-        <input type='radio' value='Severe' name='severitydsc' onChange={(e) => handleInput(e)}/>
-        <label>Severo</label><br/>
-        <p>Reacciones:</p>
-        <input name='reactiondsc' placeholder='vómito, sarpullido...' onChange={(e) => handleInput(e)}/>
-        <button onClick={handleToggle}>Cancelar</button>
-        <button onClick={submitAllergy}>Enviar Alergia</button>
-        </div>
-        : <button style={{marginTop: '20px'}} onClick={handleToggle} disabled={user.user.canedit === false}>Add/Edit</button>
+   
+        <TextField
+            variant="outlined"
+            label="
+            Tipo de Alergia"
+            onChange={(e) => handleInput(e)}
+            name="typedsc"
+            style={{marginBottom: '20px'}}
+          />
+
+<TextField
+            variant="outlined"
+            label="Alergia"
+            onChange={(e) => handleInput(e)}
+            name="allergydsc"
+            style={{marginBottom: '20px'}}
+          />
+        </Grid>
+        
+        <Grid container direction='column' alignItems='center' xs={3}>
+        <FormControl component="fieldset">
+            <FormLabel component="legend">Severity</FormLabel>
+            <RadioGroup
+              aria-label="
+              Gravedad"
+              // defaultValue="female"
+              name="severitydsc"
+              onChange={(e) => handleInput(e)}
+              
+            >
+              <FormControlLabel
+                value="mild"
+                control={<Radio />}
+                label="templado"
+              />
+              <FormControlLabel value="moderate" control={<Radio />} label="Moderado" />
+              <FormControlLabel value="severe" control={<Radio />} label="Grave" />
+            </RadioGroup>
+          </FormControl>
+        
+          <TextField
+            variant="outlined"
+            label="Reacciones"
+            onChange={(e) => handleInput(e)}
+            name="reactiondsc"
+            
+          />
+       </Grid>
+       <Grid container justifyContent='center'>
+        <Button style={{marginRight: '20px'}} onClick={handleToggle} children={'Cancelar'} variant='contained'/>
+        <Button onClick={submitAllergy} children={'Enviar alergia'} variant='contained' />
+        </Grid>
+        </Grid>
+        </Grid>
+        :
+        <Button style={{marginTop: '20px', marginBottom: '25px'}} onClick={handleToggle} disabled={user.user.canedit === false} variant='contained'>agregar / editar</Button>
         }
         
         

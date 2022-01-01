@@ -80,20 +80,20 @@ const NewPatient = () => {
 
   return (
     <div style={{marginBottom: '50px'}}>
-      {lang === true ? (
+     
         <Grid  container direction='column' justifyContent='space-around' alignItems='center'>
-          <h2>New Patient</h2>
+          <h2>{lang === true ? 'New Patient' : 'Nuevo Paciente' }</h2>
           <Grid style={{marginBottom: '25px'}} container  xs={6} justifyContent='space-around' alignItems='center'>
           <TextField
             variant="outlined"
-            label="First Name"
+            label={lang === true ? "First Name" : 'Primer nombre'}
             onChange={(e) => handleInput(e)}
             name="firstnm"
           ></TextField>
 
           <TextField
             variant="outlined"
-            label="Last Name"
+            label={lang === true ? "Last Name" : 'Apellido'}
             onChange={(e) => handleInput(e)}
             name="lastnm"
           ></TextField>
@@ -101,7 +101,7 @@ const NewPatient = () => {
           <TextField
             variant="outlined"
             type="date"
-            label="Birthdate"
+            label={lang === true ? "Last Name" : "fecha de nacimiento"}
             onChange={(e) => handleInput(e)}
             name="birthdts"
             InputLabelProps={{ shrink: true }}
@@ -109,7 +109,7 @@ const NewPatient = () => {
           </Grid>
           <Grid container style={{marginBottom: '25px'}} xs={5} justifyContent='space-around' >
           <FormControl component="fieldset">
-            <FormLabel component="legend">Sex</FormLabel>
+            <FormLabel component="legend">{lang === true ? "Sex" : "Sexo"}</FormLabel>
             <RadioGroup
               aria-label="Sex"
               defaultValue="female"
@@ -119,14 +119,14 @@ const NewPatient = () => {
               <FormControlLabel
                 value="female"
                 control={<Radio />}
-                label="Female"
+                label={lang === true ? "Female" : "Mujer"}
               />
-              <FormControlLabel value="male" control={<Radio />} label="Male" />
+              <FormControlLabel value="male" control={<Radio />} label={lang === true ? "Male" : "Masculino"} />
             </RadioGroup>
           </FormControl>
 
           <FormControl component="fieldset">
-            <FormLabel component="legend">Hispanic</FormLabel>
+            <FormLabel component="legend">{lang === true ? "Hispanic" : "Hispano"}</FormLabel>
             <RadioGroup
               aria-label="Hispanic"
               defaultValue="no"
@@ -134,12 +134,12 @@ const NewPatient = () => {
               onChange={(e) => handleInput(e)}
             >
               <FormControlLabel value="N" control={<Radio />} label="No" />
-              <FormControlLabel value="Y" control={<Radio />} label="Yes" />
+              <FormControlLabel value="Y" control={<Radio />} label={lang === true ? "Yes" : "Si"} />
             </RadioGroup>
           </FormControl>
 
           <FormControl component="fieldset">
-            <FormLabel component="legend">Ethnicity</FormLabel>
+            <FormLabel component="legend">{lang === true ? "Ethnicity" : "Etnicidad"}</FormLabel>
             <RadioGroup
               aria-label="Ethnicity"
               name="ethnicitydsc"
@@ -187,139 +187,15 @@ const NewPatient = () => {
             minRows="3"
             multiline
             variant="outlined"
-            label="Patient History"
+            label={lang === true ? 'Patient History' : 'Historial del Paciente'}
             onChange={(e) => handleInput(e)}
             name="history"
             style={{width: '575px'}}
           ></TextField>
 
-          <Button style={{margin:'15px'}} variant='contained' onClick={handleSubmit}>Submit New Patient</Button>
+          <Button style={{margin:'15px'}} variant='contained' onClick={handleSubmit}>{lang === true ? 'Submit New Patient' : 'Enviar Nuevo Paciente'}</Button>
         </Grid>
-      ) : (
-        <div className="newpatient-form-container">
-          <p>Primer nombre:</p>
-          <TextField
-            placeholder="First Name"
-            onChange={(e) => handleInput(e)}
-            name="firstnm"
-          ></TextField>
-          <p>Apellido:</p>
-          <TextField
-            placeholder="Last Name"
-            onChange={(e) => handleInput(e)}
-            name="lastnm"
-          ></TextField>
-          <p>Fecha de nacimiento:</p>
-          <TextField
-            type="date"
-            placeholder="Birthdate"
-            onChange={(e) => handleInput(e)}
-            name="birthdts"
-          ></TextField>
-          <p>Sexo:</p>
-          <TextField
-            type="radio"
-            value="Male"
-            placeholder="gender"
-            onChange={(e) => handleInput(e)}
-            name="genderdsc"
-          ></TextField>
-          <label> Masculino</label>
-          <br />
-          <TextField
-            type="radio"
-            value="Female"
-            placeholder="gender"
-            onChange={(e) => handleInput(e)}
-            name="genderdsc"
-          ></TextField>
-          <label> Hembra</label>
-          <br />
-          <p>Hispano:</p>
-          <TextField
-            type="radio"
-            value="Y"
-            onChange={(e) => handleInput(e)}
-            name="hispanicflg"
-          ></TextField>
-          <label> Si</label>
-          <br />
-          <TextField
-            type="radio"
-            value="N"
-            onChange={(e) => handleInput(e)}
-            name="hispanicflg"
-          ></TextField>
-          <label> No</label>
-          <br />
-          <p>Etnia:</p>
-          <TextField
-            type="radio"
-            value="American Indian/Alaska Native"
-            onChange={(e) => handleInput(e)}
-            name="ethnicitydsc"
-          ></TextField>
-          <label> Indio Americano</label>
-          <br />
-          <TextField
-            type="radio"
-            value="Asian"
-            onChange={(e) => handleInput(e)}
-            name="ethnicitydsc"
-          ></TextField>
-          <label> Asiático</label>
-          <br />
-          <TextField
-            type="radio"
-            value="Black or African American"
-            onChange={(e) => handleInput(e)}
-            name="ethnicitydsc"
-          ></TextField>
-          <label> Afroamericano</label>
-          <br />
-          <TextField
-            type="radio"
-            value="Hispanic or Latino"
-            onChange={(e) => handleInput(e)}
-            name="ethnicitydsc"
-          ></TextField>
-          <label> Hispano or Latino</label>
-          <br />
-          <TextField
-            type="radio"
-            value="Native Hawaiian or Other Pacific Islander"
-            onChange={(e) => handleInput(e)}
-            name="ethnicitydsc"
-          ></TextField>
-          <label> Hawaiano Nativo u Otro Isleño del Pacífico</label>
-          <br />
-          <TextField
-            type="radio"
-            value="White"
-            onChange={(e) => handleInput(e)}
-            name="ethnicitydsc"
-          ></TextField>
-          <label> Blanco</label>
-          <br />
-          {/* <TextField placeholder='raza' onChange={(e) => handleInput(e)} name='race01dsc'></TextField>
-        <TextField placeholder='raza' onChange={(e) => handleInput(e)} name='race02dsc'></TextField>
-        <TextField placeholder='raza' onChange={(e) => handleInput(e)} name='race03dsc'></TextField> */}
-
-          <p>Historial del paciente</p>
-          <br />
-          <textarea
-            style={{
-              resize: "none",
-              width: "100%",
-              height: "200px",
-              overflow: "auto",
-            }}
-            onChange={(e) => handleInput(e)}
-            name="history"
-          />
-          <button onClick={handleSubmit}>Enviar Nuevo Paciente</button>
-        </div>
-      )}
+     
     </div>
   );
 };

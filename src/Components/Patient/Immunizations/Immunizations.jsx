@@ -164,9 +164,7 @@ const IMMUNIZATION = (props) => {
         <Button style={{marginTop: '20px'}} variant='contained' onClick={handleToggle} disabled={user.user.canedit === false}>Add/Edit</Button>}
         
 
-        {immunes.length === 0 
-        ? <p>This patient has not had any immunizations.</p>
-        : null}
+        
         
       </div>
       // ////////////////////////////spanish menu////////////////////////////////////
@@ -228,9 +226,7 @@ const IMMUNIZATION = (props) => {
         <Button style={{marginTop: '20px'}} variant='contained' onClick={handleToggle} disabled={user.user.canedit === false}>Add/Edit</Button>}
         
 
-        {immunes.length === 0 
-        ? <p>This patient has not had any immunizations.</p>
-        : null}
+        
         
       </div>
       }
