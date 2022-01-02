@@ -2,7 +2,16 @@ import react, {useState, useEffect} from 'react';
 import {useSelector, useDispatch} from 'react-redux';
 import {useHistory} from 'react-router-dom';
 import axios from 'axios';
-
+import {
+  TextField,
+  Grid,
+  Button,
+  Radio,
+  FormControl,
+  FormControlLabel,
+  FormLabel,
+  RadioGroup,
+} from "@material-ui/core";
 
 const NewUser = () => {
   const [newUser, setNewUser] = useState({firstnm: '', lastnm: '', email: '', password: '', canedit: false, confPass: ''}),
@@ -85,82 +94,91 @@ const NewUser = () => {
 
   return(
     <div>
-      {lang === true
-      ?
-      <div>
-        <p>First Name</p>
-        <input onChange={(e) => handleInput(e)} name='firstnm'></input>
+      <Grid container justifyContent='center'>
 
-        <p>Last Name</p>
-        <input onChange={(e) => handleInput(e)} name='lastnm'></input>
+      <h2>{lang === true ? 'New User' : 'Nuevo Usuario' }</h2>
+      </Grid>
+      <Grid container justifyContent='space-around' style={{height: '200px'}}>
+        <Grid container direction='column' justifyContent='space-around' xs={4}>
+          <TextField 
+          variant="outlined"
+          label={lang === true ? "First Name" : 'Primer nombre'}
+          onChange={(e) => handleInput(e)}
+          name="firstnm"
+          />
 
-        <p>Email</p>
-        <input type='email' onChange={(e) => handleInput(e)} name='email'></input>
+            <TextField
+            variant="outlined"
+            label={lang === true ? "Last Name" : 'Apellido'}
+            onChange={(e) => handleInput(e)}
+            name="lastnm"
+          ></TextField>
 
-        <p>Password</p>
-        <input type='password' onChange={(e) => handleInput(e)} name='password'></input>        
+<TextField
+            variant="outlined"
+            label={lang === true ? "Email" : 'Correo Electrónico'}
+            onChange={(e) => handleInput(e)}
+            name="email"
+          ></TextField>
+          </Grid>
 
-        <p>Confirm Password</p>
-        <input type='password' onChange={(e) => handleInput(e)} name='confPass'></input>
+          <Grid container direction='column' justifyContent='space-evenly' xs={4}>
 
-        <p>User Permissions</p> 
-        <input type='radio' value='false' onChange={(e) => handleInput(e)} name='canedit' defaultChecked></input>
-        <label>View Only</label>
-        <br/>
-        <input type='radio' value='true' onChange={(e) => handleInput(e)} name='canedit'></input>
-        <label>View, add, and edit records</label>
-        
-        {newUser.canedit === true
-        ?
-        <>
-        <p>Administrative Password</p>
-        <input type='password' onChange={(e) => handleAdminPass(e)} ></input>
-        </>
-        :
-        null}
+          
 
-        <button onClick={handleSubmit}>Submit</button>
-        
-      </div>
-      : 
-      <div>
-        <p>Primer nombre:</p>
-        <input onChange={(e) => handleInput(e)} name='firstnm'></input>
+<TextField
+            variant="outlined"
+            label={lang === true ? "Password" : 'Contraseña'}
+            onChange={(e) => handleInput(e)}
+            name="password"
+          ></TextField>
 
-        <p>Apellido:</p>
-        <input onChange={(e) => handleInput(e)} name='lastnm'></input>
+<TextField
+            variant="outlined"
+            label={lang === true ? "Confirm Password" : 'Confirmar Contraseña'}
+            onChange={(e) => handleInput(e)}
+            name="confPass"
+          ></TextField>
 
-        <p>Correo electrónico</p>
-        <input type='email' onChange={(e) => handleInput(e)} name='email'></input>
 
-        <p>Contraseña</p>
-        <input type='password' onChange={(e) => handleInput(e)} name='password'></input>        
 
-        <p>Confirmar contraseña</p>
-        <input type='password' onChange={(e) => handleInput(e)} name='confPass'></input>
-
-        <p>Permisos de usuario</p> 
-        <input type='radio' value='false' onChange={(e) => handleInput(e)} name='canedit' defaultChecked></input>
-        <label>Sólo vista</label>
-        <br/>
-        <input type='radio' value='true' onChange={(e) => handleInput(e)} name='canedit'></input>
-        <label>Ver, agregar y editar registros</label>
-        
-        {newUser.canedit === true
-        ?
-        <>
-        <p>Contraseña Administrativa</p>
-        <input type='password' onChange={(e) => handleAdminPass(e)} ></input>
-        </>
-        :
-        null}
-
-        <button onClick={handleSubmit}>Submit</button>
-        
-      </div>
-      }
-    </div>
-  )
+            </Grid>
+            
+      </Grid>
+      <Grid container alignItems='center' justifyContent='center'>
+<FormControl component="fieldset">
+            <FormLabel component="legend">{lang === true ? "User Permissions" : "Permisos de Usuario"}</FormLabel>
+            <RadioGroup
+              aria-label="Sex"
+              defaultValue="female"
+              name="canedit"
+              onChange={(e) => handleInput(e)}
+            >
+              <FormControlLabel
+                value="false"
+                control={<Radio />}
+                label={lang === true ? "View Only" : "Sólo vista"}
+              />
+              <FormControlLabel value="true" control={<Radio />} label={lang === true ? "View, add, and edit records" : "Ver, agregar y editar registros"} />
+            </RadioGroup>
+          </FormControl>
+          {newUser.canedit === true
+        &&
+          <TextField  variant="outlined"
+            label={lang === true ? "Administrative Password" : 'Contraseña Administrativa'}
+            onChange={(e) => handleAdminPass(e)}
+            style={{marginRight:'10px', width: '200px'}}
+             />
+          }
+          <Button
+          variant='contained' onClick={handleSubmit}
+          >
+            {lang === true ? 'Submit' : 'Entregar'}
+          </Button>
+          
+          </Grid>
+     
+  </div>)
 }
 
 export default NewUser;
